@@ -93,7 +93,8 @@ namespace WindowsFormsApplication1 {
                 List<KeyValuePair<int, string>> data = new List<KeyValuePair<int, string>>();
                 data.Add(new KeyValuePair<int, string>(-1, ""));
                 for (int i = 0; i <= dt.Rows.Count - 1; i++) {
-                    data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
+                    if (!dt.Rows[i].IsNull(1))
+                        data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
                 }
                 // Bind the combobox
                 cbo.DataSource = null;
@@ -190,6 +191,12 @@ namespace WindowsFormsApplication1 {
                 dr["TITLE4"] = "";
                 dr["BODY4"] = "";
                 dr["P_PATH"] = lblPDFPath.Text;
+
+                // additional fields
+                for (int x = 1; x < 11; x++) {
+                    dr["A" + x] = "";
+                }
+
                 dtTable.Rows.Add(dr);
                 dataAdapter.Update(dtTable);  // write new row back to database
                 iSelected = cboSelect.Items.Count;
@@ -212,7 +219,19 @@ namespace WindowsFormsApplication1 {
                     "BODY3 = @body3," +
                     "TITLE4 = @title4," +
                     "BODY4 = @body4," +
-                    "P_PATH = @p_path" +
+                    "P_PATH = @p_path," +
+
+                        "A1 = @a1," +
+                        "A2 = @a2," +
+                        "A3 = @a3," +
+                        "A4 = @a4," +
+                        "A5 = @a5," +
+                        "A6 = @a6," +
+                        "A7 = @a7," +
+                        "A8 = @a8," +
+                        "A9 = @a9," +
+                        "A10 = @a10" +
+
                     " WHERE [ID] = @id";
 
                 OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
@@ -228,6 +247,11 @@ namespace WindowsFormsApplication1 {
                 cmd.Parameters.AddWithValue("@title4", "");
                 cmd.Parameters.AddWithValue("@body4", "");
                 cmd.Parameters.AddWithValue("@p_path", lblPDFPath.Text);
+
+                // additional fields
+                for (int x = 1; x < 11; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
 
                 cmd.Parameters.AddWithValue("@id", Get_Selected_Key(cboSelect));
 

@@ -33,13 +33,13 @@ namespace WindowsFormsApplication1 {
 
         private void frmDeveloper_Load(object sender, EventArgs e) {
             this.Text = GlobalCode.sCARRIER + " " + GlobalCode.sFleet + this.Text;
-            btnGenerateScript.Enabled = false;
+            //btnGenerateScript.Enabled = false;
             btnUpdate.Enabled = false;
             btnDelete.Enabled = false;
             btnSave.Enabled = false;
             Initialize_DB();
             Fill_listbox();
-            Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY ID");
+            Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY LESSON_NAME");
             Fill_CBOs(cboPreamble1, "SELECT ID, P_NAME FROM Preamble ORDER BY P_NAME");
             Fill_CBOs(cboPreamble2, "SELECT ID, P_NAME FROM Preamble ORDER BY P_NAME");
             Fill_CBOs(cboPreamble3, "SELECT ID, P_NAME FROM Preamble ORDER BY P_NAME");
@@ -321,12 +321,10 @@ namespace WindowsFormsApplication1 {
                         TotalTime();
                     }
                 }
-                btnGenerateScript.Enabled = true;
                 btnUpdate.Enabled = true;
                 btnDelete.Enabled = true;
                 btnSave.Enabled = true;
             } else {
-                btnGenerateScript.Enabled = false;
                 btnUpdate.Enabled = false;
                 btnDelete.Enabled = false;
                 btnSave.Enabled = false;
@@ -380,7 +378,7 @@ namespace WindowsFormsApplication1 {
                 }
 
                 //AbcPDF.Generate_PDF();
-                PDF.Generate_PDF();
+                //PDF.Generate_PDF();
 
                 //frmReportViewer frmReport = new frmReportViewer();
                 //frmReport.Show();
@@ -458,7 +456,19 @@ namespace WindowsFormsApplication1 {
                     "P3_BEFORE = @p3_before," +
                     "P3_AFTER = @p3_after," +
                     "P4_BEFORE = @p4_before," +
-                    "P4_AFTER = @p4_after" +
+                    "P4_AFTER = @p4_after," +
+
+                    "A1 = @a1," +
+                    "A2 = @a2," +
+                    "A3 = @a3," +
+                    "A4 = @a4," +
+                    "A5 = @a5," +
+                    "A6 = @a6," +
+                    "A7 = @a7," +
+                    "A8 = @a8," +
+                    "A9 = @a9," +
+                    "A10 = @a10" +
+
                     " WHERE [ID] = @id";
 
                 OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
@@ -531,6 +541,11 @@ namespace WindowsFormsApplication1 {
                     cmd.Parameters.AddWithValue("@p4_after", 0);
                 }
 
+                // additional fields
+                for (int x = 1; x < 11; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
+
                 cmd.Parameters.AddWithValue("@id", Get_Selected_Key(cboScripts));
 
                 conn.Open();
@@ -538,7 +553,7 @@ namespace WindowsFormsApplication1 {
                 conn.Close();
 
                 Clear_Entries();
-                Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY ID");
+                Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY LESSON_NAME");
             }
         }
 
@@ -621,8 +636,17 @@ namespace WindowsFormsApplication1 {
                 dr["P4_AFTER"] = 0;
             }
 
+            // additional fields
+            for (int x = 1; x < 11; x++) {
+                dr["A" + x] = "";
+            }
+
+
             dtTable.Rows.Add(dr);
             dataAdapter.Update(dtTable);  // write new row back to database
+
+            Clear_Entries();
+            Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY LESSON_NAME");
         }
 
         private string GetDateString(DateTime d) {
@@ -682,7 +706,7 @@ namespace WindowsFormsApplication1 {
         }
 
         private void btnDelete_Click(object sender, EventArgs e) {
-
+            Delete_Entry();
         }
         private void Delete_Entry() {
             try {
@@ -759,7 +783,7 @@ namespace WindowsFormsApplication1 {
                         commandBuilder.ExecuteNonQuery();
                         conn.Close();
                         Clear_Entries();
-                        Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY ID");
+                        Fill_CBOs(cboScripts, "SELECT ID, LESSON_NAME FROM Lesson ORDER BY LESSON_NAME");
                     }
                 }
             } catch (Exception) {
@@ -782,8 +806,8 @@ namespace WindowsFormsApplication1 {
                 chk3PlaceAfter.Checked = false;
                 chk4PlaceBefore.Checked = false;
                 chk4PlaceAfter.Checked = false;
-
-                btnGenerateScript.Enabled = false;
+                listScript.Items.Clear();
+                
                 btnUpdate.Enabled = false;
                 btnDelete.Enabled = false;
                 btnSave.Enabled = false;

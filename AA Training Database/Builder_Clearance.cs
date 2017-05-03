@@ -79,14 +79,14 @@ namespace WindowsFormsApplication1 {
         }
 
         public static DataTable Get_Selected_DataTable_DEP(string sDEP) {
-            OleDbConnection conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
+            //OleDbConnection conn = new OleDbConnection(GlobalCode.sOleDbConnectionStringAirport);
             DataTable dt = new DataTable();
             string sCommand = "SELECT * FROM Airport_Runways WHERE ICAO = '" + sDEP + "'";
-            conn.Open();
-            OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
+            GlobalCode.connAirport.Open();
+            OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionStringAirport);
             //dt.Locale = System.Globalization.CultureInfo.InvariantCulture;
             dAdapter.Fill(dt);
-            conn.Close();
+            GlobalCode.connAirport.Close();
             return dt;
         }
 

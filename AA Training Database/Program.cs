@@ -35,21 +35,36 @@ namespace WindowsFormsApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 
             // force upgrade of settings: this is due to updates creating new settings file
             Settings.Default.Upgrade();
 
+            SplashScreen.SplashScreen.ShowSplashScreen();
+
             Load_App();
 
             Application.Run(new frmBuilderSpot());
+            Application.Exit();
 
+        }
+        private static void Application_ApplicationExit(Object sender, EventArgs e) {
+            // run backup
+            GlobalCode.DATA_BACKUP("APP_CLOSE");
         }
 
         public static void Load_App() {
 
+            
+            SplashScreen.SplashScreen.SetStatus("LOADING PATHS ...", true);
+
             // set the app path for a default data app on first run
             GlobalCode.sPATH_APP = Application.StartupPath;
 
+            // map airport db
+            GlobalCode.sPATH_FILE_AIRPORT = GlobalCode.sPATH_APP + "\\Include\\airport.accdb";
+            GlobalCode.sOleDbConnectionStringAirport = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + GlobalCode.sPATH_FILE_AIRPORT;
+            GlobalCode.connAirport = new OleDbConnection(GlobalCode.sOleDbConnectionStringAirport);
 
             // read setting
             GlobalCode.sFleet = (string)Settings.Default.FLEET;
@@ -63,21 +78,19 @@ namespace WindowsFormsApplication1
             if (GlobalCode.sPATH_DATA == "" || !File.Exists(GlobalCode.sPATH_FILE_DATA)) {
                 // set flag and load default database
                 GlobalCode.bFirstRun = true;
-                GlobalCode.sFILE_DATA = "\\TSD_.accdb";
+                GlobalCode.sFILE_DATA = "\\Include\\TSD_.accdb";
                 GlobalCode.sPATH_DATA = GlobalCode.sPATH_APP;
             }
             GlobalCode.sPATH_FILE_DATA = GlobalCode.sPATH_DATA + GlobalCode.sFILE_DATA;
 
             DataSet ds = new DataSet();
-            //OleDbDataAdapter dataAdapter = null;
-            //DataTable dtTable = null;
-
             GlobalCode.sOleDbConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + GlobalCode.sPATH_FILE_DATA;
-            GlobalCode.conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
-
+            GlobalCode.connData = new OleDbConnection(GlobalCode.sOleDbConnectionString);
 
             if (GlobalCode.bFirstRun) {
                 // first run- launch prefs form
+                SplashScreen.SplashScreen.SetStatus("Showing options ...", true);
+                SplashScreen.SplashScreen.CloseForm();
                 frmOptions frmOptions = new frmOptions();
                 frmOptions.ShowDialog();
                 // return from prefs page, set path to newly sellected path
@@ -85,13 +98,18 @@ namespace WindowsFormsApplication1
                 GlobalCode.sOleDbConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + GlobalCode.sPATH_FILE_DATA;
             }
 
+            // make a backup before opening
+            SplashScreen.SplashScreen.SetStatus("Creating a pre-open backup...", true);
+            GlobalCode.DATA_BACKUP("APP_OPEN");
+
+            SplashScreen.SplashScreen.SetStatus("Loading preferences...", true);
             string sCommand = "SELECT * FROM Options WHERE ID = 1";
-            GlobalCode.conn.Open();
+            GlobalCode.connData.Open();
             OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
             DataTable dt = new DataTable();
             dt.Locale = System.Globalization.CultureInfo.InvariantCulture;
             dAdapter.Fill(dt);
-            GlobalCode.conn.Close();
+            GlobalCode.connData.Close();
 
             for (int i = 0; i <= dt.Rows.Count - 1; i++) {
 
@@ -101,7 +119,8 @@ namespace WindowsFormsApplication1
                 } else {
                     GlobalCode.sFleet = "";
                 }
-                //GlobalCode.sFleet = (string)Settings.Default.FLEET;
+                Settings.Default.FLEET = GlobalCode.sFleet;
+                Settings.Default.Save();
 
                 if ((string)dt.Rows[i]["PATH_LOGO"] != "0") {
                     GlobalCode.sPATH_LOGO = (string)dt.Rows[i]["PATH_LOGO"];
@@ -113,7 +132,9 @@ namespace WindowsFormsApplication1
                 } else {
                     GlobalCode.sPATH_IMAGE_PDF = "";
                 }
+
                 GlobalCode.sCARRIER = (string)dt.Rows[i]["CARRIER"];
+
                 if ((string)dt.Rows[i]["PATH_DB_BACKUP"] != "0") {
                     GlobalCode.sPATH_FILE_DATA_BACKUP = (string)dt.Rows[i]["PATH_DB_BACKUP"];
                 } else {

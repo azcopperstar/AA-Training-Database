@@ -22,79 +22,83 @@ namespace WindowsFormsApplication1 {
 
     class PDF {
 
-        
+
         // document title (this will need to be set in the app prefs)
-        static string sDocTitle = GlobalCode.sFleet + " I/E TRAINING GUIDE";
-        static string sDocSection = "";
+        public static string sDocTitle = GlobalCode.sFleet + " I/E TRAINING GUIDE";
+        public static string sDocSection = "";
 
-        static string sVersionMajor = "1";
-        static string sVersionMinor = "0";
-        static string sEdition = sVersionMajor + "." + sVersionMinor;
+        public static string sVersionMajor = "1";
+        public static string sVersionMinor = "0";
+        public static string sEdition = sVersionMajor + "." + sVersionMinor;
 
+        // create fonts and colors
+        public static int iNormalFontSize = 10;
+        public static int iATISFontSize = 11;
+        public static int iFMCFontSize = 12;
 
         //static string strPath = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
 
-        // create fonts and colors
-        static int iNormalFontSize = 10;
-        static int iATISFontSize = 11;
-        static int iFMCFontSize = 12;
 
-        static string sFont_Fixed_Width = "Lucida Fax";
+        public static string sFont_Fixed_Width = "Lucida Fax";
 
         //static BaseFont f_cb = BaseFont.CreateFont("c:\\windows\\fonts\\arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
         //static BaseFont f_Fixed_Width = BaseFont.CreateFont("c:\\windows\\fonts\\lucon.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
-        static BaseColor color_White = BaseColor.WHITE;
-        static BaseColor color_Black = BaseColor.BLACK;
-        static BaseColor color_Red = BaseColor.RED;
-        static BaseColor color_Green = BaseColor.GREEN;
-        static BaseColor color_DarkGreen = new BaseColor(48, 128, 20);
-        static BaseColor color_Blue = BaseColor.BLUE;
-        static BaseColor color_DarkBlue = new BaseColor(0, 178, 238);
-        static BaseColor color_Cyan = BaseColor.CYAN;
-        static BaseColor color_Maroon = new BaseColor(128,0,0);
-        static BaseColor color_Yellow = new BaseColor(255, 255, 0);
+        public static BaseColor color_White = BaseColor.WHITE;
+        public static BaseColor color_Black = BaseColor.BLACK;
+        public static BaseColor color_Red = BaseColor.RED;
+        public static BaseColor color_Green = BaseColor.GREEN;
+        public static BaseColor color_DarkGreen = new BaseColor(48, 128, 20);
+        public static BaseColor color_Blue = BaseColor.BLUE;
+        public static BaseColor color_DarkBlue = new BaseColor(0, 178, 238);
+        public static BaseColor color_Cyan = BaseColor.CYAN;
+        public static BaseColor color_Maroon = new BaseColor(128,0,0);
+        public static BaseColor color_Yellow = new BaseColor(255, 255, 0);
 
-        static BaseColor background_grey = new BaseColor(190, 190, 190);
-        static BaseColor background_white = new BaseColor(255, 255, 255);
-        static BaseColor background_gold = new BaseColor(255, 210, 48);
-        static BaseColor background_breakgreen = new BaseColor(144, 238, 144);
+        public static BaseColor background_grey = new BaseColor(190, 190, 190);
+        public static BaseColor background_white = new BaseColor(255, 255, 255);
+        public static BaseColor background_gold = new BaseColor(255, 210, 48);
+        public static BaseColor background_breakgreen = new BaseColor(144, 238, 144);
 
-        static BaseColor color_grid_blue = new BaseColor(0, 0, 200);
-        static BaseColor color_grid_violet = new BaseColor(113, 113, 198);
-        static BaseColor color_grid_purple = new BaseColor(138, 43, 226);
-        static BaseColor color_grid_ltblue = new BaseColor(202, 225, 255);
-        static BaseColor color_grid_goldenrod = new BaseColor(255, 193, 37);
+        public static BaseColor color_grid_blue = new BaseColor(0, 0, 200);
+        public static BaseColor color_grid_violet = new BaseColor(113, 113, 198);
+        public static BaseColor color_grid_purple = new BaseColor(138, 43, 226);
+        public static BaseColor color_grid_ltblue = new BaseColor(202, 225, 255);
+        public static BaseColor color_grid_goldenrod = new BaseColor(255, 193, 37);
 
-        static BaseColor color_pf_a = new BaseColor(0, 0, 200);
-        static BaseColor color_pf_b = new BaseColor(138, 43, 226);
-        static BaseColor color_pf_both = new BaseColor(202, 225, 255);
-        static BaseColor color_pf_either = new BaseColor(255, 228, 196);
+        public static BaseColor color_pf_a = new BaseColor(0, 0, 200);
+        public static BaseColor color_pf_b = new BaseColor(138, 43, 226);
+        public static BaseColor color_pf_both = new BaseColor(202, 225, 255);
+        public static BaseColor color_pf_either = new BaseColor(255, 228, 196);
 
-        static BaseFont customfont = BaseFont.CreateFont("c:\\windows\\fonts\\consola.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
-        static iTextSharp.text.Font font_Title_Green = new iTextSharp.text.Font(customfont, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Green);
-        static iTextSharp.text.Font font_Title_Cyan = new iTextSharp.text.Font(customfont, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Cyan);
-        static iTextSharp.text.Font font_Title_White = new iTextSharp.text.Font(customfont, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_White);
-        static iTextSharp.text.Font font_Units_Blue = new iTextSharp.text.Font(customfont, iNormalFontSize, iTextSharp.text.Font.NORMAL, color_DarkBlue);
-        static iTextSharp.text.Font font_Data_Maroon = new iTextSharp.text.Font(customfont, iATISFontSize, iTextSharp.text.Font.BOLD, color_Maroon);
+        public static BaseFont customfont = BaseFont.CreateFont("c:\\windows\\fonts\\consola.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
+        public static iTextSharp.text.Font font_Title_Green = new iTextSharp.text.Font(customfont, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Green);
+        public static iTextSharp.text.Font font_Title_Cyan = new iTextSharp.text.Font(customfont, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Cyan);
+        public static iTextSharp.text.Font font_Title_White = new iTextSharp.text.Font(customfont, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_White);
+        public static iTextSharp.text.Font font_Title_White_small = new iTextSharp.text.Font(customfont, 9, iTextSharp.text.Font.NORMAL, color_White);
+        public static iTextSharp.text.Font font_Units_Blue = new iTextSharp.text.Font(customfont, iNormalFontSize, iTextSharp.text.Font.NORMAL, color_DarkBlue);
+        public static iTextSharp.text.Font font_Data_Maroon = new iTextSharp.text.Font(customfont, iATISFontSize, iTextSharp.text.Font.BOLD, color_Maroon);
 
-        static BaseFont fontNormal = BaseFont.CreateFont("c:\\windows\\fonts\\arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
-        static iTextSharp.text.Font font_Normal_Bold_Black = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.BOLD, color_Black);
-        static iTextSharp.text.Font font_Normal_Black = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Black);
-        static iTextSharp.text.Font font_Normal_Bold_Maroon = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.BOLD, color_Maroon);
-        static iTextSharp.text.Font font_Bold_Maroon_14 = new iTextSharp.text.Font(fontNormal, 14, iTextSharp.text.Font.BOLD, color_Maroon);
-        static iTextSharp.text.Font font_Normal_Maroon = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Maroon);
+        public static BaseFont fontNormal = BaseFont.CreateFont("c:\\windows\\fonts\\arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
+        public static iTextSharp.text.Font font_Normal_Bold_Black = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.BOLD, color_Black);
+        public static iTextSharp.text.Font font_Normal_Black = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Black);
+        public static iTextSharp.text.Font font_Normal_Bold_Maroon = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.BOLD, color_Maroon);
+        public static iTextSharp.text.Font font_Bold_Maroon_14 = new iTextSharp.text.Font(fontNormal, 14, iTextSharp.text.Font.BOLD, color_Maroon);
+        public static iTextSharp.text.Font font_Normal_Maroon = new iTextSharp.text.Font(fontNormal, iFMCFontSize, iTextSharp.text.Font.NORMAL, color_Maroon);
 
-        static iTextSharp.text.Font font_TOC_Bold_Black = new iTextSharp.text.Font(fontNormal, iNormalFontSize, iTextSharp.text.Font.BOLD, color_Black);
-        static iTextSharp.text.Font font_TOC_Black = new iTextSharp.text.Font(fontNormal, iNormalFontSize, iTextSharp.text.Font.NORMAL, color_Black);
+        public static iTextSharp.text.Font font_TOC_Bold_Black = new iTextSharp.text.Font(fontNormal, iNormalFontSize, iTextSharp.text.Font.BOLD, color_Black);
+        public static iTextSharp.text.Font font_TOC_Black = new iTextSharp.text.Font(fontNormal, iNormalFontSize, iTextSharp.text.Font.NORMAL, color_Black);
 
-        static int iPageNumber = 0;
+        public static iTextSharp.text.Font font_Spot_Bold_Maroon = new iTextSharp.text.Font(fontNormal, 17, iTextSharp.text.Font.BOLD, color_Maroon);
+        public static iTextSharp.text.Font font_SpotNum_Bold_Maroon = new iTextSharp.text.Font(fontNormal, 22, iTextSharp.text.Font.BOLD, color_Maroon);
 
-        static PdfOutline olRoot = null;
-        static PdfOutline olDocTitle = null;
-        static PdfOutline olLessonSPOTS =null;
+        public static int iPageNumber = 0;
 
-        static bool bHeaderFooter = true;
-        static bool bFooterPgNums = true;   
+        public static PdfOutline olRoot = null;
+        public static PdfOutline olDocTitle = null;
+        public static PdfOutline olLessonSPOTS =null;
+
+        public static bool bHeaderFooter = true;
+        public static bool bFooterPgNums = true;   
 
         private static void Create_Title_Page(iTextSharp.text.Rectangle pdfPage, Document pdfDocument, PdfWriter pdfWriter,string sTitle) {
 
@@ -132,10 +136,10 @@ namespace WindowsFormsApplication1 {
                 png = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png);
                 //png.ScalePercent(10f);
             } else {
-                // use resource
-                System.Drawing.Image test = System.Drawing.Image.FromHbitmap(Properties.Resources.A350.GetHbitmap());
-                png = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png);
-                //png.ScalePercent(5f);
+                //// use resource
+                //System.Drawing.Image test = System.Drawing.Image.FromHbitmap(Properties.Resources.A350.GetHbitmap());
+                //png = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png);
+                ////png.ScalePercent(5f);
 
             }
             if (png.Height > png.Width) {
@@ -175,17 +179,17 @@ namespace WindowsFormsApplication1 {
             pdfPage.BackgroundColor = background_white;
 
 
-            // include 2nd page from external
-            PdfReader reader = new PdfReader(Properties.Resources.page2); // GlobalCode.sPDFOutputPath + "\\page2.pdf"
-            int iPages = reader.NumberOfPages;
-            PdfImportedPage imPage;
-            for (int i = 1; i <= iPages; i++) {
-                imPage = pdfWriter.GetImportedPage(reader, i);
-                pdfDocument.Add(iTextSharp.text.Image.GetInstance(imPage));
-            }
+            //// include 2nd page from external
+            //PdfReader reader = new PdfReader(Properties.Resources.page2); // GlobalCode.sPDFOutputPath + "\\page2.pdf"
+            //int iPages = reader.NumberOfPages;
+            //PdfImportedPage imPage;
+            //for (int i = 1; i <= iPages; i++) {
+            //    imPage = pdfWriter.GetImportedPage(reader, i);
+            //    pdfDocument.Add(iTextSharp.text.Image.GetInstance(imPage));
+            //}
 
-            // new pdfPage
-            pdfDocument.NewPage();
+            //// new pdfPage
+            //pdfDocument.NewPage();
 
             // turn onn header and footer
             bHeaderFooter = true;
@@ -292,8 +296,7 @@ namespace WindowsFormsApplication1 {
         }
 
 
-
-        public static void Generate_PDF() {
+        public static void Generate_Curricula(int iID) {
 
             if (GlobalCode.sPATH_PDF == "") {
                 GlobalCode.sPATH_PDF = GlobalCode.sPATH_APP;
@@ -302,12 +305,6 @@ namespace WindowsFormsApplication1 {
                 GlobalCode.sFILE_PDF = GlobalCode.sFleet + " Training Guide";
             }
 
-
-            // Instantiate the ScriptData class.
-            ScriptData m_SimScript = new ScriptData();
-            // get the data and convert to datatable
-            List<Script> m_Script = new List<Script>(m_SimScript.GetScriptData());
-            DataTable dt = ToDataTable(m_Script);
 
             // create envirenmemt to save the pdf
             string sFile = GlobalCode.sPATH_PDF + "\\" + GlobalCode.sFILE_PDF + ".pdf";
@@ -332,7 +329,7 @@ namespace WindowsFormsApplication1 {
             // open the document
             pdfDocument.Open();
             pdfWriter.SetLinearPageMode();
-            
+
             // create a pdfPage rectange=le (the entire sheet)
             iTextSharp.text.Rectangle pdfPage = pdfDocument.PageSize;
 
@@ -340,835 +337,856 @@ namespace WindowsFormsApplication1 {
             // start with the root of the tree
             olRoot = pdfWriter.RootOutline;
 
+
+
             // create the title page
-            Create_Title_Page(pdfPage, pdfDocument, pdfWriter,sDocTitle);
-
-            // get the lesson data
-            string sLessonTitle = "";
-            string sLessonSubTitle = "";
-            bool bLessonPreambleBefore1 = false;
-            bool bLessonPreambleAfter1 = false;
-            int iLessonPreamble1 = -1;
-            bool bLessonPreambleBefore2 = false;
-            bool bLessonPreambleAfter2 = false;
-            int iLessonPreamble2 = -1;
-            bool bLessonPreambleBefore3 = false;
-            bool bLessonPreambleAfter3 = false;
-            int iLessonPreamble3 = -1;
-            bool bLessonPreambleBefore4 = false;
-            bool bLessonPreambleAfter4 = false;
-            int iLessonPreamble4 = -1;
-
-            int iCountx = 0;
-            foreach (DataRow row in dt.Rows) {
-                iCountx++;
-                if (iCountx == 1) {
-                    sLessonTitle = row["TEXT_TITLE"].ToString();
-                    sLessonSubTitle = "AAL" + row["FLTNUM"].ToString() + " (" + row["DEP"].ToString() + "-" + row["DEST"].ToString() + ")";
-
-                    bLessonPreambleBefore1 = bool.Parse(row["PREAMBLE_BEFORE_1"].ToString());
-                    bLessonPreambleAfter1 = bool.Parse(row["PREAMBLE_AFTER_1"].ToString());
-                    iLessonPreamble1 = int.Parse(row["PREAMBLE_TITLE_1"].ToString());
-
-                    bLessonPreambleBefore2 = bool.Parse(row["PREAMBLE_BEFORE_21"].ToString());
-                    bLessonPreambleAfter2 = bool.Parse(row["PREAMBLE_AFTER_21"].ToString());
-                    iLessonPreamble2 = int.Parse(row["PREAMBLE_TITLE_21"].ToString());
-
-                    bLessonPreambleBefore3 = bool.Parse(row["PREAMBLE_BEFORE_31"].ToString());
-                    bLessonPreambleAfter3 = bool.Parse(row["PREAMBLE_AFTER_31"].ToString());
-                    iLessonPreamble3 = int.Parse(row["PREAMBLE_TITLE_31"].ToString());
-
-                    bLessonPreambleBefore4 = bool.Parse(row["PREAMBLE_BEFORE_41"].ToString());
-                    bLessonPreambleAfter4 = bool.Parse(row["PREAMBLE_AFTER_41"].ToString());
-                    iLessonPreamble4 = int.Parse(row["PREAMBLE_TITLE_41"].ToString());
-                }
-            }
-
-            string sLessonTitleSummary = sLessonTitle + " SUMMARY \n" + sLessonSubTitle;
-            string sLessonTitlePreamble = sLessonTitle + "\n" + sLessonSubTitle;
-
-            Chunk chunkTOC = new Chunk(sLessonTitlePreamble, font_Bold_Maroon_14);
-            // LESSON TITLE AND PREAMBLE pdfPage
-            if (bLessonPreambleBefore1 && iLessonPreamble1 > -1) {
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble1, chunkTOC);
-                pdfDocument.NewPage();
-            }
-            if (bLessonPreambleBefore2 && iLessonPreamble2 > -1) {
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble2, chunkTOC);
-                pdfDocument.NewPage();
-            }
-            if (bLessonPreambleBefore3 && iLessonPreamble3 > -1) {
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble3, chunkTOC);
-                pdfDocument.NewPage();
-            }
-            if (bLessonPreambleBefore4 && iLessonPreamble4 > -1) {
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble4, chunkTOC);
-                pdfDocument.NewPage();
-            }
-
-            // set lesson section for footer
-            sDocSection = sLessonTitle;
+            Create_Title_Page(pdfPage, pdfDocument, pdfWriter, sDocTitle);
 
 
-            // record pdfPage TOC event
-            //chunkTOC.SetGenericTag(sLessonTitle + "- " + sLessonSubTitle);
-
-            // insert pdfPage header
-            // sSPOT + ": " + sManeuver
 
 
-            // lesson preamble
+            string sCommand = "SELECT * FROM Curriculum WHERE ID = " + iID;
+            OleDbConnection conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
+            conn.Open();
+            OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
+            DataTable dtCuricula = new DataTable();
+            dAdapter.Fill(dtCuricula);
+            conn.Close();
 
+            // cycle thru curriculum list for all lessons
+            int iCurriculaLesson = 0;
+            //for (int iCurriculaLesson = 0; iCurriculaLesson <= dtCuricula.Rows.Count - 1; iCurriculaLesson++) {
+            for (int x = 4; x <= 33; x++) {
+                iCurriculaLesson++;
+                int iLesson = (int)dtCuricula.Rows[0].ItemArray[x];
+                if (iLesson > -1) {
+                    GlobalCode.iLesson = iLesson;
 
-            // insert pdfPage header
-            //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, "",false));
+                    // get this lesson
+                    sCommand = "SELECT * FROM Lesson WHERE ID = " + iLesson;
+                    conn.Open();
+                    dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
+                    DataTable dtLesson = new DataTable();
+                    dAdapter.Fill(dtLesson);
+                    conn.Close();
 
+                    // cycle thru lesson list for all spots
+                    List<int> iSPOTList1 = new List<int>();
+                        
+                    //for (int iLessonRow = 0; iLessonRow <= dtLesson.Rows.Count - 1; iLessonRow++) {
+                        for (int iColumn = 4; iColumn <= 33; iColumn++) {
+                        int ispot = int.Parse(dtLesson.Rows[0].ItemArray[iColumn].ToString());
+                        if (ispot > -1) {
+                                iSPOTList1.Add(ispot);
+                            }
+                        }
+                        GlobalCode.iSPOTList = iSPOTList1.ToArray();
+                    //}
 
-            // record pdfPage TOC event
-            chunkTOC = new Chunk(sLessonTitleSummary);
-            chunkTOC.SetGenericTag(sLessonTitle + "- SUMMARY");
+                    // Instantiate the ScriptData class.
+                    ScriptData m_SimScript = new ScriptData();
+                    // get the data and convert to datatable
+                    List<Script> m_Script = new List<Script>(m_SimScript.GetScriptData());
+                    DataTable dt = ToDataTable(m_Script);
 
-            // SUMMARY pdfPage
-            Paragraph pgTitleSummary = new Paragraph(chunkTOC);
-            pgTitleSummary.Font.SetFamily("Arial");
-            pgTitleSummary.Font.SetStyle("bold");
-            pgTitleSummary.Font.Size = 14;
-            pgTitleSummary.Font.Color = color_Maroon;
-            pgTitleSummary.Alignment = Element.ALIGN_CENTER;
-            pgTitleSummary.SpacingAfter = 20;
-            pdfDocument.Add(pgTitleSummary);
+                    // get the lesson data
+                    string sLessonTitle = "";
+                    string sLessonSubTitle = "";
+                    bool bLessonPreambleBefore1 = false;
+                    bool bLessonPreambleAfter1 = false;
+                    int iLessonPreamble1 = -1;
+                    bool bLessonPreambleBefore2 = false;
+                    bool bLessonPreambleAfter2 = false;
+                    int iLessonPreamble2 = -1;
+                    bool bLessonPreambleBefore3 = false;
+                    bool bLessonPreambleAfter3 = false;
+                    int iLessonPreamble3 = -1;
+                    bool bLessonPreambleBefore4 = false;
+                    bool bLessonPreambleAfter4 = false;
+                    int iLessonPreamble4 = -1;
 
+                    int iCountx = 0;
+                    foreach (DataRow row in dt.Rows) {
+                        iCountx++;
+                        if (iCountx == 1) {
+                            sLessonTitle = iCurriculaLesson + "- " + row["TEXT_TITLE"].ToString();
+                            sLessonSubTitle = "AAL" + row["FLTNUM"].ToString() + " (" + row["DEP"].ToString() + "-" + row["DEST"].ToString() + ")";
 
-            // summary table
-            string[] col = { "", "PF", "TIME", "MANEUVER" };
-            PdfPTable tableSummary = new PdfPTable(4);
-            tableSummary.WidthPercentage = 100;
-            // then set the column's __relative__ widths
-            tableSummary.SetWidths(new Single[] { 2, 2, 1, 10 });
-            tableSummary.SpacingBefore = 10;
-            // summary table header
-            for (int i = 0; i < col.Length; ++i) {
-                Phrase pPhrase = new Phrase(col[i]);
-                pPhrase.Font.Color = color_Black;
-                pPhrase.Font.SetFamily("Arial");
-                pPhrase.Font.SetStyle("bold");
-                PdfPCell cell = new PdfPCell(new Phrase(pPhrase));
-                cell.BackgroundColor = background_gold;
-                cell.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                cell.VerticalAlignment = Element.ALIGN_TOP;
-                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                tableSummary.AddCell(cell);
-            }
-            // summary data
-            string sEntTime = "";
-            foreach (DataRow row in dt.Rows) {
-                string sPF = row["PF1"].ToString();
-                string sManeuver = row["MANEUVER"].ToString();
+                            bLessonPreambleBefore1 = bool.Parse(row["PREAMBLE_BEFORE_1"].ToString());
+                            bLessonPreambleAfter1 = bool.Parse(row["PREAMBLE_AFTER_1"].ToString());
+                            iLessonPreamble1 = int.Parse(row["PREAMBLE_TITLE_1"].ToString());
 
-                if (sManeuver.IndexOf("BREAK FOR") > -1) {
-                    Phrase pPhrase5 = new Phrase(sManeuver);
-                    PdfPCell c5 = new PdfPCell(pPhrase5);
-                    c5.Colspan = 4;
-                    c5.BackgroundColor = background_breakgreen;
-                    c5.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    c5.HorizontalAlignment = Element.ALIGN_CENTER;
-                    tableSummary.AddCell(c5);
-                } else {
-                    Phrase pPhrase1 = new Phrase(row["SPOT"].ToString());
-                    pPhrase1.Font.Color = color_Black;
-                    pPhrase1.Font.SetFamily("Arial");
-                    pPhrase1.Font.SetStyle("normal");
-                    PdfPCell c1 = new PdfPCell(pPhrase1);
-                    c1.BackgroundColor = background_white ;
-                    c1.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    c1.HorizontalAlignment = Element.ALIGN_CENTER;
-                    tableSummary.AddCell(c1);
+                            bLessonPreambleBefore2 = bool.Parse(row["PREAMBLE_BEFORE_21"].ToString());
+                            bLessonPreambleAfter2 = bool.Parse(row["PREAMBLE_AFTER_21"].ToString());
+                            iLessonPreamble2 = int.Parse(row["PREAMBLE_TITLE_21"].ToString());
 
-                    Phrase pPhrase2 = new Phrase(sPF);
-                    pPhrase2.Font.Color = color_Black;
-                    pPhrase2.Font.SetFamily("Arial");
-                    pPhrase2.Font.SetStyle("normal");
-                    PdfPCell c2 = new PdfPCell(pPhrase2);
-                    if (sPF == "PILOT A" || sPF == "CA") {
-                        pPhrase2.Font.Color = color_White;
-                        c2.BackgroundColor = color_pf_a;
-                    } else if (sPF == "PILOT B" || sPF == "FO") {
-                        pPhrase2.Font.Color = color_White;
-                        c2.BackgroundColor = color_pf_b;
-                    } else if (sPF == "EITHER") {
-                        pPhrase2.Font.Color = color_White;
-                        c2.BackgroundColor = color_pf_both;// new BaseColor(70, 200, 255);
-                    } else if (sPF == "BOTH") {
-                        pPhrase2.Font.Color = color_White;
-                        c2.BackgroundColor = color_pf_either;//new BaseColor(200, 200, 100);
+                            bLessonPreambleBefore3 = bool.Parse(row["PREAMBLE_BEFORE_31"].ToString());
+                            bLessonPreambleAfter3 = bool.Parse(row["PREAMBLE_AFTER_31"].ToString());
+                            iLessonPreamble3 = int.Parse(row["PREAMBLE_TITLE_31"].ToString());
+
+                            bLessonPreambleBefore4 = bool.Parse(row["PREAMBLE_BEFORE_41"].ToString());
+                            bLessonPreambleAfter4 = bool.Parse(row["PREAMBLE_AFTER_41"].ToString());
+                            iLessonPreamble4 = int.Parse(row["PREAMBLE_TITLE_41"].ToString());
+                        }
                     }
-                    c2.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    c2.HorizontalAlignment = Element.ALIGN_CENTER;
-                    tableSummary.AddCell(c2);
 
-                    Phrase pPhrase3 = new Phrase(row["TIME_SPOT"].ToString());
-                    pPhrase3.Font.Color = color_Black;
-                    pPhrase3.Font.SetFamily("Arial");
-                    pPhrase3.Font.SetStyle("normal");
-                    PdfPCell c3 = new PdfPCell(pPhrase3);
-                    c3.BackgroundColor = background_white ;
-                    c3.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    c3.HorizontalAlignment = Element.ALIGN_CENTER;
-                    tableSummary.AddCell(c3);
+                    string sLessonTitleSummary = sLessonTitle + " SUMMARY \n" + sLessonSubTitle;
+                    string sLessonTitlePreamble = sLessonTitle + "\n" + sLessonSubTitle;
 
-                    Phrase pPhrase4 = new Phrase(sManeuver);
-                    pPhrase4.Font.Color = color_Black;
-                    pPhrase4.Font.SetFamily("Arial");
-                    pPhrase4.Font.SetStyle("normal");
-                    PdfPCell c4 = new PdfPCell(pPhrase4);
-                    c4.BackgroundColor = background_white ;
-                    c4.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    c4.HorizontalAlignment = Element.ALIGN_LEFT;
-                    tableSummary.AddCell(c4);
-                }
-                sEntTime = row["TIME_END"].ToString();
-            }
-            // summary table footer
-            Phrase pPhrase6 = new Phrase("");
-            PdfPCell c6 = new PdfPCell(pPhrase6);
-            c6.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            c6.BackgroundColor = background_gold;
-            tableSummary.AddCell(c6);
-            Phrase pPhrase8 = new Phrase(sEntTime);
-            PdfPCell c8 = new PdfPCell(pPhrase8);
-            c8.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            c8.BackgroundColor = background_gold;
-            c8.VerticalAlignment = Element.ALIGN_MIDDLE;
-            c8.HorizontalAlignment = Element.ALIGN_RIGHT;
-            c8.Colspan = 2;
-            tableSummary.AddCell(c8);
-            PdfPCell c7 = new PdfPCell(pPhrase6);
-            c7.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            c7.BackgroundColor = background_gold;
-            tableSummary.AddCell(c7);
+                    Chunk chunkTOC = new Chunk(sLessonTitlePreamble, font_Bold_Maroon_14);
+                    // LESSON TITLE AND PREAMBLE pdfPage
+                    if (bLessonPreambleBefore1 && iLessonPreamble1 > -1) {
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble1, chunkTOC);
+                        pdfDocument.NewPage();
+                    }
+                    if (bLessonPreambleBefore2 && iLessonPreamble2 > -1) {
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble2, chunkTOC);
+                        pdfDocument.NewPage();
+                    }
+                    if (bLessonPreambleBefore3 && iLessonPreamble3 > -1) {
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble3, chunkTOC);
+                        pdfDocument.NewPage();
+                    }
+                    if (bLessonPreambleBefore4 && iLessonPreamble4 > -1) {
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble4, chunkTOC);
+                        pdfDocument.NewPage();
+                    }
 
-            pdfDocument.Add(tableSummary);
+                    // set lesson section for footer
+                    sDocSection = sLessonTitle;
 
-            // SPOTS
-            int iRowCounter = 0;
-            int iRowCount = dt.Rows.Count;
-            foreach (DataRow row in dt.Rows) {
-                string sPF = row["PF1"].ToString();
-                string sManeuver = row["MANEUVER"].ToString();
-                string sSPOT = row["SPOT"].ToString();
-
-//                PdfOutline olLessonSPOTS;
-
-                iRowCounter++;
-                // start new pdfPage
-                pdfDocument.NewPage();
-
-                if (sManeuver.IndexOf("BREAK FOR") > -1) {
-                    // BREAK //
-
-                    // insert pdfPage header
-                    //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, "", false));
-
-                    // header
-                    PdfPTable tableSPOTHeader = new PdfPTable(1);
-                    tableSPOTHeader.WidthPercentage = 100;
-                    tableSPOTHeader.SpacingBefore = 1;
-                    Phrase pPhrase1 = new Phrase(sManeuver);
-                    pPhrase1.Font.Color = color_Black;
-                    pPhrase1.Font.SetFamily("Arial");
-                    pPhrase1.Font.SetStyle("bold");
-                    pPhrase1.Font.Size = 16;
-                    PdfPCell c1 = new PdfPCell(pPhrase1);
-                    c1.BackgroundColor = background_breakgreen;
-                    c1.VerticalAlignment = Element.ALIGN_TOP;
-                    c1.HorizontalAlignment = Element.ALIGN_CENTER;
-                    c1.BorderWidthRight = 2;
-                    c1.BorderWidthLeft = 1;
-                    c1.BorderWidthTop = 1;
-                    c1.BorderWidthBottom = 2;
-                    tableSPOTHeader.AddCell(c1);
-                    pdfDocument.Add(tableSPOTHeader);
-                } else {
-                    // SPOTS //
-
-                    // insert pdfPage header
-                    //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sSPOT + ": " + sManeuver, false));
-
-                    // SPOT header
-                    PdfPTable tableSPOTHeader = new PdfPTable(3);
-                    tableSPOTHeader.WidthPercentage = 100;
-                    // then set the column's __relative__ widths
-                    tableSPOTHeader.SetWidths(new Single[] { 2, 8, 2 });
-                    tableSPOTHeader.SpacingBefore = 1;
 
                     // record pdfPage TOC event
-                    chunkTOC = new Chunk(sSPOT);
-                    chunkTOC.SetGenericTag(sSPOT + "- " + row["MANEUVER"].ToString());
+                    //chunkTOC.SetGenericTag(sLessonTitle + "- " + sLessonSubTitle);
 
-                    Phrase pPhrase1 = new Phrase(chunkTOC);
-                    pPhrase1.Font.Color = color_Black;
-                    pPhrase1.Font.SetFamily("Arial");
-                    pPhrase1.Font.SetStyle("bold");
-                    pPhrase1.Font.Size = 22;
-                    PdfPCell c1 = new PdfPCell(pPhrase1);
-                    c1.BackgroundColor = background_gold;
-                    c1.VerticalAlignment = Element.ALIGN_TOP;
-                    c1.HorizontalAlignment = Element.ALIGN_LEFT;
-                    c1.BorderWidthRight = 0;
-                    c1.BorderWidthLeft = 1;
-                    c1.BorderWidthTop = 1;
-                    c1.BorderWidthBottom = 2;
-                    tableSPOTHeader.AddCell(c1);
+                    // insert pdfPage header
+                    // sSPOT + ": " + sManeuver
 
-                    Phrase pPhrase2 = new Phrase(row["MANEUVER"].ToString());
-                    pPhrase2.Font.Color = color_Black;
-                    pPhrase2.Font.SetFamily("Arial");
-                    pPhrase2.Font.SetStyle("bold");
-                    pPhrase2.Font.Size = 16;
-                    PdfPCell c2 = new PdfPCell(pPhrase2);
-                    c2.BackgroundColor = background_gold;
-                    c2.VerticalAlignment = Element.ALIGN_TOP;
-                    c2.HorizontalAlignment = Element.ALIGN_LEFT;
-                    c2.BorderWidthRight = 0;
-                    c2.BorderWidthLeft = 0;
-                    c2.BorderWidthTop = 1;
-                    c2.BorderWidthBottom = 2;
-                    tableSPOTHeader.AddCell(c2);
 
-                    PdfPTable tableSPOTHeaderInner = new PdfPTable(1);
-                    // start time
-                    Phrase pPhraseInner1 = new Phrase(row["TIME_START"].ToString());
-                    pPhraseInner1.Font.Color = color_Black;
-                    pPhraseInner1.Font.SetFamily("Arial");
-                    pPhraseInner1.Font.SetStyle("bold");
-                    pPhraseInner1.Font.Size = 9;
-                    PdfPCell cInner1 = new PdfPCell(pPhraseInner1);
-                    cInner1.BackgroundColor = background_gold;
-                    cInner1.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    cInner1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    cInner1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                    tableSPOTHeaderInner.AddCell(cInner1);
-                    // spot time
-                    Phrase pPhraseInner2 = new Phrase(row["TIME_SPOT"].ToString());
-                    pPhraseInner2.Font.Color = color_Maroon;
-                    pPhraseInner2.Font.SetFamily("Arial");
-                    pPhraseInner2.Font.SetStyle("bold");
-                    pPhraseInner2.Font.Size = 12;
-                    PdfPCell cInner2 = new PdfPCell(pPhraseInner2);
-                    cInner2.BackgroundColor = background_gold;
-                    cInner2.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    cInner2.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    cInner2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                    tableSPOTHeaderInner.AddCell(cInner2);
-                    // end time
-                    Phrase pPhraseInner3 = new Phrase(row["TIME_END"].ToString());
-                    pPhraseInner3.Font.Color = color_Black;
-                    pPhraseInner3.Font.SetFamily("Arial");
-                    pPhraseInner3.Font.SetStyle("bold");
-                    pPhraseInner3.Font.Size = 9;
-                    PdfPCell cInner3 = new PdfPCell(pPhraseInner3);
-                    cInner3.BackgroundColor = background_gold;
-                    cInner3.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    cInner3.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    cInner3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                    tableSPOTHeaderInner.AddCell(cInner3);
-                    // add inner cell to outer cell
-                    PdfPCell c3 = new PdfPCell();
-                    c3.BackgroundColor = background_gold;
-                    c3.VerticalAlignment = Element.ALIGN_MIDDLE;
-                    c3.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    c3.BorderWidthRight = 2;
-                    c3.BorderWidthLeft = 0;
-                    c3.BorderWidthTop = 1;
-                    c3.BorderWidthBottom = 2;
-                    c3.AddElement(tableSPOTHeaderInner);
-                    tableSPOTHeader.AddCell(c3);
-                    // add spot header
-                    pdfDocument.Add(tableSPOTHeader);
+                    // lesson preamble
 
-                    // OBJECTIVE & SCOPE
-                    PdfPTable tableObjScope = new PdfPTable(2);
-                    tableObjScope.WidthPercentage = 100;
+
+                    // insert pdfPage header
+                    //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, "",false));
+
+
+                    // record pdfPage TOC event
+                    chunkTOC = new Chunk(sLessonTitleSummary);
+                    chunkTOC.SetGenericTag(sLessonTitle + "- SUMMARY");
+
+                    // SUMMARY pdfPage
+                    Paragraph pgTitleSummary = new Paragraph(chunkTOC);
+                    pgTitleSummary.Font.SetFamily("Arial");
+                    pgTitleSummary.Font.SetStyle("bold");
+                    pgTitleSummary.Font.Size = 14;
+                    pgTitleSummary.Font.Color = color_Maroon;
+                    pgTitleSummary.Alignment = Element.ALIGN_CENTER;
+                    pgTitleSummary.SpacingAfter = 20;
+                    pdfDocument.Add(pgTitleSummary);
+
+
+                    // summary table
+                    string[] col = { "", "PF", "TIME", "MANEUVER" };
+                    PdfPTable tableSummary = new PdfPTable(4);
+                    tableSummary.WidthPercentage = 100;
                     // then set the column's __relative__ widths
-                    tableObjScope.SetWidths(new Single[] { 2, 10 });
-                    tableObjScope.SpacingBefore = 1;
+                    tableSummary.SetWidths(new Single[] { 2, 2, 1, 10 });
+                    tableSummary.SpacingBefore = 10;
+                    // summary table header
+                    for (int iSummary = 0; iSummary < col.Length; ++iSummary) {
+                        Phrase pPhrase = new Phrase(col[iSummary]);
+                        pPhrase.Font.Color = color_Black;
+                        pPhrase.Font.SetFamily("Arial");
+                        pPhrase.Font.SetStyle("bold");
+                        PdfPCell cell = new PdfPCell(new Phrase(pPhrase));
+                        cell.BackgroundColor = background_gold;
+                        cell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                        cell.VerticalAlignment = Element.ALIGN_TOP;
+                        cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        tableSummary.AddCell(cell);
+                    }
+                    // summary data
+                    string sEntTime = "";
+                    foreach (DataRow row in dt.Rows) {
+                        string sPF = row["PF1"].ToString();
+                        string sManeuver = row["MANEUVER"].ToString();
 
-                    // get objective text
-                    string sObj1 = row["OBJECTIVE1"].ToString();
-                    string sObj2 = row["OBJECTIVE2"].ToString();
-                    if (sObj1 == "") {
-                        if (sObj2 != "") {
-                            sObj1 = sObj2;
+                        if (sManeuver.IndexOf("BREAK FOR") > -1) {
+                            Phrase pPhrase5 = new Phrase(sManeuver);
+                            PdfPCell c5 = new PdfPCell(pPhrase5);
+                            c5.Colspan = 4;
+                            c5.BackgroundColor = background_breakgreen;
+                            c5.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c5.HorizontalAlignment = Element.ALIGN_CENTER;
+                            tableSummary.AddCell(c5);
+                        } else {
+                            Phrase pPhrase1 = new Phrase(row["SPOT"].ToString());
+                            pPhrase1.Font.Color = color_Black;
+                            pPhrase1.Font.SetFamily("Arial");
+                            pPhrase1.Font.SetStyle("normal");
+                            PdfPCell c1 = new PdfPCell(pPhrase1);
+                            c1.BackgroundColor = background_white;
+                            c1.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c1.HorizontalAlignment = Element.ALIGN_CENTER;
+                            tableSummary.AddCell(c1);
+
+                            Phrase pPhrase2 = new Phrase(sPF);
+                            pPhrase2.Font.Color = color_Black;
+                            pPhrase2.Font.SetFamily("Arial");
+                            pPhrase2.Font.SetStyle("normal");
+                            PdfPCell c2 = new PdfPCell(pPhrase2);
+                            if (sPF == "PILOT A" || sPF == "CA") {
+                                pPhrase2.Font.Color = color_White;
+                                c2.BackgroundColor = color_pf_a;
+                            } else if (sPF == "PILOT B" || sPF == "FO") {
+                                pPhrase2.Font.Color = color_White;
+                                c2.BackgroundColor = color_pf_b;
+                            } else if (sPF == "EITHER") {
+                                pPhrase2.Font.Color = color_White;
+                                c2.BackgroundColor = color_pf_both;// new BaseColor(70, 200, 255);
+                            } else if (sPF == "BOTH") {
+                                pPhrase2.Font.Color = color_White;
+                                c2.BackgroundColor = color_pf_either;//new BaseColor(200, 200, 100);
+                            }
+                            c2.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c2.HorizontalAlignment = Element.ALIGN_CENTER;
+                            tableSummary.AddCell(c2);
+
+                            Phrase pPhrase3 = new Phrase(row["TIME_SPOT"].ToString());
+                            pPhrase3.Font.Color = color_Black;
+                            pPhrase3.Font.SetFamily("Arial");
+                            pPhrase3.Font.SetStyle("normal");
+                            PdfPCell c3 = new PdfPCell(pPhrase3);
+                            c3.BackgroundColor = background_white;
+                            c3.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c3.HorizontalAlignment = Element.ALIGN_CENTER;
+                            tableSummary.AddCell(c3);
+
+                            Phrase pPhrase4 = new Phrase(sManeuver);
+                            pPhrase4.Font.Color = color_Black;
+                            pPhrase4.Font.SetFamily("Arial");
+                            pPhrase4.Font.SetStyle("normal");
+                            PdfPCell c4 = new PdfPCell(pPhrase4);
+                            c4.BackgroundColor = background_white;
+                            c4.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c4.HorizontalAlignment = Element.ALIGN_LEFT;
+                            tableSummary.AddCell(c4);
                         }
-                    } else if (sObj2 != "") {
-                        sObj1 = sObj1 + "\n" + sObj2;
+                        sEntTime = row["TIME_END"].ToString();
                     }
-                    if (sObj1 != "") {
-                        // display objective
-                        Phrase pObjective = new Phrase("OBJECTIVE");
-                        pObjective.Font.Color = color_Black;
-                        pObjective.Font.SetFamily("Arial");
-                        pObjective.Font.SetStyle("bold");
-                        pObjective.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pObjective);
-                        cO1.BackgroundColor = background_white ;
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableObjScope.AddCell(cO1);
-                        Phrase pObjective1 = new Phrase(sObj1);
-                        pObjective1.Font.Color = color_Black;
-                        pObjective1.Font.SetFamily("Arial");
-                        pObjective1.Font.SetStyle("normal");
-                        pObjective1.Font.Size = iNormalFontSize;
-                        PdfPCell cO2 = new PdfPCell(pObjective1);
-                        cO2.BackgroundColor = background_white ;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableObjScope.AddCell(cO2);
-                    }
-                    // get scope text
-                    string sScp1 = row["SCOPE1"].ToString();
-                    string sScp2 = row["SCOPE2"].ToString();
-                    if (sScp1 == "") {
-                        if (sScp2 != "") {
-                            sScp1 = sScp2;
+                    // summary table footer
+                    Phrase pPhrase6 = new Phrase("");
+                    PdfPCell c6 = new PdfPCell(pPhrase6);
+                    c6.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                    c6.BackgroundColor = background_gold;
+                    tableSummary.AddCell(c6);
+                    Phrase pPhrase8 = new Phrase(sEntTime);
+                    PdfPCell c8 = new PdfPCell(pPhrase8);
+                    c8.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                    c8.BackgroundColor = background_gold;
+                    c8.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    c8.HorizontalAlignment = Element.ALIGN_RIGHT;
+                    c8.Colspan = 2;
+                    tableSummary.AddCell(c8);
+                    PdfPCell c7 = new PdfPCell(pPhrase6);
+                    c7.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                    c7.BackgroundColor = background_gold;
+                    tableSummary.AddCell(c7);
+
+                    pdfDocument.Add(tableSummary);
+
+                    // SPOTS
+                    int iRowCounter = 0;
+                    int iRowCount = dt.Rows.Count;
+                    foreach (DataRow row in dt.Rows) {
+                        string sPF = row["PF1"].ToString();
+                        string sManeuver = row["MANEUVER"].ToString();
+                        string sSPOT = row["SPOT"].ToString();
+
+                        //                PdfOutline olLessonSPOTS;
+
+                        iRowCounter++;
+                        // start new pdfPage
+                        pdfDocument.NewPage();
+
+                        if (sManeuver.IndexOf("BREAK FOR") > -1) {
+                            // BREAK //
+
+                            // insert pdfPage header
+                            //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, "", false));
+
+                            // header
+                            PdfPTable tableSPOTHeader = new PdfPTable(1);
+                            tableSPOTHeader.WidthPercentage = 100;
+                            tableSPOTHeader.SpacingBefore = 1;
+                            Phrase pPhrase1 = new Phrase(sManeuver);
+                            pPhrase1.Font.Color = color_Black;
+                            pPhrase1.Font.SetFamily("Arial");
+                            pPhrase1.Font.SetStyle("bold");
+                            pPhrase1.Font.Size = 16;
+                            PdfPCell c1 = new PdfPCell(pPhrase1);
+                            c1.BackgroundColor = background_breakgreen;
+                            c1.VerticalAlignment = Element.ALIGN_TOP;
+                            c1.HorizontalAlignment = Element.ALIGN_CENTER;
+                            c1.BorderWidthRight = 2;
+                            c1.BorderWidthLeft = 1;
+                            c1.BorderWidthTop = 1;
+                            c1.BorderWidthBottom = 2;
+                            tableSPOTHeader.AddCell(c1);
+                            pdfDocument.Add(tableSPOTHeader);
+                        } else {
+                            // SPOTS //
+
+                            // insert pdfPage header
+                            //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sSPOT + ": " + sManeuver, false));
+
+                            // SPOT header
+                            PdfPTable tableSPOTHeader = new PdfPTable(3);
+                            tableSPOTHeader.WidthPercentage = 100;
+                            // then set the column's __relative__ widths
+                            tableSPOTHeader.SetWidths(new Single[] { 2, 8, 2 });
+                            tableSPOTHeader.SpacingBefore = 1;
+
+                            // spot / event set number
+                            // format either 'spot 1' or 'event set 1'
+                            Chunk chLine1 = new Chunk();
+                            Chunk chLine2 = new Chunk();
+                            Chunk chLine3 = new Chunk("\r\n");
+                            string sTocTitle = "";
+                            if (sSPOT.Contains("SPOT")) {
+                                // spot
+                                chLine1 = new Chunk("SPOT", font_Spot_Bold_Maroon);
+                                chLine2 = new Chunk(sSPOT.Substring(5), font_SpotNum_Bold_Maroon);
+                                sTocTitle = "SPOT " + sSPOT.Substring(5);
+                            } else {
+                                // event set
+                                chLine1 = new Chunk("EVENT SET", font_Spot_Bold_Maroon);
+                                chLine2 = new Chunk(sSPOT.Substring(6), font_SpotNum_Bold_Maroon);
+                                sTocTitle = "EVENT SET " + sSPOT.Substring(6);
+                            }
+
+                            // record pdfPage TOC event
+                            chLine1.SetGenericTag(sTocTitle + "- " + row["MANEUVER"].ToString());
+
+                            Phrase pPhrase1 = new Phrase();
+                            pPhrase1.Add(chLine1);
+                            pPhrase1.Add(chLine3);
+                            pPhrase1.Add(chLine2);
+                            PdfPCell c1 = new PdfPCell(pPhrase1);
+                            c1.BackgroundColor = background_gold;
+                            c1.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c1.HorizontalAlignment = Element.ALIGN_CENTER;
+                            c1.BorderWidthRight = 0;
+                            c1.BorderWidthLeft = 1;
+                            c1.BorderWidthTop = 1;
+                            c1.BorderWidthBottom = 2;
+                            tableSPOTHeader.AddCell(c1);
+
+                            Phrase pPhrase2 = new Phrase(row["MANEUVER"].ToString());
+                            pPhrase2.Font.Color = color_Black;
+                            pPhrase2.Font.SetFamily("Arial");
+                            pPhrase2.Font.SetStyle("bold");
+                            pPhrase2.Font.Size = 16;
+                            PdfPCell c2 = new PdfPCell(pPhrase2);
+                            c2.BackgroundColor = background_gold;
+                            c2.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c2.HorizontalAlignment = Element.ALIGN_LEFT;
+                            c2.BorderWidthRight = 0;
+                            c2.BorderWidthLeft = 0;
+                            c2.BorderWidthTop = 1;
+                            c2.BorderWidthBottom = 2;
+                            tableSPOTHeader.AddCell(c2);
+
+                            PdfPTable tableSPOTHeaderInner = new PdfPTable(1);
+                            // start time
+                            Phrase pPhraseInner1 = new Phrase(row["TIME_START"].ToString());
+                            pPhraseInner1.Font.Color = color_Black;
+                            pPhraseInner1.Font.SetFamily("Arial");
+                            pPhraseInner1.Font.SetStyle("bold");
+                            pPhraseInner1.Font.Size = 9;
+                            PdfPCell cInner1 = new PdfPCell(pPhraseInner1);
+                            cInner1.BackgroundColor = background_gold;
+                            cInner1.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            cInner1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                            cInner1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                            tableSPOTHeaderInner.AddCell(cInner1);
+                            // spot time
+                            Phrase pPhraseInner2 = new Phrase(row["TIME_SPOT"].ToString());
+                            pPhraseInner2.Font.Color = color_Maroon;
+                            pPhraseInner2.Font.SetFamily("Arial");
+                            pPhraseInner2.Font.SetStyle("bold");
+                            pPhraseInner2.Font.Size = 12;
+                            PdfPCell cInner2 = new PdfPCell(pPhraseInner2);
+                            cInner2.BackgroundColor = background_gold;
+                            cInner2.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            cInner2.HorizontalAlignment = Element.ALIGN_RIGHT;
+                            cInner2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                            tableSPOTHeaderInner.AddCell(cInner2);
+                            // end time
+                            Phrase pPhraseInner3 = new Phrase(row["TIME_END"].ToString());
+                            pPhraseInner3.Font.Color = color_Black;
+                            pPhraseInner3.Font.SetFamily("Arial");
+                            pPhraseInner3.Font.SetStyle("bold");
+                            pPhraseInner3.Font.Size = 9;
+                            PdfPCell cInner3 = new PdfPCell(pPhraseInner3);
+                            cInner3.BackgroundColor = background_gold;
+                            cInner3.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            cInner3.HorizontalAlignment = Element.ALIGN_RIGHT;
+                            cInner3.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                            tableSPOTHeaderInner.AddCell(cInner3);
+                            // add inner cell to outer cell
+                            PdfPCell c3 = new PdfPCell();
+                            c3.BackgroundColor = background_gold;
+                            c3.VerticalAlignment = Element.ALIGN_MIDDLE;
+                            c3.HorizontalAlignment = Element.ALIGN_RIGHT;
+                            c3.BorderWidthRight = 2;
+                            c3.BorderWidthLeft = 0;
+                            c3.BorderWidthTop = 1;
+                            c3.BorderWidthBottom = 2;
+                            c3.AddElement(tableSPOTHeaderInner);
+                            tableSPOTHeader.AddCell(c3);
+                            // add spot header
+                            pdfDocument.Add(tableSPOTHeader);
+
+                            // OBJECTIVE & SCOPE
+                            PdfPTable tableObjScope = new PdfPTable(2);
+                            tableObjScope.WidthPercentage = 100;
+                            // then set the column's __relative__ widths
+                            tableObjScope.SetWidths(new Single[] { 2, 10 });
+                            tableObjScope.SpacingBefore = 1;
+
+                            // get objective text
+                            string sObj1 = row["OBJECTIVE1"].ToString();
+                            string sObj2 = row["OBJECTIVE2"].ToString();
+                            if (sObj1 == "") {
+                                if (sObj2 != "") {
+                                    sObj1 = sObj2;
+                                }
+                            } else if (sObj2 != "") {
+                                sObj1 = sObj1 + "\n" + sObj2;
+                            }
+                            if (sObj1 != "") {
+                                // display objective
+                                Phrase pObjective = new Phrase("OBJECTIVE");
+                                pObjective.Font.Color = color_Black;
+                                pObjective.Font.SetFamily("Arial");
+                                pObjective.Font.SetStyle("bold");
+                                pObjective.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pObjective);
+                                cO1.BackgroundColor = background_white;
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableObjScope.AddCell(cO1);
+                                Phrase pObjective1 = new Phrase(sObj1);
+                                pObjective1.Font.Color = color_Black;
+                                pObjective1.Font.SetFamily("Arial");
+                                pObjective1.Font.SetStyle("normal");
+                                pObjective1.Font.Size = iNormalFontSize;
+                                PdfPCell cO2 = new PdfPCell(pObjective1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableObjScope.AddCell(cO2);
+                            }
+                            // get scope text
+                            string sScp1 = row["SCOPE1"].ToString();
+                            string sScp2 = row["SCOPE2"].ToString();
+                            if (sScp1 == "") {
+                                if (sScp2 != "") {
+                                    sScp1 = sScp2;
+                                }
+                            } else if (sScp2 != "") {
+                                sScp1 = sScp1 + "\n" + sScp2;
+                            }
+                            if (sScp1 != "") {
+                                // display scope
+                                Phrase pScope = new Phrase("SCOPE");
+                                pScope.Font.Color = color_Black;
+                                pScope.Font.SetFamily("Arial");
+                                pScope.Font.SetStyle("bold");
+                                pScope.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pScope);
+                                cO1.BackgroundColor = background_white;//white
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
+                                tableObjScope.AddCell(cO1);
+                                Phrase pScope1 = new Phrase(sScp1);
+                                pScope1.Font.Color = color_Black;
+                                pScope1.Font.SetFamily("Arial");
+                                pScope1.Font.SetStyle("normal");
+                                pScope1.Font.Size = iNormalFontSize;
+                                PdfPCell cO2 = new PdfPCell(pScope1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
+                                tableObjScope.AddCell(cO2);
+                            }
+                            if (sObj1 != "" || sScp1 != "") {
+                                tableObjScope.SpacingAfter = 2;
+                                pdfDocument.Add(tableObjScope);
+                            }
+
+                            //LineSeparator drawLine = new LineSeparator(0.0F, 100.0F, color_Black, Element.ALIGN_LEFT,-10);
+                            //pdfDocument.Add(new Chunk(drawLine));
+
+                            // POSITION
+                            PdfPTable tablePos = new PdfPTable(2);
+                            tablePos.WidthPercentage = 100;
+                            tablePos.SetWidths(new Single[] { 2, 10 });
+                            tablePos.SpacingBefore = 1;
+                            // sim position
+                            string sPos = row["SIM_POSITION"].ToString();
+                            if (sPos != "") {
+                                // display
+                                Phrase pScope = new Phrase("SIM POSITION");
+                                pScope.Font.Color = color_Black;
+                                pScope.Font.SetFamily("Arial");
+                                pScope.Font.SetStyle("bold");
+                                pScope.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pScope);
+                                cO1.BackgroundColor = background_white;
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tablePos.AddCell(cO1);
+                                Phrase pScope1 = new Phrase(sPos);
+                                pScope1.Font.Color = color_Maroon;
+                                pScope1.Font.SetFamily("Arial");
+                                pScope1.Font.SetStyle("bold");
+                                pScope1.Font.Size = iNormalFontSize;
+                                PdfPCell cO2 = new PdfPCell(pScope1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tablePos.AddCell(cO2);
+                                pdfDocument.Add(tablePos);
+                            }
+
+                            // SETUP
+                            PdfPTable tableSimSetup = new PdfPTable(2);
+                            tableSimSetup.WidthPercentage = 100;
+                            tableSimSetup.SetWidths(new Single[] { 2, 10 });
+                            tableSimSetup.SpacingBefore = 1;
+                            string sSetup1 = row["SIM_SETUP1"].ToString();
+                            string sSetup2 = row["SIM_SETUP2"].ToString();
+                            string sSetup3 = row["SIM_SETUP3"].ToString();
+                            string sSetup4 = row["SIM_SETUP4"].ToString();
+                            if (sSetup1 == "") {
+                                if (sSetup2 != "") {
+                                    sSetup1 = sSetup2;
+                                }
+                            } else if (sSetup2 != "") {
+                                sSetup1 = sSetup1 + "\n" + sSetup2;
+                            }
+                            if (sSetup3 != "") {
+                                sSetup1 = sSetup1 + "\n" + sSetup3;
+                            }
+                            if (sSetup4 != "") {
+                                sSetup1 = sSetup1 + "\n" + sSetup4;
+                            }
+                            if (sSetup1 != "") {
+                                // display
+                                Phrase pScope = new Phrase("SIM SETUP");
+                                pScope.Font.Color = color_Black;
+                                pScope.Font.SetFamily("Arial");
+                                pScope.Font.SetStyle("bold");
+                                pScope.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pScope);
+                                cO1.BackgroundColor = background_white;
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableSimSetup.AddCell(cO1);
+                                Phrase pScope1 = new Phrase(sSetup1);
+                                pScope1.Font.Color = color_Maroon;
+                                pScope1.Font.SetFamily("Arial");
+                                pScope1.Font.SetStyle("bold");
+                                pScope1.Font.Size = iNormalFontSize;
+                                PdfPCell cO2 = new PdfPCell(pScope1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableSimSetup.AddCell(cO2);
+                                pdfDocument.Add(tableSimSetup);
+                            }
+
+                            // NOTES
+                            PdfPTable tableNotes = new PdfPTable(2);
+                            tableNotes.WidthPercentage = 100;
+                            tableNotes.SetWidths(new Single[] { 2, 10 });
+                            tableNotes.SpacingAfter = 1;
+                            string sNotes1 = row["NOTES_1"].ToString();
+                            string sNotes2 = row["NOTES_2"].ToString();
+                            string sNotes3 = row["NOTES_3"].ToString();
+                            string sNotes4 = row["NOTES_4"].ToString();
+                            string sNotes5 = row["NOTES_5"].ToString();
+                            if (sNotes1 == "") {
+                                if (sNotes2 != "") {
+                                    sNotes1 = sNotes2;
+                                }
+                            } else if (sNotes2 != "") {
+                                sNotes1 = sNotes1 + "\n" + sNotes2;
+                            }
+                            if (sNotes3 != "") {
+                                sNotes1 = sNotes1 + "\n" + sNotes3;
+                            }
+                            if (sNotes4 != "") {
+                                sNotes1 = sNotes1 + "\n" + sNotes4;
+                            }
+                            if (sNotes5 != "") {
+                                sNotes1 = sNotes1 + "\n" + sNotes5;
+                            }
+                            if (sNotes1 != "") {
+                                // display
+                                Phrase pScope = new Phrase("SPOT NOTES");
+                                pScope.Font.Color = color_Black;
+                                pScope.Font.SetFamily("Arial");
+                                pScope.Font.SetStyle("bold");
+                                pScope.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pScope);
+                                cO1.BackgroundColor = background_white;
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableNotes.AddCell(cO1);
+                                Phrase pScope1 = new Phrase(sNotes1);
+                                pScope1.Font.Color = color_Blue;
+                                pScope1.Font.SetFamily("Arial");
+                                pScope1.Font.SetStyle("normal");
+                                pScope1.Font.Size = iNormalFontSize;
+                                PdfPCell cO2 = new PdfPCell(pScope1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableNotes.AddCell(cO2);
+                                pdfDocument.Add(tableNotes);
+                            }
+
+                            // FMGC DISPLAY
+                            PdfPTable tableSetup = new PdfPTable(3);
+                            tableSetup.WidthPercentage = 100;
+                            tableSetup.SetWidths(new Single[] { 5, 5, 5 });
+                            tableSetup.SpacingBefore = 10;
+                            if (row["SETUP_VISABLE"].ToString() == "yes") {
+                                // display setup panel
+
+                                // header
+                                Phrase pSetup = new Phrase("AIRCRAFT CONDITIONS");
+                                pSetup.Font.Color = color_Black;
+                                pSetup.Font.SetFamily("Arial");
+                                pSetup.Font.SetStyle("bold");
+                                pSetup.Font.Size = iNormalFontSize;
+                                PdfPCell cSetup = new PdfPCell(pSetup);
+                                cSetup.BackgroundColor = background_grey;
+                                cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
+                                cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                cSetup.Colspan = 3;
+                                tableSetup.AddCell(cSetup);
+
+                                // init
+                                PdfPTable tableInit = null;
+                                PdfPTable tableACPerf = null;
+                                PdfPTable tableTOPerf = null;
+                                if (GlobalCode.sFleet == "A350") {
+                                    // get 350 init
+                                    tableInit = FMC_350.Init_Page(row);
+                                    tableACPerf = FMC_350.AC_Performance(row);
+                                    tableTOPerf = FMC_350.Perf_TO(row);
+                                } else if (GlobalCode.sFleet == "A320") {
+                                    // get 320 init
+                                    tableInit = FMC_320.Init_Page(row);
+                                    tableACPerf = FMC_320.AC_Performance(row);
+                                    tableTOPerf = FMC_320.Perf_TO(row);
+                                }
+
+                                // init a
+                                cSetup = new PdfPCell();
+                                cSetup.BackgroundColor = color_Black;
+                                cSetup.VerticalAlignment = Element.ALIGN_TOP;
+                                cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cSetup.Border = iTextSharp.text.Rectangle.RIGHT_BORDER;
+                                cSetup.BorderColor = background_grey;
+                                cSetup.AddElement(tableInit);
+                                tableSetup.AddCell(cSetup);
+
+                                // init b
+                                cSetup = new PdfPCell();
+                                cSetup.BackgroundColor = color_Black;
+                                cSetup.VerticalAlignment = Element.ALIGN_TOP;
+                                cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                cSetup.AddElement(tableACPerf);
+                                tableSetup.AddCell(cSetup);
+
+                                //// perf cell
+                                cSetup = new PdfPCell();
+                                cSetup.BackgroundColor = color_Black;
+                                cSetup.VerticalAlignment = Element.ALIGN_TOP;
+                                cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cSetup.Border = iTextSharp.text.Rectangle.LEFT_BORDER;
+                                cSetup.BorderColor = background_grey;
+                                cSetup.AddElement(tableTOPerf);
+                                tableSetup.AddCell(cSetup);
+
+
+
+                            }
+
+                            string sATIS = row["ATIS"].ToString();
+                            if (sATIS != "") {
+                                // print wx table if atis selected
+                                PdfPTable tableWX = null;
+                                tableWX = FMC_320.Conditions_WX(row);
+                                PdfPCell cSetup = new PdfPCell();
+                                cSetup.BackgroundColor = color_Black;
+                                cSetup.VerticalAlignment = Element.ALIGN_TOP;
+                                cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                cSetup.Colspan = 3;
+                                cSetup.AddElement(tableWX);
+                                tableSetup.AddCell(cSetup);
+                            }
+                            pdfDocument.Add(tableSetup);
+
+                            // ATIS
+                            PdfPTable tableATIS = new PdfPTable(2);
+                            tableATIS.WidthPercentage = 100;
+                            tableATIS.SetWidths(new Single[] { 2, 10 });
+                            tableATIS.SpacingAfter = 1;
+                            if (sATIS != "") {
+                                // display
+                                var chuckData = new Chunk(sATIS, font_Data_Maroon);
+                                Phrase pScope = new Phrase("ATIS");
+                                pScope.Font.Color = color_Black;
+                                pScope.Font.SetFamily("Arial");
+                                pScope.Font.SetStyle("bold");
+                                pScope.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pScope);
+                                cO1.BackgroundColor = background_white;
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableATIS.AddCell(cO1);
+                                Phrase pScope1 = new Phrase(chuckData);
+                                PdfPCell cO2 = new PdfPCell(pScope1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableATIS.AddCell(cO2);
+                                pdfDocument.Add(tableATIS);
+                            }
+                            // CLEARANCE
+                            PdfPTable tableClearance = new PdfPTable(2);
+                            tableClearance.WidthPercentage = 100;
+                            tableClearance.SetWidths(new Single[] { 2, 10 });
+                            tableClearance.SpacingAfter = 1;
+                            // sim position
+                            string sClearance = row["CLEARANCE"].ToString();
+                            if (sClearance != "") {
+                                // display
+                                var chuckData = new Chunk(sClearance, font_Data_Maroon);
+                                Phrase pScope = new Phrase("CLEARANCE");
+                                pScope.Font.Color = color_Black;
+                                pScope.Font.SetFamily("Arial");
+                                pScope.Font.SetStyle("bold");
+                                pScope.Font.Size = iNormalFontSize;
+                                PdfPCell cO1 = new PdfPCell(pScope);
+                                cO1.BackgroundColor = background_white;
+                                cO1.VerticalAlignment = Element.ALIGN_TOP;
+                                cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
+                                cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableClearance.AddCell(cO1);
+                                Phrase pScope1 = new Phrase(chuckData);
+                                PdfPCell cO2 = new PdfPCell(pScope1);
+                                cO2.BackgroundColor = background_white;
+                                cO2.VerticalAlignment = Element.ALIGN_TOP;
+                                cO2.HorizontalAlignment = Element.ALIGN_LEFT;
+                                cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                                tableClearance.AddCell(cO2);
+                                pdfDocument.Add(tableClearance);
+                            }
+
+
+                            for (int iAction = 1; iAction < 11; iAction++) {
+                                if (row["PF" + iAction].ToString() != "")
+                                    pdfDocument.Add(Actions(row, iAction));
+                            }
+
+                            // SPOT footer
+                            string sFooterText = "";
+                            if (iRowCounter < iRowCount) {
+                                sFooterText = sSPOT + " COMPLETE";
+                            } else {
+                                sFooterText = "** " + sSPOT + " AND LESSON COMPLETE **";
+                            }
+                            tableSPOTHeader = new PdfPTable(1);
+                            tableSPOTHeader.WidthPercentage = 100;
+                            tableSPOTHeader.SpacingBefore = 0;
+                            pPhrase1 = new Phrase(sFooterText);
+                            if (iRowCounter < iRowCount) {
+                                pPhrase1.Font.Color = color_Black;
+                            } else {
+                                pPhrase1.Font.Color = color_Yellow;
+                            }
+                            pPhrase1.Font.SetFamily("Arial");
+                            pPhrase1.Font.SetStyle("bold");
+                            pPhrase1.Font.Size = iNormalFontSize;
+                            c1 = new PdfPCell(pPhrase1);
+                            if (iRowCounter < iRowCount) {
+                                c1.BackgroundColor = background_gold;
+                            } else {
+                                c1.BackgroundColor = color_Maroon;
+                            }
+                            c1.VerticalAlignment = Element.ALIGN_TOP;
+                            c1.HorizontalAlignment = Element.ALIGN_CENTER;
+                            c1.BorderWidthRight = 1;
+                            c1.BorderWidthLeft = 1;
+                            c1.BorderWidthTop = 1;
+                            c1.BorderWidthBottom = 1;
+                            tableSPOTHeader.AddCell(c1);
+                            pdfDocument.Add(tableSPOTHeader);
+
                         }
-                    } else if (sScp2 != "") {
-                        sScp1 = sScp1 + "\n" + sScp2;
-                    }
-                    if (sScp1 != "") {
-                        // display scope
-                        Phrase pScope = new Phrase("SCOPE");
-                        pScope.Font.Color = color_Black;
-                        pScope.Font.SetFamily("Arial");
-                        pScope.Font.SetStyle("bold");
-                        pScope.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pScope);
-                        cO1.BackgroundColor = background_white ;//white
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
-                        tableObjScope.AddCell(cO1);
-                        Phrase pScope1 = new Phrase(sScp1);
-                        pScope1.Font.Color = color_Black;
-                        pScope1.Font.SetFamily("Arial");
-                        pScope1.Font.SetStyle("normal");
-                        pScope1.Font.Size = iNormalFontSize;
-                        PdfPCell cO2 = new PdfPCell(pScope1);
-                        cO2.BackgroundColor = background_white ;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
-                        tableObjScope.AddCell(cO2);
-                    }
-                    if (sObj1 != "" || sScp1 != "") {
-                        tableObjScope.SpacingAfter = 2;
-                        pdfDocument.Add(tableObjScope);
                     }
 
-                    //LineSeparator drawLine = new LineSeparator(0.0F, 100.0F, color_Black, Element.ALIGN_LEFT,-10);
-                    //pdfDocument.Add(new Chunk(drawLine));
-
-                    // POSITION
-                    PdfPTable tablePos = new PdfPTable(2);
-                    tablePos.WidthPercentage = 100;
-                    tablePos.SetWidths(new Single[] { 2, 10 });
-                    tablePos.SpacingBefore = 1;
-                    // sim position
-                    string sPos = row["SIM_POSITION"].ToString();
-                    if (sPos != "") {
-                        // display
-                        Phrase pScope = new Phrase("SIM POSITION");
-                        pScope.Font.Color = color_Black;
-                        pScope.Font.SetFamily("Arial");
-                        pScope.Font.SetStyle("bold");
-                        pScope.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pScope);
-                        cO1.BackgroundColor = background_white;
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tablePos.AddCell(cO1);
-                        Phrase pScope1 = new Phrase(sPos);
-                        pScope1.Font.Color = color_Maroon;
-                        pScope1.Font.SetFamily("Arial");
-                        pScope1.Font.SetStyle("bold");
-                        pScope1.Font.Size = iNormalFontSize;
-                        PdfPCell cO2 = new PdfPCell(pScope1);
-                        cO2.BackgroundColor = background_white;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tablePos.AddCell(cO2);
-                        pdfDocument.Add(tablePos);
+                    // LESSON PREAMBLE AFTER
+                    if (bLessonPreambleAfter1 && iLessonPreamble1 > -1) {
+                        pdfDocument.NewPage();
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble1, chunkTOC);
                     }
-
-                    // SETUP
-                    PdfPTable tableSimSetup = new PdfPTable(2);
-                    tableSimSetup.WidthPercentage = 100;
-                    tableSimSetup.SetWidths(new Single[] { 2, 10 });
-                    tableSimSetup.SpacingBefore = 1;
-                    string sSetup1 = row["SIM_SETUP1"].ToString();
-                    string sSetup2 = row["SIM_SETUP2"].ToString();
-                    string sSetup3 = row["SIM_SETUP3"].ToString();
-                    string sSetup4 = row["SIM_SETUP4"].ToString();
-                    if (sSetup1 == "") {
-                        if (sSetup2 != "") {
-                            sSetup1 = sSetup2;
-                        }
-                    } else if (sSetup2 != "") {
-                        sSetup1 = sSetup1 + "\n" + sSetup2;
+                    if (bLessonPreambleAfter2 && iLessonPreamble2 > -1) {
+                        pdfDocument.NewPage();
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble2, chunkTOC);
                     }
-                    if (sSetup3 != "") {
-                        sSetup1 = sSetup1 + "\n" + sSetup3;
+                    if (bLessonPreambleAfter3 && iLessonPreamble3 > -1) {
+                        pdfDocument.NewPage();
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble3, chunkTOC);
                     }
-                    if (sSetup4 != "") {
-                        sSetup1 = sSetup1 + "\n" + sSetup4;
+                    if (bLessonPreambleAfter4 && iLessonPreamble4 > -1) {
+                        pdfDocument.NewPage();
+                        //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
+                        Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble4, chunkTOC);
                     }
-                    if (sSetup1 != "") {
-                        // display
-                        Phrase pScope = new Phrase("SIM SETUP");
-                        pScope.Font.Color = color_Black;
-                        pScope.Font.SetFamily("Arial");
-                        pScope.Font.SetStyle("bold");
-                        pScope.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pScope);
-                        cO1.BackgroundColor = background_white;
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableSimSetup.AddCell(cO1);
-                        Phrase pScope1 = new Phrase(sSetup1);
-                        pScope1.Font.Color = color_Maroon;
-                        pScope1.Font.SetFamily("Arial");
-                        pScope1.Font.SetStyle("bold");
-                        pScope1.Font.Size = iNormalFontSize;
-                        PdfPCell cO2 = new PdfPCell(pScope1);
-                        cO2.BackgroundColor = background_white;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableSimSetup.AddCell(cO2);
-                        pdfDocument.Add(tableSimSetup);
-                    }
-
-                    // NOTES
-                    PdfPTable tableNotes = new PdfPTable(2);
-                    tableNotes.WidthPercentage = 100;
-                    tableNotes.SetWidths(new Single[] { 2, 10 });
-                    tableNotes.SpacingAfter = 1;
-                    string sNotes1 = row["NOTES_1"].ToString();
-                    string sNotes2 = row["NOTES_2"].ToString();
-                    string sNotes3 = row["NOTES_3"].ToString();
-                    string sNotes4 = row["NOTES_4"].ToString();
-                    string sNotes5 = row["NOTES_5"].ToString();
-                    if (sNotes1 == "") {
-                        if (sNotes2 != "") {
-                            sNotes1 = sNotes2;
-                        }
-                    } else if (sNotes2 != "") {
-                        sNotes1 = sNotes1 + "\n" + sNotes2;
-                    }
-                    if (sNotes3 != "") {
-                        sNotes1 = sNotes1 + "\n" + sNotes3;
-                    }
-                    if (sNotes4 != "") {
-                        sNotes1 = sNotes1 + "\n" + sNotes4;
-                    }
-                    if (sNotes5 != "") {
-                        sNotes1 = sNotes1 + "\n" + sNotes5;
-                    }
-                    if (sNotes1 != "") {
-                        // display
-                        Phrase pScope = new Phrase("SPOT NOTES");
-                        pScope.Font.Color = color_Black;
-                        pScope.Font.SetFamily("Arial");
-                        pScope.Font.SetStyle("bold");
-                        pScope.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pScope);
-                        cO1.BackgroundColor = background_white;
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableNotes.AddCell(cO1);
-                        Phrase pScope1 = new Phrase(sNotes1);
-                        pScope1.Font.Color = color_Blue;
-                        pScope1.Font.SetFamily("Arial");
-                        pScope1.Font.SetStyle("normal");
-                        pScope1.Font.Size = iNormalFontSize;
-                        PdfPCell cO2 = new PdfPCell(pScope1);
-                        cO2.BackgroundColor = background_white;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableNotes.AddCell(cO2);
-                        pdfDocument.Add(tableNotes);
-                    }
-
-                    // SETUP GUIDE
-                    if (row["SETUP_VISABLE"].ToString() == "yes") {
-                        // display setup panel
-                        PdfPTable tableSetup = new PdfPTable(6);
-                        tableSetup.WidthPercentage = 100;
-                        tableSetup.SetWidths(new Single[] { 5, 5, 5, 5, 5, 5 });
-                        tableSetup.SpacingBefore = 10;
-
-                        // NOT IN USE //
-                        // header
-                        Phrase  pSetup = new Phrase("AIRCRAFT CONDITIONS");
-                        pSetup.Font.Color = color_Black;
-                        pSetup.Font.SetFamily("Arial");
-                        pSetup.Font.SetStyle("bold");
-                        pSetup.Font.Size = iNormalFontSize;
-                        PdfPCell cSetup = new PdfPCell(pSetup);
-                        cSetup.BackgroundColor = background_grey;
-                        cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-                        cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        cSetup.Colspan = 4;
-                        //pSetup = new Phrase("WEATHER CONDITIONS");
-                        pSetup.Font.Color = color_Black;
-                        pSetup.Font.SetFamily("Arial");
-                        pSetup.Font.SetStyle("bold");
-                        pSetup.Font.Size = iNormalFontSize;
-                        cSetup = new PdfPCell(pSetup);
-                        cSetup.BackgroundColor = background_grey;
-                        cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-                        cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        cSetup.Colspan = 2;
-                        //tableSetup.AddCell(cSetup);
-                        // NOT IN USE //
-
-                        // init
-                        cSetup = new PdfPCell();
-                        cSetup.BackgroundColor = color_Black;
-                        cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-                        cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        cSetup.Colspan = 4;
-                        cSetup.AddElement(Init_Page(row));
-                        tableSetup.AddCell(cSetup);
-
-                        // wx cell- 3 rows
-                        cSetup = new PdfPCell();
-                        cSetup.BackgroundColor = color_Black;
-                        cSetup.VerticalAlignment = Element.ALIGN_TOP;
-                        cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        cSetup.Colspan = 2;
-                        cSetup.Rowspan = 3;
-                        cSetup.AddElement(Conditions_WX(row));
-                        tableSetup.AddCell(cSetup);
-
-                        // ac cell
-                        cSetup = new PdfPCell();
-                        cSetup.BackgroundColor = color_Black;
-                        cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-                        cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        cSetup.Colspan = 4;
-                        cSetup.AddElement(AC_Performance_350(row));
-                        tableSetup.AddCell(cSetup);
-
-                        //// perf cell
-                        cSetup = new PdfPCell();
-                        cSetup.BackgroundColor = color_Black;
-                        cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-                        cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        cSetup.Colspan = 4;
-                        cSetup.AddElement(Perf_TO(row));
-                        tableSetup.AddCell(cSetup);
-
-                        pdfDocument.Add(tableSetup);
-                    }
-                    // ATIS
-                    PdfPTable tableATIS = new PdfPTable(2);
-                    tableATIS.WidthPercentage = 100;
-                    tableATIS.SetWidths(new Single[] { 2, 10 });
-                    tableATIS.SpacingAfter = 1;
-                    string sATIS = row["ATIS"].ToString();
-                    if (sATIS != "") {
-                        // display
-                        var chuckData = new Chunk(sATIS, font_Data_Maroon);
-                        Phrase pScope = new Phrase("ATIS");
-                        pScope.Font.Color = color_Black;
-                        pScope.Font.SetFamily("Arial");
-                        pScope.Font.SetStyle("bold");
-                        pScope.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pScope);
-                        cO1.BackgroundColor = background_white;
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableATIS.AddCell(cO1);
-                        Phrase pScope1 = new Phrase(chuckData);
-                        PdfPCell cO2 = new PdfPCell(pScope1);
-                        cO2.BackgroundColor = background_white;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableATIS.AddCell(cO2);
-                        pdfDocument.Add(tableATIS);
-                    }
-                    // CLEARANCE
-                    PdfPTable tableClearance = new PdfPTable(2);
-                    tableClearance.WidthPercentage = 100;
-                    tableClearance.SetWidths(new Single[] { 2, 10 });
-                    tableClearance.SpacingAfter = 1;
-                    // sim position
-                    string sClearance = row["CLEARANCE"].ToString();
-                    if (sClearance != "") {
-                        // display
-                        var chuckData = new Chunk(sClearance, font_Data_Maroon);
-                        Phrase pScope = new Phrase("CLEARANCE");
-                        pScope.Font.Color = color_Black;
-                        pScope.Font.SetFamily("Arial");
-                        pScope.Font.SetStyle("bold");
-                        pScope.Font.Size = iNormalFontSize;
-                        PdfPCell cO1 = new PdfPCell(pScope);
-                        cO1.BackgroundColor = background_white;
-                        cO1.VerticalAlignment = Element.ALIGN_TOP;
-                        cO1.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cO1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableClearance.AddCell(cO1);
-                        Phrase pScope1 = new Phrase(chuckData);
-                        PdfPCell cO2 = new PdfPCell(pScope1);
-                        cO2.BackgroundColor = background_white;
-                        cO2.VerticalAlignment = Element.ALIGN_TOP;
-                        cO2.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cO2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                        tableClearance.AddCell(cO2);
-                        pdfDocument.Add(tableClearance);
-                    }
-
-
-                    for (int iAction = 1; iAction < 11; iAction++) {
-                        if (row["PF" + iAction].ToString() != "")
-                            pdfDocument.Add(Actions(row, iAction));
-                    }
-
-                    // SPOT footer
-                    string sFooterText = "";
-                    if (iRowCounter < iRowCount) {
-                        sFooterText = sSPOT + " COMPLETE";
-                    } else {
-                        sFooterText = "** " + sSPOT + " AND LESSON COMPLETE **";
-                    }
-                    tableSPOTHeader = new PdfPTable(1);
-                    tableSPOTHeader.WidthPercentage = 100;
-                    tableSPOTHeader.SpacingBefore = 0;
-                    pPhrase1 = new Phrase(sFooterText);
-                    if (iRowCounter < iRowCount) {
-                        pPhrase1.Font.Color = color_Black;
-                    } else {
-                        pPhrase1.Font.Color = color_Yellow;
-                    }
-                    pPhrase1.Font.SetFamily("Arial");
-                    pPhrase1.Font.SetStyle("bold");
-                    pPhrase1.Font.Size = iNormalFontSize;
-                    c1 = new PdfPCell(pPhrase1);
-                    if (iRowCounter < iRowCount) {
-                        c1.BackgroundColor = background_gold;
-                    } else {
-                        c1.BackgroundColor = color_Maroon;
-                    }
-                    c1.VerticalAlignment = Element.ALIGN_TOP;
-                    c1.HorizontalAlignment = Element.ALIGN_CENTER;
-                    c1.BorderWidthRight = 1;
-                    c1.BorderWidthLeft = 1;
-                    c1.BorderWidthTop = 1;
-                    c1.BorderWidthBottom = 1;
-                    tableSPOTHeader.AddCell(c1);
-                    pdfDocument.Add(tableSPOTHeader);
-
                 }
+
             }
-
-
-            //// test
-            //// add tem and cqt intro pages
-            //pdfDocument.NewPage();
-            //sDocSection = "Threat & Error Management";
-            //// record pdfPage TOC event
-            //chunkTOC = new Chunk("Threat & Error Management (TEM)");
-            //chunkTOC.SetGenericTag("Threat & Error Management (TEM)");
-            //PdfReader reader = new PdfReader(GlobalCode.sPDFOutputPath + "\\TEM.pdf");
-            //int iPages = reader.NumberOfPages;
-            //PdfImportedPage imPage;
-            //for (int i = 1; i <= iPages; i++) {
-
-            //    Phrase pScope = new Phrase(chunkTOC);
-            //    pScope.Font.Color = color_Black;
-            //    pScope.Font.SetFamily("Arial");
-            //    pScope.Font.SetStyle("bold");
-            //    pScope.Font.Size = 18;
-            //    pdfDocument.Add(pScope);
-
-            //    imPage = pdfWriter.GetImportedPage(reader, i);
-            //    iTextSharp.text.Image png = iTextSharp.text.Image.GetInstance(imPage);
-            //    png.ScalePercent(99f);
-            //    png.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-            //    png.Alignment = iTextSharp.text.Image.ALIGN_MIDDLE;
-            //    pdfDocument.Add(png);
             //}
-
-            //pdfDocument.NewPage();
-            //sDocSection = "CQT Introduction";
-            //chunkTOC = new Chunk("CQT Introduction");
-            //chunkTOC.SetGenericTag("CQT Introduction");
-            //reader = new PdfReader(GlobalCode.sPDFOutputPath + "\\CQT Intro Pages.pdf");
-            //iPages = reader.NumberOfPages;
-            //for (int i = 1; i <= iPages; i++) {
-
-            //    Phrase pScope = new Phrase(chunkTOC);
-            //    pScope.Font.Color = color_Black;
-            //    pScope.Font.SetFamily("Arial");
-            //    pScope.Font.SetStyle("bold");
-            //    pScope.Font.Size = 18;
-            //    pdfDocument.Add(pScope);
-
-            //    imPage = pdfWriter.GetImportedPage(reader, i);
-            //    iTextSharp.text.Image png = iTextSharp.text.Image.GetInstance(imPage);
-            //    png.ScalePercent(99f);
-            //    png.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-            //    png.Alignment = iTextSharp.text.Image.ALIGN_MIDDLE;
-            //    pdfDocument.Add(png);
-            //    // write TOC
-            //    pdfDocument.NewPage();
-            //}
-
-            // test
-
-
-            // LESSON PREAMBLE AFTER
-            if (bLessonPreambleAfter1 && iLessonPreamble1 > -1) {
-                pdfDocument.NewPage();
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble1, chunkTOC);
-            }
-            if (bLessonPreambleAfter2 && iLessonPreamble2 > -1) {
-                pdfDocument.NewPage();
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble2, chunkTOC);
-            }
-            if (bLessonPreambleAfter3 && iLessonPreamble3 > -1) {
-                pdfDocument.NewPage();
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble3, chunkTOC);
-            }
-            if (bLessonPreambleAfter4 && iLessonPreamble4 > -1) {
-                pdfDocument.NewPage();
-                //pdfDocument.Add(Page_Header(pdfPage, sLessonTitle, olRoot, pdfWriter, sLessonTitleSummary, true));
-                Print_Preamble(pdfDocument, pdfWriter, iLessonPreamble4, chunkTOC);
-            }
 
             // write TOC
             pdfDocument.NewPage();
@@ -1180,19 +1198,19 @@ namespace WindowsFormsApplication1 {
             sDocSection = "Table of Contents";
 
             Chunk dottedLine = new Chunk(new DottedLineSeparator());
-            Chunk chunckTitle = new Chunk ("TABLE OF CONTENTS", font_Normal_Bold_Maroon);
+            Chunk chunckTitle = new Chunk("TABLE OF CONTENTS", font_Normal_Bold_Maroon);
             pdfDocument.Add(new Paragraph(chunckTitle));
 
             Dictionary<string, KeyValuePair<string, int>> entries = pdfEventTOC.GetTOC();
             Paragraph p;
 
             foreach (var entry in entries) {
-        	    Chunk chunkKey = new Chunk(entry.Key, font_TOC_Black);
+                Chunk chunkKey = new Chunk(entry.Key, font_TOC_Black);
                 var vDescript = entry.Key;
                 var value = entry.Value.Key;
                 chunkKey.SetAction(PdfAction.GotoLocalPage(entry.Value.Key, false));
                 p = new Paragraph(chunkKey);
-                if (vDescript.IndexOf("SPOT") > -1) {
+                if (vDescript.IndexOf("SPOT") > -1 || vDescript.IndexOf("EVENT") > -1) {
                     p.IndentationLeft = 20;
                 } else {
                     p.IndentationLeft = 10;
@@ -1310,13 +1328,16 @@ namespace WindowsFormsApplication1 {
             fs.Close();
             fs = null;
 
-            m_Script = null;
-            
+            //m_Script = null;
+
             iPageNumber = 0;
 
             //webBrowser1.Navigate(sFile);
 
+
+
         }
+
 
         private static PdfPTable Actions(DataRow row, int iAction) {
             PdfPTable tableSetup = new PdfPTable(3);
@@ -1366,9 +1387,9 @@ namespace WindowsFormsApplication1 {
             // data row
             string sPF = row["PF" + iAction].ToString();
             pSetup1 = new Phrase(sPF);
-            if (sPF == "PILOT A")
+            if (sPF == "PILOT A" || sPF == "CA" || sPF == "CAPTAIN")
                 pSetup1.Font.Color = color_White;
-            if (sPF == "PILOT B")
+            if (sPF == "PILOT B" || sPF == "FO" || sPF == "FIRST OFFICER")
                 pSetup1.Font.Color = color_White;
             if (sPF == "BOTH")
                 pSetup1.Font.Color = color_Black;
@@ -1378,9 +1399,9 @@ namespace WindowsFormsApplication1 {
             pSetup1.Font.SetStyle("bold");
             pSetup1.Font.Size = iNormalFontSize;
             cSetup1 = new PdfPCell(pSetup1);
-            if (sPF == "PILOT A")
+            if (sPF == "PILOT A" || sPF == "CA" || sPF == "CAPTAIN")
                 cSetup1.BackgroundColor = color_pf_a;
-            if (sPF == "PILOT B")
+            if (sPF == "PILOT B" || sPF == "FO" || sPF == "FIRST OFFICER")
                 cSetup1.BackgroundColor = color_pf_b;
             if (sPF == "BOTH")
                 cSetup1.BackgroundColor = color_pf_both;
@@ -1426,936 +1447,57 @@ namespace WindowsFormsApplication1 {
             cSetup2b.AddElement(tableAction1);
             tableSetup.AddCell(cSetup2b);
 
-            pSetup3 = new Phrase(row["COMM" + iAction].ToString());
-            pSetup3.Font.Color = color_DarkGreen;
-            pSetup3.Font.SetFamily("Arial");
-            pSetup3.Font.SetStyle("italic");
-            pSetup3.Font.Size = iNormalFontSize;
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_White;
-            cSetup3.VerticalAlignment = Element.ALIGN_TOP;
-            cSetup3.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
+            tableAction1 = new PdfPTable(1);
+            tableAction1.WidthPercentage = 100;
+            tableAction1.SetWidths(new Single[] { 1 });
+            tableAction1.SpacingBefore = 0;
+            pSetup2a = new Phrase("         ");
+            pSetup2a.Font.Color = color_Maroon;
+            pSetup2a.Font.SetFamily("Arial");
+            //pSetup2a.Font.SetStyle("bold,underline");
+            pSetup2a.Font.Size = iNormalFontSize;
+            cSetup2a = new PdfPCell(pSetup2a);
+            cSetup2a.BackgroundColor = color_White;
+            cSetup2a.VerticalAlignment = Element.ALIGN_TOP;
+            cSetup2a.HorizontalAlignment = Element.ALIGN_LEFT;
+            cSetup2a.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            tableAction1.AddCell(cSetup2a);
+            pSetup2a = new Phrase(row["COMM" + iAction].ToString());
+            pSetup2a.Font.Color = color_DarkGreen;
+            pSetup2a.Font.SetFamily("Arial");
+            pSetup2a.Font.SetStyle("italic");
+            pSetup2a.Font.Size = iNormalFontSize;
+            cSetup2a = new PdfPCell(pSetup2a);
+            cSetup2a.BackgroundColor = color_White;
+            cSetup2a.VerticalAlignment = Element.ALIGN_TOP;
+            cSetup2a.HorizontalAlignment = Element.ALIGN_LEFT;
+            cSetup2a.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            tableAction1.AddCell(cSetup2a);
+            cSetup2b = new PdfPCell();
+            cSetup2b.BackgroundColor = color_White;
+            cSetup2b.VerticalAlignment = Element.ALIGN_TOP;
+            cSetup2b.HorizontalAlignment = Element.ALIGN_LEFT;
+            cSetup2b.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            cSetup2b.AddElement(tableAction1);
+            tableSetup.AddCell(cSetup2b);
+            //pSetup3 = new Phrase(row["COMM" + iAction].ToString());
+            //pSetup3.Font.Color = color_DarkGreen;
+            //pSetup3.Font.SetFamily("Arial");
+            //pSetup3.Font.SetStyle("italic");
+            //pSetup3.Font.Size = iNormalFontSize;
+            //cSetup3 = new PdfPCell(pSetup3);
+            //cSetup3.BackgroundColor = color_White;
+            //cSetup3.VerticalAlignment = Element.ALIGN_TOP;
+            //cSetup3.HorizontalAlignment = Element.ALIGN_LEFT;
+            //cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            //tableSetup.AddCell(cSetup3);
 
             return tableSetup;
 
         }
 
 
-        private static PdfPTable Init_Page(DataRow row) {
-
-            PdfPTable tableSetup = new PdfPTable(6);
-            tableSetup.WidthPercentage = 100;
-            tableSetup.SetWidths(new Single[] { 5, 5, 5, 5, 5, 5 });
-            tableSetup.SpacingBefore = 0;
-
-            // title pdfPage
-            Phrase pSetup = new Phrase("ACTIVE/INIT");
-            pSetup.Font.Color = color_Black;
-            pSetup.Font.SetFamily(sFont_Fixed_Width);
-            pSetup.Font.SetStyle("bold");
-            pSetup.Font.Size = iNormalFontSize;
-            PdfPCell cSetup = new PdfPCell(pSetup);
-            cSetup.BackgroundColor = background_grey;
-            cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            cSetup.Colspan = 6;
-            tableSetup.AddCell(cSetup);
-
-            // row 1/a
-            var chuckTitle = new Chunk("FLT NBR", font_Title_White);
-            var chuckData = new Chunk("AAL" + row["FLTNUM"].ToString(), font_Title_Cyan);
-            Phrase pSetup1 = new Phrase(chuckTitle);
-            PdfPCell cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            Phrase pSetup1d = new Phrase(chuckData);
-            PdfPCell cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            cSetup1d.Colspan = 2;
-            tableSetup.AddCell(cSetup1d);
-            // 1/b
-            Phrase pSetup2 = new Phrase();
-            PdfPCell cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            Phrase pSetup2d = new Phrase();
-            PdfPCell cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 1/c
-            Phrase pSetup3 = new Phrase();
-            PdfPCell cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            Phrase pSetup3d = new Phrase();
-            PdfPCell cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            //tableSetup.AddCell(cSetup3d);
-
-            // row 2/a
-            chuckTitle = new Chunk("FROM", font_Title_White);
-            chuckData = new Chunk(row["DEP"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 2/b
-            chuckTitle = new Chunk("TO", font_Title_White);
-            chuckData = new Chunk(row["DEST"].ToString(), font_Title_Cyan);
-            pSetup2 = new Phrase(chuckTitle);
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase(chuckData);
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 2/c
-            chuckTitle = new Chunk("ALTN", font_Title_White);
-            chuckData = new Chunk(row["ALTN"].ToString(), font_Title_Cyan);
-            pSetup3 = new Phrase(chuckTitle);
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase(chuckData);
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 3/a
-            chuckTitle = new Chunk("CRZ FL", font_Title_White);
-            chuckData = new Chunk(row["CRZALT"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 3/b
-            pSetup2 = new Phrase("");
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase();
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 3/c
-            pSetup3 = new Phrase();
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase();
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.BorderColor = color_White;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 4/a
-            chuckTitle = new Chunk("MODE", font_Title_White);
-            chuckData = new Chunk("ECON", font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 4/b
-            pSetup2 = new Phrase("");
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase();
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 4/c
-            pSetup3 = new Phrase();
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase();
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.BorderColor = color_White;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 5/a
-            chuckTitle = new Chunk("CI", font_Title_White);
-            chuckData = new Chunk(row["CI"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 5/b
-            pSetup2 = new Phrase("");
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase();
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 5/c
-            pSetup3 = new Phrase();
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase();
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            return tableSetup;
-        }
-
-
-        private static PdfPTable AC_Performance_350(DataRow row) {
-
-
-            var chunkUnit_KLB = new Chunk("KLB", font_Units_Blue);
-            var chunkUnit_Percent = new Chunk("%", font_Units_Blue);
-
-            PdfPTable tableSetup = new PdfPTable(6);
-            tableSetup.WidthPercentage = 100;
-            tableSetup.SetWidths(new Single[] { 5, 5, 5, 5,5,5 });
-            tableSetup.SpacingBefore = 0;
-
-            // title pdfPage
-            Phrase pSetup = new Phrase("ACTIVE/FUEL & LOAD");
-            pSetup.Font.Color = color_Black;
-            pSetup.Font.SetFamily(sFont_Fixed_Width);
-            pSetup.Font.SetStyle("bold");
-            pSetup.Font.Size = iNormalFontSize;
-            PdfPCell cSetup = new PdfPCell(pSetup);
-            cSetup.BackgroundColor = background_grey;
-            cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            cSetup.Colspan = 6;
-            tableSetup.AddCell(cSetup);
-
-            // row 1/a
-            var chuckTitle = new Chunk("GW", font_Title_White);
-            var chuckData = new Chunk(row["GTOW"].ToString(), font_Title_Green);
-
-            Phrase pSetup1 = new Phrase(chuckTitle);
-            PdfPCell cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            Phrase pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KLB);
-            PdfPCell cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 1/b
-            chuckTitle = new Chunk("CG", font_Title_White);
-            chuckData = new Chunk(row["TOWCG"].ToString(), font_Title_Green);
-            Phrase pSetup2 = new Phrase(chuckTitle);
-            PdfPCell cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            Phrase pSetup2d = new Phrase(chuckData);
-            pSetup2d.Add(chunkUnit_Percent);
-            PdfPCell cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 1/c
-            chuckTitle = new Chunk("FOB", font_Title_White);
-            chuckData = new Chunk(Justify_Fuel(row["FUEL"].ToString()), font_Title_Green);
-            Phrase pSetup3 = new Phrase(chuckTitle);
-            PdfPCell cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            Phrase pSetup3d = new Phrase(chuckData);
-            pSetup3d.Add(chunkUnit_KLB);
-            PdfPCell cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 2/a
-            chuckTitle = new Chunk("ZFW", font_Title_White);
-            chuckData = new Chunk(row["ZFW"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KLB);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 2/b
-            chuckTitle = new Chunk("ZFWCG", font_Title_White);
-            chuckData = new Chunk(row["ZFWCG"].ToString(), font_Title_Cyan);
-            pSetup2 = new Phrase(chuckTitle);
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase(chuckData);
-            pSetup2d.Add(chunkUnit_Percent);
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 2/c
-            pSetup3 = new Phrase();
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase();
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 2/a
-            chuckTitle = new Chunk("BLOCK", font_Title_White);
-            chuckData = new Chunk(Justify_Fuel(row["FUEL"].ToString()), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KLB);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 2/b
-            pSetup2 = new Phrase();
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase();
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 2/c
-            pSetup3 = new Phrase();
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase();
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 3/a
-            chuckTitle = new Chunk("TAXI", font_Title_White);
-            chuckData = new Chunk(Justify_Fuel(row["FUEL_TAXI"].ToString()), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KLB);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 3/b
-            pSetup2 = new Phrase("");
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase();
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 3/c
-            chuckTitle = new Chunk("PAX NBR", font_Title_White);
-            chuckData = new Chunk(row["PAX"].ToString(), font_Title_Cyan);
-            pSetup3 = new Phrase(chuckTitle);
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase(chuckData);
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.BorderColor = color_White;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 4/a
-            chuckTitle = new Chunk("FINAL", font_Title_White);
-            chuckData = new Chunk(row["RESERVE"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 4/b
-            pSetup2 = new Phrase("");
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase();
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 4/c
-            chuckTitle = new Chunk("CI", font_Title_White);
-            chuckData = new Chunk(row["CI"].ToString(), font_Title_Cyan);
-            pSetup3 = new Phrase(chuckTitle);
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase(chuckData);
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.BorderColor = color_White;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            return tableSetup;
-        }
-
-        private static PdfPTable Conditions_WX(DataRow row) {
-
-            PdfPTable tableSetup = new PdfPTable(2);
-            tableSetup.WidthPercentage = 100;
-            tableSetup.SetWidths(new Single[] { 5, 5});
-            tableSetup.SpacingBefore = 0;
-
-            // title pdfPage
-            Phrase pSetup = new Phrase("WEATHER CONDITIONS");
-            pSetup.Font.Color = color_Black;
-            pSetup.Font.SetFamily(sFont_Fixed_Width);
-            pSetup.Font.SetStyle("bold");
-            pSetup.Font.Size = iNormalFontSize;
-            PdfPCell cSetup = new PdfPCell(pSetup);
-            cSetup.BackgroundColor = background_grey;
-            cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            cSetup.Colspan = 2;
-            tableSetup.AddCell(cSetup);
-
-            // row 1/a
-            var chuckTitle = new Chunk("WIND", font_Title_White);
-            var chuckData = new Chunk(row["WIND"].ToString(), font_Title_Green);
-            Phrase pSetup1 = new Phrase(chuckTitle);
-            PdfPCell cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            Phrase pSetup1d = new Phrase(chuckData);
-            PdfPCell cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            cSetup1d.Colspan = 2;
-            tableSetup.AddCell(cSetup1d);
-
-            // row 2/a
-            chuckTitle = new Chunk("CEILING", font_Title_White);
-            chuckData = new Chunk(row["CEILING"].ToString(), font_Title_Green);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-
-            // row 3/a
-            chuckTitle = new Chunk("VISIBILITY", font_Title_White);
-            chuckData = new Chunk(row["VISIBILITY"].ToString(), font_Title_Green);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-
-            // row 4/a
-            chuckTitle = new Chunk("GND TEMP", font_Title_White);
-            chuckData = new Chunk(row["TEMP"].ToString(), font_Title_Green);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-
-            // row 5/a
-            chuckTitle = new Chunk("QNH", font_Title_White);
-            chuckData = new Chunk(row["QNH"].ToString(), font_Title_Green);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-
-            // row 6/a
-            chuckTitle = new Chunk("RCAM", font_Title_White);
-            chuckData = new Chunk(row["RUNWAY_COND"].ToString(), font_Title_Green);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-
-            return tableSetup;
-        }
-
-        private static PdfPTable Perf_TO(DataRow row) {
-            var chunkUnit_FT = new Chunk("FT", font_Units_Blue);
-            var chunkUnit_KT = new Chunk("KT", font_Units_Blue);
-            var chunkUnit_Percent = new Chunk("%", font_Units_Blue);
-
-            PdfPTable tableSetup = new PdfPTable(6);
-            tableSetup.WidthPercentage = 100;
-            tableSetup.SetWidths(new Single[] { 5, 5, 5, 5, 5, 5 });
-            tableSetup.SpacingBefore = 0;
-
-            // title pdfPage
-            Phrase pSetup = new Phrase("ACTIVE/PERF");
-            pSetup.Font.Color = color_Black;
-            pSetup.Font.SetFamily(sFont_Fixed_Width);
-            pSetup.Font.SetStyle("bold");
-            pSetup.Font.Size = iNormalFontSize;
-            PdfPCell cSetup = new PdfPCell(pSetup);
-            cSetup.BackgroundColor = background_grey;
-            cSetup.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            cSetup.Colspan = 6;
-            tableSetup.AddCell(cSetup);
-
-            // row 1/a
-            var chuckTitle = new Chunk("V1", font_Title_White);
-            var chuckData = new Chunk(row["V1"].ToString(), font_Title_Cyan);
-            Phrase pSetup1 = new Phrase(chuckTitle);
-            PdfPCell cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            Phrase pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KT);
-            PdfPCell cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 1/b
-            chuckTitle = new Chunk("THRUST", font_Title_White);
-            chuckData = new Chunk(row["THRUST"].ToString(), font_Title_Cyan);
-            Phrase pSetup2 = new Phrase(chuckTitle);
-            PdfPCell cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            Phrase pSetup2d = new Phrase(chuckData);
-            PdfPCell cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 1/c
-            chuckTitle = new Chunk("THR RED", font_Title_White);
-            chuckData = new Chunk(row["THRUST_RED_ALT"].ToString(), font_Title_Cyan);
-            Phrase pSetup3 = new Phrase(chuckTitle);
-            PdfPCell cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            Phrase pSetup3d = new Phrase(chuckData);
-            pSetup3d.Add(chunkUnit_FT);
-            PdfPCell cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 2/a
-            chuckTitle = new Chunk("VR", font_Title_White);
-            chuckData = new Chunk(row["VR"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KT);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 2/b
-            chuckTitle = new Chunk("FLAPS", font_Title_White);
-            chuckData = new Chunk(row["FLAPS"].ToString(), font_Title_Cyan);
-            pSetup2 = new Phrase(chuckTitle);
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase(chuckData);
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 2/c
-            chuckTitle = new Chunk("ACCEL", font_Title_White);
-            chuckData = new Chunk(row["ACCEL_ALT"].ToString(), font_Title_Cyan);
-            pSetup3 = new Phrase(chuckTitle);
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase(chuckData);
-            pSetup3d.Add(chunkUnit_FT);
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-            // row 3/a
-            chuckTitle = new Chunk("V2", font_Title_White);
-            chuckData = new Chunk(row["V2"].ToString(), font_Title_Cyan);
-            pSetup1 = new Phrase(chuckTitle);
-            cSetup1 = new PdfPCell(pSetup1);
-            cSetup1.BackgroundColor = color_Black;
-            cSetup1.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup1.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1);
-            pSetup1d = new Phrase(chuckData);
-            pSetup1d.Add(chunkUnit_KT);
-            cSetup1d = new PdfPCell(pSetup1d);
-            cSetup1d.BackgroundColor = color_Black;
-            cSetup1d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup1d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup1d.BorderColor = color_White;
-            cSetup1d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup1d);
-            // 3/b
-            chuckTitle = new Chunk("THS", font_Title_White);
-            chuckData = new Chunk(row["TOWCG"].ToString(), font_Title_Cyan);
-            pSetup2 = new Phrase(chuckTitle);
-            cSetup2 = new PdfPCell(pSetup2);
-            cSetup2.BackgroundColor = color_Black;
-            cSetup2.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup2.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2);
-            pSetup2d = new Phrase(chuckData);
-            pSetup2d.Add(chunkUnit_Percent);
-            cSetup2d = new PdfPCell(pSetup2d);
-            cSetup2d.BackgroundColor = color_Black;
-            cSetup2d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup2d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup2d.BorderColor = color_White;
-            cSetup2d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup2d);
-            // 3/c
-            chuckTitle = new Chunk("EO ACCEL", font_Title_White);
-            chuckData = new Chunk(row["EO_ACCEL_ALT"].ToString(), font_Title_Cyan);
-            pSetup3 = new Phrase(chuckTitle);
-            cSetup3 = new PdfPCell(pSetup3);
-            cSetup3.BackgroundColor = color_Black;
-            cSetup3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3.HorizontalAlignment = Element.ALIGN_RIGHT;
-            cSetup3.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3);
-            pSetup3d = new Phrase(chuckData);
-            pSetup3d.Add(chunkUnit_FT);
-            cSetup3d = new PdfPCell(pSetup3d);
-            cSetup3d.BackgroundColor = color_Black;
-            cSetup3d.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cSetup3d.HorizontalAlignment = Element.ALIGN_LEFT;
-            cSetup3d.BorderColor = color_White;
-            cSetup3d.Border = iTextSharp.text.Rectangle.NO_BORDER;
-            tableSetup.AddCell(cSetup3d);
-
-
-            return tableSetup;
-        }
-
-        private static string Justify_Fuel(string sIn) {
+        public static string Justify_Fuel(string sIn) {
             string sReturn = "";
             // check or make = 000.0
             if (sIn.Length < 5) {
@@ -2714,8 +1856,8 @@ namespace WindowsFormsApplication1 {
             public Dictionary<string, KeyValuePair<string, int>> GetTOC() {
                 return toc;
             }
-
         }
+
         public static PushbuttonField AddButton(Document pdfDocument, PdfWriter PdfWriter, iTextSharp.text.Rectangle pdfPage, string sText, string entry) {
             using (pdfDocument) {
                 using (PdfWriter) {

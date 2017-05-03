@@ -66,7 +66,8 @@ namespace WindowsFormsApplication1 {
                 List<KeyValuePair<int, string>> data = new List<KeyValuePair<int, string>>();
                 data.Add(new KeyValuePair<int, string>(-1, ""));
                 for (int i = 0; i <= dt.Rows.Count - 1; i++) {
-                    data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
+                    if (!dt.Rows[i].IsNull(1))
+                        data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
                 }
                 // Bind the combobox
                 cbo.DataSource = null;
@@ -117,7 +118,15 @@ namespace WindowsFormsApplication1 {
                         txtFuel.Value = Convert.ToDecimal((Single)dt.Rows[i]["FUEL"]);
                         txtFuelTaxi.Value = Convert.ToDecimal((Single)dt.Rows[i]["FUEL_TAXI"]);
                         txtReserve.Value = (int)dt.Rows[i]["RESERVE"];
+
                         txtStab.Value = Convert.ToDecimal((Single)dt.Rows[i]["STAB"]);
+                        optStabPercent.Checked = true;
+                        if ((string)dt.Rows[i]["A1"] == "UP") {
+                            optStabUp.Checked = true;
+                        } else if ((string)dt.Rows[i]["A1"] == "DN") {
+                            optStabDn.Checked = true;
+                        }
+
                         txtPAX.Value = (int)dt.Rows[i]["PAX"];
                         txtCRZFL.Value = (int)dt.Rows[i]["CRZALT"];
                         txtTRA.Value = (int)dt.Rows[i]["THRUST_RED_ALT"];
@@ -195,6 +204,19 @@ namespace WindowsFormsApplication1 {
                 }
                 dr["RT_RESERVE_PERCENT"] = 0;
                 dr["RT_RESERVE_AMOUNT"] = 0;
+                if (optStabDn.Checked) {
+                    dr["A1"] = "DN";
+                } else if (optStabPercent.Checked) {
+                    dr["A1"] = "%";
+                } else if (optStabUp.Checked) {
+                    dr["A1"] = "UP";
+                }
+
+                // additional fields
+                for (int x = 2; x < 11; x++) {
+                    dr["A" + x] = "";
+                }
+
                 dtTable.Rows.Add(dr);
                 dataAdapter.Update(dtTable);  // write new row back to database
                 iSelected = cboSelect.Items.Count;
@@ -230,7 +252,19 @@ namespace WindowsFormsApplication1 {
                     "EO_ACCEL_ALT = @eo_accel_alt," +
                     "FLEX = @flex," +
                     "RT_RESERVE_PERCENT = @rt_reserve_percent," +
-                    "RT_RESERVE_AMOUNT = @rt_reserve_amount" +
+                    "RT_RESERVE_AMOUNT = @rt_reserve_amount," +
+
+                    "A1 = @a1," +
+                    "A2 = @a2," +
+                    "A3 = @a3," +
+                    "A4 = @a4," +
+                    "A5 = @a5," +
+                    "A6 = @a6," +
+                    "A7 = @a7," +
+                    "A8 = @a8," +
+                    "A9 = @a9," +
+                    "A10 = @a10" +
+
                     " WHERE [ID] = @id";
 
                 OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
@@ -264,6 +298,19 @@ namespace WindowsFormsApplication1 {
                 cmd.Parameters.AddWithValue("@rt_reserve_percent", 0);
                 cmd.Parameters.AddWithValue("@rt_reserve_amount", 0);
 
+                if (optStabDn.Checked) {
+                    cmd.Parameters.AddWithValue("@a1", "DN");
+                } else if (optStabPercent.Checked) {
+                    cmd.Parameters.AddWithValue("@a1", "%");
+                } else if (optStabUp.Checked) {
+                    cmd.Parameters.AddWithValue("@a1", "UP");
+                }
+
+                // additional fields
+                for (int x = 2; x < 11; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
+
                 cmd.Parameters.AddWithValue("@id", Get_Selected_Key(cboSelect));
 
                 conn.Open();
@@ -292,6 +339,7 @@ namespace WindowsFormsApplication1 {
                 txtFuel.Value = 10;
                 txtReserve.Value = 45;
                 txtStab.Value = 30;
+                optStabPercent.Checked = true;
                 txtPAX.Value = 0;
                 txtCRZFL.Value = 300;
                 txtTRA.Value = 1000;
@@ -438,6 +486,88 @@ namespace WindowsFormsApplication1 {
         }
         private void txtFuelTaxi_Leave(object sender, EventArgs e) {
             Calc_TOW();
+        }
+
+        private void SelectAll_Numeric(object sender) {
+            NumericUpDown curBox = sender as NumericUpDown;
+            curBox.Select();
+            curBox.Select(0, curBox.Text.Length);
+        }
+
+        private void txtZFW_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtFuel_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtFuelTaxi_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtZFWCG_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtReserve_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtTOWCG_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtRteRsv_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtFuelAltn_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtStab_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtPAX_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtCI_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtV1_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtVR_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtV2_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtThrust_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtCRZFL_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtTRA_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtAcelAlt_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtEoAccelAlt_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
         }
     }
 }

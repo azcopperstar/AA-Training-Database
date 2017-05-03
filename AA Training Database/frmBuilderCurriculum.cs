@@ -316,31 +316,22 @@ namespace WindowsFormsApplication1 {
 
 
 
-                    //for (int x = 4; x <= 33; x++) {
-                    //    int ispot = (int)dt.Rows[i].ItemArray[x];
-                    //    if (ispot > -1) {
-                    //        //DataTable dtReport = new DataTable();
-                    //        //OleDbConnection conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
-                    //        conn.Open();
-                    //        string selectCommand = "SELECT ID,SPOT_NAME,MINUTES FROM Spots WHERE ID = " + ispot;
-                    //        OleDbCommand comm = new OleDbCommand(selectCommand, conn);
-                    //        OleDbDataReader reader = comm.ExecuteReader();
-                    //        while (reader.Read()) {
-                    //            string sMinutes = reader.GetValue(2).ToString();
-                    //            if (sMinutes == "")
-                    //                sMinutes = "0";
-                    //            int iMinutes = int.Parse(sMinutes);
-                    //            if (iMinutes < 10) {
-                    //                sMinutes = ":0" + Convert.ToString(iMinutes);
-                    //            } else {
-                    //                sMinutes = ":" + Convert.ToString(iMinutes);
-                    //            }
-                    //            this.listScript.Items.Add(reader.GetValue(0).ToString() + "- (" + sMinutes + ") " + reader.GetValue(1).ToString());
-                    //        }
-                    //        reader.Close();
-                    //        conn.Close();
-                    //    }
-                    //}
+                    for (int x = 4; x <= 33; x++) {
+                        int ispot = (int)dt.Rows[i].ItemArray[x];
+                        if (ispot > -1) {
+                            //DataTable dtReport = new DataTable();
+                            //OleDbConnection conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
+                            conn.Open();
+                            string selectCommand = "SELECT ID,LESSON_NAME FROM Lesson WHERE ID = " + ispot;
+                            OleDbCommand comm = new OleDbCommand(selectCommand, conn);
+                            OleDbDataReader reader = comm.ExecuteReader();
+                            while (reader.Read()) {
+                                this.listScript.Items.Add(reader.GetValue(0).ToString() + "- " + reader.GetValue(1).ToString());
+                            }
+                            reader.Close();
+                            conn.Close();
+                        }
+                    }
                 }
                 btnGenerateScript.Enabled = true;
                 btnUpdate.Enabled = true;
@@ -358,42 +349,7 @@ namespace WindowsFormsApplication1 {
 
             int iSelected = Get_Selected_Key(cboScripts);
             if (cboScripts.SelectedIndex > 0 || iSelected > -1) {
-
-                // save the Curriculum ID to list
-                //iLessonList1.Add(iSelected);
-
-
-                string sCommand = "SELECT * FROM Curriculum WHERE ID = " + iSelected;
-                conn.Open();
-                OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
-                DataTable dt = new DataTable();
-                dt.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dAdapter.Fill(dt);
-                conn.Close();
-
-                // cycle thru curriculum list for all lessons
-                List<int> iLessonList1 = new List<int>();
-                //List<int> iSPOTList1 = new List<int>();
-                int i;
-                for (i = 0; i <= dt.Rows.Count - 1; i++) {
-                    for (int x = 4; x <= 33; x++) {
-                        int iLesson = (int)dt.Rows[i].ItemArray[x];
-                        if (iLesson > -1) {
-                            iLessonList1.Add(iLesson);
-                        }
-                    }
-                    GlobalCode.iLessonList = iLessonList1.ToArray();
-                    //GlobalCode.iSPOTList = iSPOTList1.ToArray();
-                }
-
-                //AbcPDF.Generate_PDF();
-                PDF.Generate_PDF();
-
-                //frmReportViewer frmReport = new frmReportViewer();
-                //frmReport.Show();
-
-                //frmPDF frmPDF = new frmPDF();
-                //frmPDF.Show();
+                PDF.Generate_Curricula(iSelected);
             }
 
         }
@@ -436,7 +392,7 @@ namespace WindowsFormsApplication1 {
                 } else {
                     iItem = -1;
                 }
-                dr["SPOT" + (i + 1)] = iItem;
+                dr["LESSON" + (i + 1)] = iItem;
             }
             dr["PREAMBLE1"] = Get_Selected_Key(cboPreamble1);
             dr["PREAMBLE2"] = Get_Selected_Key(cboPreamble2);
@@ -559,6 +515,12 @@ namespace WindowsFormsApplication1 {
                 dr["P10_AFTER"] = 0;
             }
 
+            // additional fields
+            for (int x = 1; x < 21; x++) {
+                dr["A" + x] = "";
+            }
+
+
             dtTable.Rows.Add(dr);
             dataAdapter.Update(dtTable);  // write new row back to database
 
@@ -570,36 +532,36 @@ namespace WindowsFormsApplication1 {
                 string strUpdate = "UPDATE Lesson SET " +
                     "CURRICULUM_NAME = @lesson_name," +
                     "DATE_EDITED = @date_edited," +
-                    "SPOT1 = @spot1," +
-                    "SPOT2 = @spot2," +
-                    "SPOT3 = @spot3," +
-                    "SPOT4 = @spot4," +
-                    "SPOT5 = @spot5," +
-                    "SPOT6 = @spot6," +
-                    "SPOT7 = @spot7," +
-                    "SPOT8 = @spot8," +
-                    "SPOT9 = @spot9," +
-                    "SPOT10 = @spot10," +
-                    "SPOT11 = @spot11," +
-                    "SPOT12 = @spot12," +
-                    "SPOT13 = @spot13," +
-                    "SPOT14 = @spot14," +
-                    "SPOT15 = @spot15," +
-                    "SPOT16 = @spot16," +
-                    "SPOT17 = @spot17," +
-                    "SPOT18 = @spot18," +
-                    "SPOT19 = @spot19," +
-                    "SPOT20 = @spot20," +
-                    "SPOT21 = @spot21," +
-                    "SPOT22 = @spot22," +
-                    "SPOT23 = @spot23," +
-                    "SPOT24 = @spot24," +
-                    "SPOT25 = @spot25," +
-                    "SPOT26 = @spot26," +
-                    "SPOT27 = @spot27," +
-                    "SPOT28 = @spot28," +
-                    "SPOT29 = @spot29," +
-                    "SPOT30 = @spot30," +
+                    "LESSON1 = @spot1," +
+                    "LESSON2 = @spot2," +
+                    "LESSON3 = @spot3," +
+                    "LESSON4 = @spot4," +
+                    "LESSON5 = @spot5," +
+                    "LESSON6 = @spot6," +
+                    "LESSON7 = @spot7," +
+                    "LESSON8 = @spot8," +
+                    "LESSON9 = @spot9," +
+                    "LESSON10 = @spot10," +
+                    "LESSON11 = @spot11," +
+                    "LESSON12 = @spot12," +
+                    "LESSON13 = @spot13," +
+                    "LESSON14 = @spot14," +
+                    "LESSON15 = @spot15," +
+                    "LESSON16 = @spot16," +
+                    "LESSON17 = @spot17," +
+                    "LESSON18 = @spot18," +
+                    "LESSON19 = @spot19," +
+                    "LESSON20 = @spot20," +
+                    "LESSON21 = @spot21," +
+                    "LESSON22 = @spot22," +
+                    "LESSON23 = @spot23," +
+                    "LESSON24 = @spot24," +
+                    "LESSON25 = @spot25," +
+                    "LESSON26 = @spot26," +
+                    "LESSON27 = @spot27," +
+                    "LESSON28 = @spot28," +
+                    "LESSON29 = @spot29," +
+                    "LESSON30 = @spot30," +
                     "PREAMBLE1 = @preamble1," +
                     "PREAMBLE2 = @preamble2," +
                     "PREAMBLE3 = @preamble3," +
@@ -632,6 +594,27 @@ namespace WindowsFormsApplication1 {
                     "P9_AFTER = @p9_after," +
                     "P10_BEFORE = @p10_before," +
                     "P10_AFTER = @p10_after," +
+
+                    "A1 = @a1," +
+                    "A2 = @a2," +
+                    "A3 = @a3," +
+                    "A4 = @a4," +
+                    "A5 = @a5," +
+                    "A6 = @a6," +
+                    "A7 = @a7," +
+                    "A8 = @a8," +
+                    "A9 = @a9," +
+                    "A10 = @a10," +
+                    "A11 = @a11," +
+                    "A12 = @a12," +
+                    "A13 = @a13," +
+                    "A14 = @a14," +
+                    "A15 = @a15," +
+                    "A16 = @a16," +
+                    "A17 = @a17," +
+                    "A18 = @a18," +
+                    "A19 = @a19," +
+                    "A20 = @a20" +
 
 
                     " WHERE [ID] = @id";
@@ -773,6 +756,10 @@ namespace WindowsFormsApplication1 {
                 }
 
 
+                // additional fields
+                for (int x = 1; x < 21; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
 
                 cmd.Parameters.AddWithValue("@id", Get_Selected_Key(cboScripts));
 
@@ -806,7 +793,8 @@ namespace WindowsFormsApplication1 {
                 List<KeyValuePair<int, string>> data = new List<KeyValuePair<int, string>>();
                 data.Add(new KeyValuePair<int, string>(-1, ""));
                 for (int i = 0; i <= dt.Rows.Count - 1; i++) {
-                    data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
+                    if(!dt.Rows[i].IsNull(1))
+                        data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
                 }
                 // Bind the combobox
                 cbo.DataSource = null;

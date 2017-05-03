@@ -31,7 +31,6 @@
             this.txtScriptName = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.lblTrash = new System.Windows.Forms.Label();
-            this.btnGenerateScript = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -174,24 +173,12 @@
             this.lblTrash.TabIndex = 7;
             this.lblTrash.Text = "TRASH";
             // 
-            // btnGenerateScript
-            // 
-            this.btnGenerateScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateScript.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnGenerateScript.Location = new System.Drawing.Point(29, 16);
-            this.btnGenerateScript.Name = "btnGenerateScript";
-            this.btnGenerateScript.Size = new System.Drawing.Size(194, 23);
-            this.btnGenerateScript.TabIndex = 8;
-            this.btnGenerateScript.Text = "GENERATE LESSON PDF";
-            this.btnGenerateScript.UseVisualStyleBackColor = true;
-            this.btnGenerateScript.Click += new System.EventHandler(this.btnGenerateScript_Click);
-            // 
             // btnSave
             // 
             this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Green;
-            this.btnSave.Location = new System.Drawing.Point(29, 45);
+            this.btnSave.Location = new System.Drawing.Point(24, 19);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(194, 23);
             this.btnSave.TabIndex = 9;
@@ -238,7 +225,7 @@
             this.btnUpdate.Enabled = false;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnUpdate.Location = new System.Drawing.Point(29, 74);
+            this.btnUpdate.Location = new System.Drawing.Point(24, 48);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(194, 23);
             this.btnUpdate.TabIndex = 94;
@@ -250,7 +237,7 @@
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.ForeColor = System.Drawing.Color.Maroon;
-            this.btnDelete.Location = new System.Drawing.Point(29, 103);
+            this.btnDelete.Location = new System.Drawing.Point(24, 77);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(194, 23);
             this.btnDelete.TabIndex = 95;
@@ -262,7 +249,7 @@
             // 
             this.btnClear.Enabled = false;
             this.btnClear.ForeColor = System.Drawing.Color.Maroon;
-            this.btnClear.Location = new System.Drawing.Point(29, 132);
+            this.btnClear.Location = new System.Drawing.Point(24, 106);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(194, 23);
             this.btnClear.TabIndex = 96;
@@ -272,13 +259,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnClear);
-            this.groupBox1.Controls.Add(this.btnGenerateScript);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.btnUpdate);
-            this.groupBox1.Location = new System.Drawing.Point(898, 510);
+            this.groupBox1.Location = new System.Drawing.Point(898, 507);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(238, 171);
+            this.groupBox1.Size = new System.Drawing.Size(238, 144);
             this.groupBox1.TabIndex = 97;
             this.groupBox1.TabStop = false;
             // 
@@ -531,7 +517,6 @@
         private System.Windows.Forms.TextBox txtScriptName;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label lblTrash;
-        private System.Windows.Forms.Button btnGenerateScript;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label label15;

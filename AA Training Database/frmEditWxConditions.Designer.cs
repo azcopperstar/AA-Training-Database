@@ -119,6 +119,10 @@
             this.txtNotams = new System.Windows.Forms.TextBox();
             this.cboStation = new System.Windows.Forms.ComboBox();
             this.cboApproachDesignator = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWindDir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWindVel)).BeginInit();
@@ -158,7 +162,7 @@
             this.cboRCAM.Location = new System.Drawing.Point(157, 181);
             this.cboRCAM.Name = "cboRCAM";
             this.cboRCAM.Size = new System.Drawing.Size(155, 21);
-            this.cboRCAM.TabIndex = 6;
+            this.cboRCAM.TabIndex = 5;
             // 
             // label35
             // 
@@ -186,7 +190,7 @@
             // 
             this.label79.AutoSize = true;
             this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.Location = new System.Drawing.Point(24, 52);
+            this.label79.Location = new System.Drawing.Point(24, 44);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(181, 13);
             this.label79.TabIndex = 121;
@@ -196,10 +200,11 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(208, 49);
+            this.txtName.Location = new System.Drawing.Point(208, 41);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(392, 20);
+            this.txtName.Size = new System.Drawing.Size(504, 20);
             this.txtName.TabIndex = 0;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btnCancel
             // 
@@ -207,6 +212,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 23);
             this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Close Dialog";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -234,6 +240,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(268, 23);
             this.btnClear.TabIndex = 177;
+            this.btnClear.TabStop = false;
             this.btnClear.Text = "CLEAR ENTRIES";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -246,6 +253,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(268, 23);
             this.btnDelete.TabIndex = 151;
+            this.btnDelete.TabStop = false;
             this.btnDelete.Text = "DELETE SELECTED WX CONDITION";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -258,6 +266,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(268, 23);
             this.btnUpdate.TabIndex = 8;
+            this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "UPDATE SELECTED WX CONDITION";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click_1);
@@ -270,6 +279,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(268, 23);
             this.btnSave.TabIndex = 7;
+            this.btnSave.TabStop = false;
             this.btnSave.Text = "SAVE AS A NEW WX CONDITION";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
@@ -281,7 +291,7 @@
             this.cboSelect.FormattingEnabled = true;
             this.cboSelect.Location = new System.Drawing.Point(208, 14);
             this.cboSelect.Name = "cboSelect";
-            this.cboSelect.Size = new System.Drawing.Size(392, 21);
+            this.cboSelect.Size = new System.Drawing.Size(504, 21);
             this.cboSelect.TabIndex = 129;
             this.cboSelect.SelectedIndexChanged += new System.EventHandler(this.cboWxConditions_SelectedIndexChanged);
             // 
@@ -338,12 +348,13 @@
             0});
             this.txtWindDir.Name = "txtWindDir";
             this.txtWindDir.Size = new System.Drawing.Size(51, 20);
-            this.txtWindDir.TabIndex = 181;
+            this.txtWindDir.TabIndex = 8;
             this.txtWindDir.Value = new decimal(new int[] {
             360,
             0,
             0,
             0});
+            this.txtWindDir.Enter += new System.EventHandler(this.txtWindDir_Enter);
             // 
             // txtWindVel
             // 
@@ -355,7 +366,8 @@
             0});
             this.txtWindVel.Name = "txtWindVel";
             this.txtWindVel.Size = new System.Drawing.Size(51, 20);
-            this.txtWindVel.TabIndex = 182;
+            this.txtWindVel.TabIndex = 9;
+            this.txtWindVel.Enter += new System.EventHandler(this.txtWindVel_Enter);
             // 
             // txtGustVel
             // 
@@ -367,7 +379,8 @@
             0});
             this.txtGustVel.Name = "txtGustVel";
             this.txtGustVel.Size = new System.Drawing.Size(51, 20);
-            this.txtGustVel.TabIndex = 184;
+            this.txtGustVel.TabIndex = 10;
+            this.txtGustVel.Enter += new System.EventHandler(this.txtGustVel_Enter);
             // 
             // label3
             // 
@@ -587,12 +600,13 @@
             0});
             this.txtCeiling.Name = "txtCeiling";
             this.txtCeiling.Size = new System.Drawing.Size(59, 20);
-            this.txtCeiling.TabIndex = 187;
+            this.txtCeiling.TabIndex = 16;
             this.txtCeiling.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
+            this.txtCeiling.Enter += new System.EventHandler(this.txtCeiling_Enter);
             // 
             // groupBox3
             // 
@@ -622,13 +636,14 @@
             0});
             this.txtVis.Name = "txtVis";
             this.txtVis.Size = new System.Drawing.Size(41, 20);
-            this.txtVis.TabIndex = 202;
+            this.txtVis.TabIndex = 14;
             this.txtVis.Value = new decimal(new int[] {
             50,
             0,
             0,
             0});
             this.txtVis.ValueChanged += new System.EventHandler(this.txtVis_ValueChanged);
+            this.txtVis.Enter += new System.EventHandler(this.txtVis_Enter);
             // 
             // optVis6
             // 
@@ -774,12 +789,13 @@
             0});
             this.txtRVR.Name = "txtRVR";
             this.txtRVR.Size = new System.Drawing.Size(50, 20);
-            this.txtRVR.TabIndex = 208;
+            this.txtRVR.TabIndex = 15;
             this.txtRVR.Value = new decimal(new int[] {
             6000,
             0,
             0,
             0});
+            this.txtRVR.Enter += new System.EventHandler(this.txtRVR_Enter);
             // 
             // optRVRType2
             // 
@@ -1064,12 +1080,13 @@
             0});
             this.txtQNH.Name = "txtQNH";
             this.txtQNH.Size = new System.Drawing.Size(54, 20);
-            this.txtQNH.TabIndex = 202;
+            this.txtQNH.TabIndex = 13;
             this.txtQNH.Value = new decimal(new int[] {
             2992,
             0,
             0,
             0});
+            this.txtQNH.Enter += new System.EventHandler(this.txtQNH_Enter);
             // 
             // optINHG
             // 
@@ -1122,12 +1139,13 @@
             -2147483648});
             this.txtTemp.Name = "txtTemp";
             this.txtTemp.Size = new System.Drawing.Size(51, 20);
-            this.txtTemp.TabIndex = 202;
+            this.txtTemp.TabIndex = 11;
             this.txtTemp.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            this.txtTemp.Enter += new System.EventHandler(this.txtTemp_Enter);
             // 
             // label8
             // 
@@ -1156,12 +1174,13 @@
             -2147483648});
             this.txtDewpoint.Name = "txtDewpoint";
             this.txtDewpoint.Size = new System.Drawing.Size(51, 20);
-            this.txtDewpoint.TabIndex = 204;
+            this.txtDewpoint.TabIndex = 12;
             this.txtDewpoint.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            this.txtDewpoint.Enter += new System.EventHandler(this.txtDewpoint_Enter);
             // 
             // label9
             // 
@@ -1270,7 +1289,9 @@
             this.cboRwyDep.Name = "cboRwyDep";
             this.cboRwyDep.Size = new System.Drawing.Size(67, 21);
             this.cboRwyDep.Sorted = true;
-            this.cboRwyDep.TabIndex = 213;
+            this.cboRwyDep.TabIndex = 3;
+            this.cboRwyDep.SelectedIndexChanged += new System.EventHandler(this.cboRwyDep_SelectedIndexChanged);
+            this.cboRwyDep.TextChanged += new System.EventHandler(this.cboRwyDep_TextChanged);
             // 
             // label16
             // 
@@ -1329,7 +1350,7 @@
             this.cboRwyArr.Name = "cboRwyArr";
             this.cboRwyArr.Size = new System.Drawing.Size(67, 21);
             this.cboRwyArr.Sorted = true;
-            this.cboRwyArr.TabIndex = 216;
+            this.cboRwyArr.TabIndex = 4;
             // 
             // label17
             // 
@@ -1377,7 +1398,9 @@
             this.cboATIS.Name = "cboATIS";
             this.cboATIS.Size = new System.Drawing.Size(67, 21);
             this.cboATIS.Sorted = true;
-            this.cboATIS.TabIndex = 219;
+            this.cboATIS.TabIndex = 1;
+            this.cboATIS.SelectedIndexChanged += new System.EventHandler(this.cboATIS_SelectedIndexChanged);
+            this.cboATIS.TextChanged += new System.EventHandler(this.cboATIS_TextChanged);
             // 
             // label18
             // 
@@ -1414,7 +1437,7 @@
             this.cboApproach.Location = new System.Drawing.Point(157, 206);
             this.cboApproach.Name = "cboApproach";
             this.cboApproach.Size = new System.Drawing.Size(107, 21);
-            this.cboApproach.TabIndex = 221;
+            this.cboApproach.TabIndex = 6;
             // 
             // label19
             // 
@@ -1444,7 +1467,7 @@
             this.txtNotams.Location = new System.Drawing.Point(147, 466);
             this.txtNotams.Name = "txtNotams";
             this.txtNotams.Size = new System.Drawing.Size(526, 20);
-            this.txtNotams.TabIndex = 223;
+            this.txtNotams.TabIndex = 17;
             // 
             // cboStation
             // 
@@ -1454,8 +1477,10 @@
             this.cboStation.Name = "cboStation";
             this.cboStation.Size = new System.Drawing.Size(67, 21);
             this.cboStation.Sorted = true;
-            this.cboStation.TabIndex = 225;
+            this.cboStation.TabIndex = 2;
+            this.cboStation.SelectedIndexChanged += new System.EventHandler(this.cboStation_SelectedIndexChanged);
             this.cboStation.DropDownClosed += new System.EventHandler(this.cboStation_DropDownClosed);
+            this.cboStation.TextChanged += new System.EventHandler(this.cboStation_TextChanged);
             // 
             // cboApproachDesignator
             // 
@@ -1493,13 +1518,61 @@
             this.cboApproachDesignator.Name = "cboApproachDesignator";
             this.cboApproachDesignator.Size = new System.Drawing.Size(45, 21);
             this.cboApproachDesignator.Sorted = true;
-            this.cboApproachDesignator.TabIndex = 226;
+            this.cboApproachDesignator.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Maroon;
+            this.label4.Location = new System.Drawing.Point(227, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 227;
+            this.label4.Text = "Required";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Maroon;
+            this.label6.Location = new System.Drawing.Point(227, 112);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 228;
+            this.label6.Text = "Required";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Maroon;
+            this.label21.Location = new System.Drawing.Point(227, 136);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.TabIndex = 229;
+            this.label21.Text = "Required";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Maroon;
+            this.label22.Location = new System.Drawing.Point(714, 44);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(49, 13);
+            this.label22.TabIndex = 230;
+            this.label22.Text = "Required";
             // 
             // frmEditWxConditions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 727);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cboApproachDesignator);
             this.Controls.Add(this.cboStation);
             this.Controls.Add(this.label20);
@@ -1680,5 +1753,9 @@
         private System.Windows.Forms.RadioButton optRVRType1;
         private System.Windows.Forms.NumericUpDown txtRVR;
         private System.Windows.Forms.CheckBox chkRVR;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
     }
 }

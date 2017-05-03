@@ -34,8 +34,8 @@ namespace WindowsFormsApplication1 {
             }
 }
         private void Fill_CBOs_AutoComplete(ComboBox cbo, string query, string displaymember) {
-            conn.Open();
-            OleDbCommand cmd = new OleDbCommand(query, conn);
+            GlobalCode.connAirport.Open();
+            OleDbCommand cmd = new OleDbCommand(query, GlobalCode.connAirport);
             OleDbDataReader sdr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(sdr);
@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1 {
             cbo.Items.AddRange(list.ToArray<string>());
             cbo.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            conn.Close();
+            GlobalCode.connAirport.Close();
         }
         private void Initialize_DB() {
             try {
@@ -90,13 +90,13 @@ namespace WindowsFormsApplication1 {
             }
         }
         private void Fill_Runways(ComboBox cbo, string query) {
-            //try {
-                conn.Open();
-                OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, GlobalCode.sOleDbConnectionString);
+            try {
+                GlobalCode.connAirport.Open();
+                OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, GlobalCode.sOleDbConnectionStringAirport);
                 DataTable dt = new DataTable();
                 dt.Locale = System.Globalization.CultureInfo.InvariantCulture;
                 dAdapter.Fill(dt);
-                conn.Close();
+                GlobalCode.connAirport.Close();
 
                 // Create a List to store our KeyValuePairs and add data
                 List<KeyValuePair<int, string>> data = new List<KeyValuePair<int, string>>();
@@ -111,9 +111,9 @@ namespace WindowsFormsApplication1 {
                 cbo.DataSource = new BindingSource(data, null);
                 cbo.DisplayMember = "Value";
                 cbo.ValueMember = "Key";
-            //} catch (Exception) {
-            //    throw;
-            //}
+            } catch (Exception) {
+                throw;
+            }
         }
         private void FillData() {
             //try {
@@ -487,6 +487,11 @@ namespace WindowsFormsApplication1 {
                 dr["APPROACH"] = cboApproach.Text;
                 dr["APP_DESIGNATOR"] = cboApproachDesignator.Text;
 
+                // additional fields
+                for (int x = 1; x < 11; x++) {
+                    dr["A" + x] = "";
+                }
+
                 dtTable.Rows.Add(dr);
                 dataAdapter.Update(dtTable);  // write new row back to database
                 iSelected = cboSelect.Items.Count;
@@ -617,7 +622,19 @@ namespace WindowsFormsApplication1 {
                     "RVR = @rvr," +
                     "RVR_TYPE = @rvr_type," +
                     "APPROACH = @approach," +
-                    "APP_DESIGNATOR = @app_designator" +
+                    "APP_DESIGNATOR = @app_designator," +
+
+                        "A1 = @a1," +
+                        "A2 = @a2," +
+                        "A3 = @a3," +
+                        "A4 = @a4," +
+                        "A5 = @a5," +
+                        "A6 = @a6," +
+                        "A7 = @a7," +
+                        "A8 = @a8," +
+                        "A9 = @a9," +
+                        "A10 = @a10" +
+
                     " WHERE [ID] = @id";
 
                 OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
@@ -651,6 +668,12 @@ namespace WindowsFormsApplication1 {
                 cmd.Parameters.AddWithValue("@rvr_type", sRVRType);
                 cmd.Parameters.AddWithValue("@approach", cboApproach.Text);
                 cmd.Parameters.AddWithValue("@app_designator", cboApproachDesignator.Text);
+
+                // additional fields
+                for (int x = 1; x < 11; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
+
                 cmd.Parameters.AddWithValue("@id", Get_Selected_Key(cboSelect));
 
                 conn.Open();
@@ -866,6 +889,7 @@ namespace WindowsFormsApplication1 {
                 optObscruction2.Enabled = true;
                 lblRVR.Enabled = false;
                 if (chkRVR.Checked) {
+                    txtRVR.Enabled = true;
                     lblRVR.Enabled = true;
                     if (sRVR == "") {
                         txtRVR.Value = 300;
@@ -880,6 +904,7 @@ namespace WindowsFormsApplication1 {
                 optObscruction2.Enabled = true;
                 lblRVR.Enabled = false;
                 if (chkRVR.Checked) {
+                    txtRVR.Enabled = true;
                     lblRVR.Enabled = true;
                     if (sRVR == "") {
                         txtRVR.Value = 600;
@@ -894,6 +919,7 @@ namespace WindowsFormsApplication1 {
                 optObscruction2.Enabled = true;
                 lblRVR.Enabled = false;
                 if (chkRVR.Checked) {
+                    txtRVR.Enabled = true;
                     lblRVR.Enabled = true;
                     if (sRVR == "") {
                         txtRVR.Value = 1200;
@@ -908,6 +934,7 @@ namespace WindowsFormsApplication1 {
                 optObscruction2.Enabled = true;
                 lblRVR.Enabled = false;
                 if (chkRVR.Checked) {
+                    txtRVR.Enabled = true;
                     lblRVR.Enabled = true;
                     if (sRVR == "") {
                         txtRVR.Value = 2400;
@@ -924,6 +951,7 @@ namespace WindowsFormsApplication1 {
                 }
                 lblRVR.Enabled = false;
                 if (chkRVR.Checked) {
+                    txtRVR.Enabled = true;
                     lblRVR.Enabled = true;
                     if (sRVR == "") {
                         txtRVR.Value = 3600;
@@ -1044,6 +1072,94 @@ namespace WindowsFormsApplication1 {
 
         private void btnClear_Click(object sender, EventArgs e) {
             Clear_Entries();
+        }
+        private void Check_Complete() {
+            try {
+                btnSave.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+                btnClear.Enabled = false;
+                if (txtName.Text != "" && cboATIS.Text != "" && cboStation.Text != "" && cboRwyDep.Text != "") {
+                    if (cboSelect.SelectedIndex > 0) {
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                    }
+                    btnSave.Enabled = true;
+                    btnClear.Enabled = true;
+                }
+            } catch (Exception) {
+                throw;
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboATIS_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboStation_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboRwyDep_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void txtWindDir_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtWindVel_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void SelectAll_Numeric(object sender) {
+            NumericUpDown curBox = sender as NumericUpDown;
+            curBox.Select();
+            curBox.Select(0, curBox.Text.Length);
+        }
+
+        private void txtGustVel_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtTemp_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtDewpoint_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtQNH_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtRVR_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtCeiling_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void txtVis_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender as NumericUpDown);
+        }
+
+        private void cboATIS_SelectedIndexChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboStation_SelectedIndexChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboRwyDep_SelectedIndexChanged(object sender, EventArgs e) {
+            Check_Complete();
         }
     }
 }

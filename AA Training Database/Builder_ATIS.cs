@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1 {
                             + " " + Sky(row)
                             + " " + TempDp(row)
                             + " " + QNH(row, true)
-                            + ". " + Runways(row, true);
+                            + ". " + Runways(row, true,false);
                 //+ " " + RCAM(row)
                 //+ " NOTAMS... " + Notams(row);
 
@@ -297,7 +297,7 @@ namespace WindowsFormsApplication1 {
             }
         }
 
-        public static string Runways(DataRow row, bool sLong) {
+        public static string Runways(DataRow row, bool sLong, bool bDepOnly) {
             sReturn = "";
             try {
                 string sRwyDep = "";
@@ -317,6 +317,8 @@ namespace WindowsFormsApplication1 {
                 if (sLong) {
                     sReturn = " EXPECT " + sRwyArrApp + " APCH RWY " + sRwyArr + ". DEPARTING RWY " + sRwyDep + ".";
 
+                } else if (bDepOnly){
+                    sReturn = sRwyDep;
                 } else {
                     sReturn = sRwyDep + " / " + sRwyArrApp + " " + sRwyArr;
                 }

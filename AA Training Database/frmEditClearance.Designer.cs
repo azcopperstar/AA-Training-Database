@@ -57,6 +57,10 @@
             this.txtDepFreq = new System.Windows.Forms.NumericUpDown();
             this.chkEnroute = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.cboDEST = new System.Windows.Forms.ComboBox();
             this.cboDEP = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -96,7 +100,7 @@
             this.cboSelect.FormattingEnabled = true;
             this.cboSelect.Location = new System.Drawing.Point(177, 12);
             this.cboSelect.Name = "cboSelect";
-            this.cboSelect.Size = new System.Drawing.Size(470, 21);
+            this.cboSelect.Size = new System.Drawing.Size(419, 21);
             this.cboSelect.TabIndex = 0;
             this.cboSelect.SelectedIndexChanged += new System.EventHandler(this.cboSelect_SelectedIndexChanged);
             // 
@@ -144,6 +148,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(268, 23);
             this.btnUpdate.TabIndex = 19;
+            this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "UPDATE SELECTED CLEARANCE";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -156,6 +161,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(268, 23);
             this.btnSave.TabIndex = 18;
+            this.btnSave.TabStop = false;
             this.btnSave.Text = "SAVE AS NEW CLEARANCE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -166,6 +172,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 23);
             this.btnCancel.TabIndex = 22;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Close Dialog";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -177,6 +184,7 @@
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(470, 55);
             this.txtRemarks.TabIndex = 17;
+            this.txtRemarks.Enter += new System.EventHandler(this.txtRemarks_Enter);
             // 
             // label35
             // 
@@ -219,7 +227,7 @@
             this.cboALTN.Name = "cboALTN";
             this.cboALTN.Size = new System.Drawing.Size(108, 21);
             this.cboALTN.Sorted = true;
-            this.cboALTN.TabIndex = 5;
+            this.cboALTN.TabIndex = 4;
             // 
             // label8
             // 
@@ -236,11 +244,12 @@
             // 
             this.txtSID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSID.Location = new System.Drawing.Point(177, 225);
-            this.txtSID.MaxLength = 4;
+            this.txtSID.MaxLength = 20;
             this.txtSID.Name = "txtSID";
             this.txtSID.Size = new System.Drawing.Size(108, 20);
             this.txtSID.TabIndex = 7;
             this.txtSID.WordWrap = false;
+            this.txtSID.Enter += new System.EventHandler(this.txtSID_Enter);
             // 
             // label7
             // 
@@ -268,11 +277,12 @@
             // 
             this.txtEnroute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEnroute.Location = new System.Drawing.Point(287, 251);
-            this.txtEnroute.MaxLength = 4;
+            this.txtEnroute.MaxLength = 200;
             this.txtEnroute.Name = "txtEnroute";
             this.txtEnroute.Size = new System.Drawing.Size(360, 20);
             this.txtEnroute.TabIndex = 10;
             this.txtEnroute.WordWrap = false;
+            this.txtEnroute.Enter += new System.EventHandler(this.txtEnroute_Enter);
             // 
             // label10
             // 
@@ -300,11 +310,12 @@
             // 
             this.txtSTAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSTAR.Location = new System.Drawing.Point(177, 277);
-            this.txtSTAR.MaxLength = 4;
+            this.txtSTAR.MaxLength = 20;
             this.txtSTAR.Name = "txtSTAR";
             this.txtSTAR.Size = new System.Drawing.Size(108, 20);
             this.txtSTAR.TabIndex = 11;
             this.txtSTAR.WordWrap = false;
+            this.txtSTAR.Enter += new System.EventHandler(this.txtSTAR_Enter);
             // 
             // label12
             // 
@@ -328,13 +339,14 @@
             0});
             this.txtXPNDR.Name = "txtXPNDR";
             this.txtXPNDR.Size = new System.Drawing.Size(54, 20);
-            this.txtXPNDR.TabIndex = 6;
+            this.txtXPNDR.TabIndex = 5;
             this.txtXPNDR.Value = new decimal(new int[] {
             1200,
             0,
             0,
             0});
             this.txtXPNDR.ValueChanged += new System.EventHandler(this.txtXPNDR_ValueChanged);
+            this.txtXPNDR.Enter += new System.EventHandler(this.txtXPNDR_Enter);
             this.txtXPNDR.Leave += new System.EventHandler(this.txtXPNDR_Leave);
             // 
             // chkClimbVia
@@ -376,6 +388,7 @@
             0,
             0,
             0});
+            this.txtAltInit.Enter += new System.EventHandler(this.txtAltInit_Enter);
             // 
             // lblAltInit
             // 
@@ -432,6 +445,7 @@
             0,
             0,
             0});
+            this.txtAltExpect.Enter += new System.EventHandler(this.txtAltExpect_Enter);
             // 
             // label15
             // 
@@ -466,7 +480,7 @@
             131072});
             this.txtDepFreq.Location = new System.Drawing.Point(177, 349);
             this.txtDepFreq.Maximum = new decimal(new int[] {
-            130,
+            150,
             0,
             0,
             0});
@@ -483,6 +497,7 @@
             0,
             0,
             65536});
+            this.txtDepFreq.Enter += new System.EventHandler(this.txtDepFreq_Enter);
             // 
             // chkEnroute
             // 
@@ -503,6 +518,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.cboDEST);
             this.groupBox2.Controls.Add(this.cboDEP);
             this.groupBox2.Controls.Add(this.label5);
@@ -519,6 +538,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "MANDITORY ENTRIES";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Maroon;
+            this.label19.Location = new System.Drawing.Point(269, 93);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 13);
+            this.label19.TabIndex = 248;
+            this.label19.Text = "Required";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Maroon;
+            this.label18.Location = new System.Drawing.Point(269, 67);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(49, 13);
+            this.label18.TabIndex = 247;
+            this.label18.Text = "Required";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Maroon;
+            this.label13.Location = new System.Drawing.Point(214, 44);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 13);
+            this.label13.TabIndex = 246;
+            this.label13.Text = "Required";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Maroon;
+            this.label9.Location = new System.Drawing.Point(579, 19);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 13);
+            this.label9.TabIndex = 245;
+            this.label9.Text = "Required";
+            // 
             // cboDEST
             // 
             this.cboDEST.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -527,7 +590,8 @@
             this.cboDEST.Name = "cboDEST";
             this.cboDEST.Size = new System.Drawing.Size(108, 21);
             this.cboDEST.Sorted = true;
-            this.cboDEST.TabIndex = 4;
+            this.cboDEST.TabIndex = 3;
+            this.cboDEST.SelectedIndexChanged += new System.EventHandler(this.cboDEST_SelectedIndexChanged);
             // 
             // cboDEP
             // 
@@ -537,7 +601,8 @@
             this.cboDEP.Name = "cboDEP";
             this.cboDEP.Size = new System.Drawing.Size(108, 21);
             this.cboDEP.Sorted = true;
-            this.cboDEP.TabIndex = 3;
+            this.cboDEP.TabIndex = 2;
+            this.cboDEP.SelectedIndexChanged += new System.EventHandler(this.cboDEP_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -590,8 +655,10 @@
             this.txtFltNum.MaxLength = 4;
             this.txtFltNum.Name = "txtFltNum";
             this.txtFltNum.Size = new System.Drawing.Size(54, 20);
-            this.txtFltNum.TabIndex = 2;
+            this.txtFltNum.TabIndex = 1;
             this.txtFltNum.WordWrap = false;
+            this.txtFltNum.TextChanged += new System.EventHandler(this.txtFltNum_TextChanged);
+            this.txtFltNum.Enter += new System.EventHandler(this.txtFltNum_Enter);
             // 
             // label79
             // 
@@ -609,28 +676,31 @@
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(158, 16);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(470, 20);
-            this.txtName.TabIndex = 1;
+            this.txtName.Size = new System.Drawing.Size(419, 20);
+            this.txtName.TabIndex = 0;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtSTARTrans
             // 
             this.txtSTARTrans.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSTARTrans.Location = new System.Drawing.Point(415, 277);
-            this.txtSTARTrans.MaxLength = 4;
+            this.txtSTARTrans.MaxLength = 20;
             this.txtSTARTrans.Name = "txtSTARTrans";
             this.txtSTARTrans.Size = new System.Drawing.Size(108, 20);
             this.txtSTARTrans.TabIndex = 12;
             this.txtSTARTrans.WordWrap = false;
+            this.txtSTARTrans.Enter += new System.EventHandler(this.txtSTARTrans_Enter);
             // 
             // txtSIDTrans
             // 
             this.txtSIDTrans.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSIDTrans.Location = new System.Drawing.Point(415, 225);
-            this.txtSIDTrans.MaxLength = 4;
+            this.txtSIDTrans.MaxLength = 20;
             this.txtSIDTrans.Name = "txtSIDTrans";
             this.txtSIDTrans.Size = new System.Drawing.Size(108, 20);
             this.txtSIDTrans.TabIndex = 8;
             this.txtSIDTrans.WordWrap = false;
+            this.txtSIDTrans.Enter += new System.EventHandler(this.txtSIDTrans_Enter);
             // 
             // frmEditClearance
             // 
@@ -733,5 +803,9 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtSTARTrans;
         private System.Windows.Forms.TextBox txtSIDTrans;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -36,7 +36,6 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -75,8 +74,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.txtTOWCG = new System.Windows.Forms.NumericUpDown();
             this.txtCI = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtStab = new System.Windows.Forms.NumericUpDown();
             this.cboFlaps = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -95,6 +92,13 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.txtRteRsv = new System.Windows.Forms.NumericUpDown();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.optStabDn = new System.Windows.Forms.RadioButton();
+            this.optStabUp = new System.Windows.Forms.RadioButton();
+            this.optStabPercent = new System.Windows.Forms.RadioButton();
+            this.txtStab = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTRA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAcelAlt)).BeginInit();
@@ -110,12 +114,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtZFWCG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTOWCG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStab)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtThrust)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFuelTaxi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFuelAltn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRteRsv)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStab)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -128,6 +133,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(268, 23);
             this.btnSave.TabIndex = 21;
+            this.btnSave.TabStop = false;
             this.btnSave.Text = "SAVE AS A NEW A/C CONDITION";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -155,6 +161,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(268, 23);
             this.btnClear.TabIndex = 176;
+            this.btnClear.TabStop = false;
             this.btnClear.Text = "CLEAR ENTRIES";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -169,6 +176,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(268, 23);
             this.btnUpdate.TabIndex = 22;
+            this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "UPDATE SELECTED A/C CONDITION";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -182,6 +190,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(268, 23);
             this.btnDelete.TabIndex = 175;
+            this.btnDelete.TabStop = false;
             this.btnDelete.Text = "DELETE SELECTED A/C CONDITION";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -192,6 +201,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 23);
             this.btnCancel.TabIndex = 23;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Close Dialog";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -212,7 +222,7 @@
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(219, 39);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(510, 20);
+            this.txtName.Size = new System.Drawing.Size(497, 20);
             this.txtName.TabIndex = 0;
             this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
@@ -270,17 +280,6 @@
             this.label39.TabIndex = 136;
             this.label39.Text = "TOW";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(258, 160);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 150;
-            this.label2.Text = "STAB";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -410,7 +409,7 @@
             this.cboSelect.FormattingEnabled = true;
             this.cboSelect.Location = new System.Drawing.Point(219, 12);
             this.cboSelect.Name = "cboSelect";
-            this.cboSelect.Size = new System.Drawing.Size(510, 21);
+            this.cboSelect.Size = new System.Drawing.Size(497, 21);
             this.cboSelect.TabIndex = 173;
             this.cboSelect.SelectedIndexChanged += new System.EventHandler(this.cboAcConditions_SelectedIndexChanged);
             // 
@@ -463,13 +462,14 @@
             0});
             this.txtTRA.Name = "txtTRA";
             this.txtTRA.Size = new System.Drawing.Size(58, 20);
-            this.txtTRA.TabIndex = 17;
+            this.txtTRA.TabIndex = 18;
             this.txtTRA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTRA.Value = new decimal(new int[] {
             1000,
             0,
             0,
             0});
+            this.txtTRA.Enter += new System.EventHandler(this.txtTRA_Enter);
             // 
             // txtAcelAlt
             // 
@@ -487,13 +487,14 @@
             0});
             this.txtAcelAlt.Name = "txtAcelAlt";
             this.txtAcelAlt.Size = new System.Drawing.Size(58, 20);
-            this.txtAcelAlt.TabIndex = 18;
+            this.txtAcelAlt.TabIndex = 19;
             this.txtAcelAlt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAcelAlt.Value = new decimal(new int[] {
             1000,
             0,
             0,
             0});
+            this.txtAcelAlt.Enter += new System.EventHandler(this.txtAcelAlt_Enter);
             // 
             // txtEoAccelAlt
             // 
@@ -511,13 +512,14 @@
             0});
             this.txtEoAccelAlt.Name = "txtEoAccelAlt";
             this.txtEoAccelAlt.Size = new System.Drawing.Size(58, 20);
-            this.txtEoAccelAlt.TabIndex = 19;
+            this.txtEoAccelAlt.TabIndex = 20;
             this.txtEoAccelAlt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtEoAccelAlt.Value = new decimal(new int[] {
             1000,
             0,
             0,
             0});
+            this.txtEoAccelAlt.Enter += new System.EventHandler(this.txtEoAccelAlt_Enter);
             // 
             // label16
             // 
@@ -562,13 +564,14 @@
             0});
             this.txtCRZFL.Name = "txtCRZFL";
             this.txtCRZFL.Size = new System.Drawing.Size(58, 20);
-            this.txtCRZFL.TabIndex = 16;
+            this.txtCRZFL.TabIndex = 17;
             this.txtCRZFL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCRZFL.Value = new decimal(new int[] {
             350,
             0,
             0,
             0});
+            this.txtCRZFL.Enter += new System.EventHandler(this.txtCRZFL_Enter);
             // 
             // txtPAX
             // 
@@ -581,13 +584,14 @@
             0});
             this.txtPAX.Name = "txtPAX";
             this.txtPAX.Size = new System.Drawing.Size(58, 20);
-            this.txtPAX.TabIndex = 7;
+            this.txtPAX.TabIndex = 10;
             this.txtPAX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPAX.Value = new decimal(new int[] {
             350,
             0,
             0,
             0});
+            this.txtPAX.Enter += new System.EventHandler(this.txtPAX_Enter);
             // 
             // label18
             // 
@@ -617,6 +621,7 @@
             0,
             0,
             0});
+            this.txtV1.Enter += new System.EventHandler(this.txtV1_Enter);
             // 
             // txtVR
             // 
@@ -636,6 +641,7 @@
             0,
             0,
             0});
+            this.txtVR.Enter += new System.EventHandler(this.txtVR_Enter);
             // 
             // txtV2
             // 
@@ -655,6 +661,7 @@
             0,
             0,
             0});
+            this.txtV2.Enter += new System.EventHandler(this.txtV2_Enter);
             // 
             // txtFuel
             // 
@@ -673,7 +680,7 @@
             0});
             this.txtFuel.Name = "txtFuel";
             this.txtFuel.Size = new System.Drawing.Size(58, 20);
-            this.txtFuel.TabIndex = 2;
+            this.txtFuel.TabIndex = 3;
             this.txtFuel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFuel.Value = new decimal(new int[] {
             100,
@@ -681,6 +688,7 @@
             0,
             0});
             this.txtFuel.ValueChanged += new System.EventHandler(this.txtFuel_ValueChanged);
+            this.txtFuel.Enter += new System.EventHandler(this.txtFuel_Enter);
             this.txtFuel.Leave += new System.EventHandler(this.txtFuel_Leave);
             // 
             // txtReserve
@@ -694,13 +702,14 @@
             0});
             this.txtReserve.Name = "txtReserve";
             this.txtReserve.Size = new System.Drawing.Size(58, 20);
-            this.txtReserve.TabIndex = 3;
+            this.txtReserve.TabIndex = 4;
             this.txtReserve.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReserve.Value = new decimal(new int[] {
             45,
             0,
             0,
             0});
+            this.txtReserve.Enter += new System.EventHandler(this.txtReserve_Enter);
             // 
             // label19
             // 
@@ -719,9 +728,9 @@
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(178, 92);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(42, 13);
+            this.label20.Size = new System.Drawing.Size(30, 13);
             this.label20.TabIndex = 191;
-            this.label20.Text = "K LBS";
+            this.label20.Text = "KLB";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtZFW
@@ -741,7 +750,7 @@
             0});
             this.txtZFW.Name = "txtZFW";
             this.txtZFW.Size = new System.Drawing.Size(58, 20);
-            this.txtZFW.TabIndex = 0;
+            this.txtZFW.TabIndex = 1;
             this.txtZFW.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZFW.Value = new decimal(new int[] {
             100,
@@ -749,6 +758,7 @@
             0,
             0});
             this.txtZFW.ValueChanged += new System.EventHandler(this.txtZFW_ValueChanged);
+            this.txtZFW.Enter += new System.EventHandler(this.txtZFW_Enter);
             this.txtZFW.Leave += new System.EventHandler(this.txtZFW_Leave);
             // 
             // label21
@@ -757,9 +767,9 @@
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(178, 70);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(42, 13);
+            this.label21.Size = new System.Drawing.Size(30, 13);
             this.label21.TabIndex = 193;
-            this.label21.Text = "K LBS";
+            this.label21.Text = "KLB";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtZFWCG
@@ -779,13 +789,14 @@
             0});
             this.txtZFWCG.Name = "txtZFWCG";
             this.txtZFWCG.Size = new System.Drawing.Size(58, 20);
-            this.txtZFWCG.TabIndex = 1;
+            this.txtZFWCG.TabIndex = 2;
             this.txtZFWCG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZFWCG.Value = new decimal(new int[] {
             305,
             0,
             0,
             65536});
+            this.txtZFWCG.Enter += new System.EventHandler(this.txtZFWCG_Enter);
             // 
             // label22
             // 
@@ -804,9 +815,9 @@
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(178, 140);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(42, 13);
+            this.label23.Size = new System.Drawing.Size(30, 13);
             this.label23.TabIndex = 197;
-            this.label23.Text = "K LBS";
+            this.label23.Text = "KLB";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label24
@@ -837,13 +848,14 @@
             0});
             this.txtTOWCG.Name = "txtTOWCG";
             this.txtTOWCG.Size = new System.Drawing.Size(58, 20);
-            this.txtTOWCG.TabIndex = 5;
+            this.txtTOWCG.TabIndex = 6;
             this.txtTOWCG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTOWCG.Value = new decimal(new int[] {
             305,
             0,
             0,
             65536});
+            this.txtTOWCG.Enter += new System.EventHandler(this.txtTOWCG_Enter);
             // 
             // txtCI
             // 
@@ -856,49 +868,14 @@
             0});
             this.txtCI.Name = "txtCI";
             this.txtCI.Size = new System.Drawing.Size(58, 20);
-            this.txtCI.TabIndex = 8;
+            this.txtCI.TabIndex = 11;
             this.txtCI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCI.Value = new decimal(new int[] {
             35,
             0,
             0,
             0});
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(361, 159);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(16, 13);
-            this.label25.TabIndex = 202;
-            this.label25.Text = "%";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtStab
-            // 
-            this.txtStab.DecimalPlaces = 1;
-            this.txtStab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStab.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.txtStab.Location = new System.Drawing.Point(300, 157);
-            this.txtStab.Maximum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            0});
-            this.txtStab.Name = "txtStab";
-            this.txtStab.Size = new System.Drawing.Size(58, 20);
-            this.txtStab.TabIndex = 6;
-            this.txtStab.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtStab.Value = new decimal(new int[] {
-            305,
-            0,
-            0,
-            65536});
+            this.txtCI.Enter += new System.EventHandler(this.txtCI_Enter);
             // 
             // cboFlaps
             // 
@@ -908,7 +885,7 @@
             this.cboFlaps.Name = "cboFlaps";
             this.cboFlaps.Size = new System.Drawing.Size(58, 21);
             this.cboFlaps.Sorted = true;
-            this.cboFlaps.TabIndex = 9;
+            this.cboFlaps.TabIndex = 12;
             // 
             // groupBox2
             // 
@@ -946,13 +923,14 @@
             0});
             this.txtThrust.Name = "txtThrust";
             this.txtThrust.Size = new System.Drawing.Size(46, 20);
-            this.txtThrust.TabIndex = 12;
+            this.txtThrust.TabIndex = 16;
             this.txtThrust.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtThrust.Value = new decimal(new int[] {
             35,
             0,
             0,
             0});
+            this.txtThrust.Enter += new System.EventHandler(this.txtThrust_Enter);
             // 
             // optFLEX
             // 
@@ -982,9 +960,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(178, 112);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 207;
-            this.label1.Text = "K LBS";
+            this.label1.Text = "KLB";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFuelTaxi
@@ -1004,7 +982,7 @@
             0});
             this.txtFuelTaxi.Name = "txtFuelTaxi";
             this.txtFuelTaxi.Size = new System.Drawing.Size(58, 20);
-            this.txtFuelTaxi.TabIndex = 4;
+            this.txtFuelTaxi.TabIndex = 5;
             this.txtFuelTaxi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFuelTaxi.Value = new decimal(new int[] {
             5,
@@ -1012,6 +990,7 @@
             0,
             65536});
             this.txtFuelTaxi.ValueChanged += new System.EventHandler(this.txtFuelTaxi_ValueChanged);
+            this.txtFuelTaxi.Enter += new System.EventHandler(this.txtFuelTaxi_Enter);
             this.txtFuelTaxi.Leave += new System.EventHandler(this.txtFuelTaxi_Leave);
             // 
             // label27
@@ -1051,9 +1030,9 @@
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(178, 199);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(42, 13);
+            this.label29.Size = new System.Drawing.Size(30, 13);
             this.label29.TabIndex = 215;
-            this.label29.Text = "K LBS";
+            this.label29.Text = "KLB";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFuelAltn
@@ -1073,8 +1052,9 @@
             0});
             this.txtFuelAltn.Name = "txtFuelAltn";
             this.txtFuelAltn.Size = new System.Drawing.Size(58, 20);
-            this.txtFuelAltn.TabIndex = 211;
+            this.txtFuelAltn.TabIndex = 8;
             this.txtFuelAltn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFuelAltn.Enter += new System.EventHandler(this.txtFuelAltn_Enter);
             // 
             // label30
             // 
@@ -1129,19 +1109,121 @@
             0});
             this.txtRteRsv.Name = "txtRteRsv";
             this.txtRteRsv.Size = new System.Drawing.Size(58, 20);
-            this.txtRteRsv.TabIndex = 217;
+            this.txtRteRsv.TabIndex = 7;
             this.txtRteRsv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtRteRsv.Value = new decimal(new int[] {
+            this.txtRteRsv.Enter += new System.EventHandler(this.txtRteRsv_Enter);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.optStabDn);
+            this.groupBox3.Controls.Add(this.optStabUp);
+            this.groupBox3.Controls.Add(this.optStabPercent);
+            this.groupBox3.Controls.Add(this.txtStab);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Location = new System.Drawing.Point(249, 156);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(173, 59);
+            this.groupBox3.TabIndex = 219;
+            this.groupBox3.TabStop = false;
+            // 
+            // optStabDn
+            // 
+            this.optStabDn.AutoSize = true;
+            this.optStabDn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.optStabDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optStabDn.Location = new System.Drawing.Point(111, 38);
+            this.optStabDn.Name = "optStabDn";
+            this.optStabDn.Size = new System.Drawing.Size(43, 17);
+            this.optStabDn.TabIndex = 208;
+            this.optStabDn.TabStop = true;
+            this.optStabDn.Text = "DN";
+            this.optStabDn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.optStabDn.UseVisualStyleBackColor = true;
+            // 
+            // optStabUp
+            // 
+            this.optStabUp.AutoSize = true;
+            this.optStabUp.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.optStabUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optStabUp.Location = new System.Drawing.Point(112, 8);
+            this.optStabUp.Name = "optStabUp";
+            this.optStabUp.Size = new System.Drawing.Size(42, 17);
+            this.optStabUp.TabIndex = 207;
+            this.optStabUp.TabStop = true;
+            this.optStabUp.Text = "UP";
+            this.optStabUp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.optStabUp.UseVisualStyleBackColor = true;
+            // 
+            // optStabPercent
+            // 
+            this.optStabPercent.AutoSize = true;
+            this.optStabPercent.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.optStabPercent.Checked = true;
+            this.optStabPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optStabPercent.Location = new System.Drawing.Point(120, 23);
+            this.optStabPercent.Name = "optStabPercent";
+            this.optStabPercent.Size = new System.Drawing.Size(34, 17);
+            this.optStabPercent.TabIndex = 206;
+            this.optStabPercent.TabStop = true;
+            this.optStabPercent.Text = "%";
+            this.optStabPercent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.optStabPercent.UseVisualStyleBackColor = true;
+            // 
+            // txtStab
+            // 
+            this.txtStab.DecimalPlaces = 1;
+            this.txtStab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStab.Increment = new decimal(new int[] {
             5,
             0,
             0,
+            65536});
+            this.txtStab.Location = new System.Drawing.Point(51, 21);
+            this.txtStab.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
             0});
+            this.txtStab.Name = "txtStab";
+            this.txtStab.Size = new System.Drawing.Size(58, 20);
+            this.txtStab.TabIndex = 9;
+            this.txtStab.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtStab.Value = new decimal(new int[] {
+            305,
+            0,
+            0,
+            65536});
+            this.txtStab.Enter += new System.EventHandler(this.txtStab_Enter);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 204;
+            this.label2.Text = "STAB";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Maroon;
+            this.label25.Location = new System.Drawing.Point(718, 42);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(49, 13);
+            this.label25.TabIndex = 228;
+            this.label25.Text = "Required";
             // 
             // frmEditACConditions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 433);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.txtRteRsv);
             this.Controls.Add(this.label29);
@@ -1155,8 +1237,6 @@
             this.Controls.Add(this.label27);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cboFlaps);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.txtStab);
             this.Controls.Add(this.txtCI);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.txtTOWCG);
@@ -1195,7 +1275,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label79);
@@ -1226,13 +1305,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtZFWCG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTOWCG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStab)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtThrust)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFuelTaxi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFuelAltn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRteRsv)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStab)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1251,7 +1332,6 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -1292,8 +1372,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.NumericUpDown txtTOWCG;
         private System.Windows.Forms.NumericUpDown txtCI;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.NumericUpDown txtStab;
         private System.Windows.Forms.ComboBox cboFlaps;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label26;
@@ -1312,5 +1390,12 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.NumericUpDown txtRteRsv;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton optStabPercent;
+        private System.Windows.Forms.NumericUpDown txtStab;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton optStabUp;
+        private System.Windows.Forms.RadioButton optStabDn;
+        private System.Windows.Forms.Label label25;
     }
 }

@@ -12,6 +12,11 @@ public class Script {
     #region m_Data_Types
     private int m_id;
 
+    // added atis fields
+    private string m_runway;
+    //private string m_atis3;
+    // added spot/event set fields
+
     // added performance fields
     private string m_fuel_taxi;
     private string m_fuel_altn;
@@ -180,7 +185,7 @@ public class Script {
     private string m_preamble_text_3;
 
     */
-    public Script(int id, string fuel_taxi, string fuel_altn, string fltnum, string dep, string dest, string altn,
+    public Script(int id, string runway, string fuel_taxi, string fuel_altn, string fltnum, string dep, string dest, string altn,
         bool preamble_Before_1, bool preamble_After_1,
         string preamble_title_1, string preamble_text_1, string preamble_title_2, string preamble_text_2, string preamble_title_3, string preamble_text_3,
         bool preamble_Before_21, bool preamble_After_21,
@@ -201,6 +206,7 @@ public class Script {
         string actiontitle_9,string actions_9,string comm_9,string pf_10,string actiontitle_10,string actions_10,string comm_10) {
 
         m_id = id;
+        m_runway = runway;
         m_fuel_taxi = fuel_taxi;
         m_fuel_altn = fuel_altn;
         m_fltnum = fltnum;
@@ -347,6 +353,11 @@ public class Script {
 
     public int ID {get {return m_id;}}
     //added fields
+    public string RUNWAY {
+        get {
+            return m_runway;
+        }
+    }
     public string FUEL_TAXI {
         get {
             return m_fuel_taxi;
@@ -1053,6 +1064,7 @@ public class ScriptData {
     #region m_Data_Types
     private int m_id;
     // added performance fields
+    private string m_runway;
     private string m_fuel_taxi;
     private string m_fuel_altn;
     // added clearance fields
@@ -1203,6 +1215,7 @@ public class ScriptData {
     private void ClearListVariables() {
         m_maneuver_name="";
         // added clearance fields
+        m_runway = "";
         m_fuel_taxi = "";
         m_fuel_altn = "";
         // added clearance fields
@@ -1430,8 +1443,8 @@ public class ScriptData {
         string s_preamble_title_43 = "";
         string s_preamble_text_43 = "";
 
-        foreach (int i in iLessons) {
-            OleDbCommand command = new OleDbCommand("SELECT * FROM Lesson WHERE ID=" + i, conn);
+        //foreach (int i in iLessons) {
+            OleDbCommand command = new OleDbCommand("SELECT * FROM Lesson WHERE ID=" + GlobalCode.iLesson, conn);
             using (OleDbDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     s_text_title = reader.GetValue(reader.GetOrdinal("LESSON_NAME")).ToString();
@@ -1514,18 +1527,20 @@ public class ScriptData {
 
                 }
             }
-        }
+        //}
 
         // get the spot data
         foreach (int i in iNumbers) {
-            OleDbCommand command = new OleDbCommand("SELECT * FROM Spots WHERE ID=" + i, conn);
+            command = new OleDbCommand("SELECT * FROM Spots WHERE ID=" + i, conn);
             using (OleDbDataReader reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     ClearListVariables();
                     m_setup_visable = "no";
                     if (i > 4) {
                         // spot
-                        iSpotCount++;
+                        if (reader.GetValue(reader.GetOrdinal("SPOT")).ToString() == "SPOT") {
+                            iSpotCount++;
+                        }
 
                         // save the lesson data from above to each spot
                         m_text_title = s_text_title;
@@ -1565,9 +1580,15 @@ public class ScriptData {
                         m_preamble_text_42 = s_preamble_text_42;
                         m_preamble_title_43 = s_preamble_title_43;
                         m_preamble_text_43 = s_preamble_text_43;
-                        
+
                         // spot specific entries
-                        m_spot = "SPOT " + Convert.ToString(iSpotCount);
+                        if (reader.GetValue(reader.GetOrdinal("SPOT")).ToString() == "SPOT") {
+                            // spot
+                            m_spot = "SPOT " + Convert.ToString(iSpotCount);
+                        } else {
+                            // event set
+                            m_spot = "EVENT " + reader.GetValue(reader.GetOrdinal("SPOT")).ToString();
+                        }
 
                         m_minutes = int.Parse(reader.GetValue(reader.GetOrdinal("MINUTES")).ToString());
                         iEndTime = iEndTime + m_minutes;
@@ -1674,7 +1695,7 @@ public class ScriptData {
                                     m_fuel_taxi = Format_Decimal_1(reader2.GetValue(reader2.GetOrdinal("FUEL_TAXI")).ToString());
                                     //m_fuel_altn = Format_Decimal_1(reader2.GetValue(reader2.GetOrdinal("FUEL_ALTN")).ToString());
                                     m_reserve = "00:" + reader2.GetValue(reader2.GetOrdinal("RESERVE")).ToString();
-                                    m_stab = Format_Decimal_1(reader2.GetValue(reader2.GetOrdinal("STAB")).ToString());
+                                    m_stab = reader2.GetValue(reader2.GetOrdinal("A1")).ToString() + Format_Decimal_1(reader2.GetValue(reader2.GetOrdinal("STAB")).ToString());
                                     m_pax = reader2.GetValue(reader2.GetOrdinal("PAX")).ToString();
                                     m_crzalt = reader2.GetValue(reader2.GetOrdinal("CRZALT")).ToString();
 
@@ -1703,6 +1724,7 @@ public class ScriptData {
                                     m_temp = Builder_ATIS.TempDp(row);
                                     m_qnh = Builder_ATIS.QNH(row, false);
                                     m_runway_cond = Builder_ATIS.RCAM(row);
+                                    m_runway = Builder_ATIS.Runways(row,false,true);
 
                                     // display atis
                                     int iATIS = int.Parse(reader.GetValue(reader.GetOrdinal("DISPLAY_ATIS")).ToString());
@@ -1726,13 +1748,13 @@ public class ScriptData {
                             m_pax != "" ||
                             m_crzalt != "" ||
                             m_thrust_red_alt != "" ||
-                            m_accel_alt != "" ||
-                            m_wind != "" ||
-                            m_ceiling != "" ||
-                            m_visibility != "" ||
-                            m_temp != "" ||
-                            m_qnh != "" ||
-                            m_runway_cond != ""
+                            m_accel_alt != "" //||
+                            //m_wind != "" ||
+                            //m_ceiling != "" ||
+                            //m_visibility != "" ||
+                            //m_temp != "" ||
+                            //m_qnh != "" ||
+                            //m_runway_cond != ""
                             ) {
                             m_setup_visable = "yes";
                         }
@@ -1929,6 +1951,7 @@ public class ScriptData {
 
             m_Script.Add(new Script(
                         m_id,
+                        m_runway,
                         m_fuel_taxi,
                         m_fuel_altn,
                         m_fltnum,
@@ -2087,10 +2110,14 @@ public class ScriptData {
         return sInput;
     }
     private string Get_Action_ATIS_PDC(OleDbDataReader reader6, string sActionText) {
-        if (int.Parse(reader6.GetValue(reader6.GetOrdinal("ATIS")).ToString()) > 0) {
+        if (int.Parse(reader6.GetValue(reader6.GetOrdinal("ATIS1")).ToString()) > 0) {
             // append atis to bottom of action
-            int iWX = int.Parse(reader6.GetValue(reader6.GetOrdinal("ATIS")).ToString());
+            int iWX = int.Parse(reader6.GetValue(reader6.GetOrdinal("ATIS1")).ToString());
             sActionText = sActionText + "\n\r" + Builder_ATIS.Get_Action_Atis(iWX);
+            iWX = int.Parse(reader6.GetValue(reader6.GetOrdinal("ATIS2")).ToString());
+            sActionText = sActionText + "\n\r\n\r" + Builder_ATIS.Get_Action_Atis(iWX);
+            iWX = int.Parse(reader6.GetValue(reader6.GetOrdinal("ATIS3")).ToString());
+            sActionText = sActionText + "\n\r\n\r" + Builder_ATIS.Get_Action_Atis(iWX);
         }
         if (int.Parse(reader6.GetValue(reader6.GetOrdinal("PDC")).ToString()) > 0) {
             // append pdc to bottom of action

@@ -52,8 +52,8 @@ namespace WindowsFormsApplication1 {
             }
         }
         private void Fill_CBOs_AutoComplete(ComboBox cbo, string query, string displaymember) {
-            conn.Open();
-            OleDbCommand cmd = new OleDbCommand(query, conn);
+            GlobalCode.connAirport.Open();
+            OleDbCommand cmd = new OleDbCommand(query, GlobalCode.connAirport);
             OleDbDataReader sdr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(sdr);
@@ -65,7 +65,7 @@ namespace WindowsFormsApplication1 {
             cbo.Items.AddRange(list.ToArray<string>());
             cbo.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            conn.Close();
+            GlobalCode.connAirport.Close();
         }
         private void Fill_CBOs(ComboBox cbo, string query) {
             try {
@@ -81,7 +81,8 @@ namespace WindowsFormsApplication1 {
                 List<KeyValuePair<int, string>> data = new List<KeyValuePair<int, string>>();
                 data.Add(new KeyValuePair<int, string>(-1, ""));
                 for (int i = 0; i <= dt.Rows.Count - 1; i++) {
-                    data.Add(new KeyValuePair<int, string>((int)dt.Rows[i]["ID"], (string)dt.Rows[i]["DEP"] + "- " + (string)dt.Rows[i]["CLEARANCE_NAME"]));
+                    if (!dt.Rows[i].IsNull(1))
+                        data.Add(new KeyValuePair<int, string>((int)dt.Rows[i]["ID"], (string)dt.Rows[i]["DEP"] + "- " + (string)dt.Rows[i]["CLEARANCE_NAME"]));
                 }
                 // Bind the combobox
                 cbo.DataSource = null;
@@ -223,7 +224,7 @@ namespace WindowsFormsApplication1 {
             dr["CLEARANCE_NAME"] = txtName.Text;
             dr["DATE_CREATED"] = GetDateString(DateTime.Now);
             dr["DATE_EDITED"] = GetDateString(DateTime.Now);
-            dr["CLEARANCE"] = "";
+            dr["CLEARANCE"] = 0;
             dr["SPOT"] = "";
             dr["FLTNUM"] = txtFltNum.Text;
             dr["DEP"] = cboDEP.Text;
@@ -256,9 +257,15 @@ namespace WindowsFormsApplication1 {
             dr["DEP_FREQ"] = txtDepFreq.Value;
             dr["REMARKS"] = txtRemarks.Text;
 
+            // additional fields
+            for (int x = 1; x < 21; x++) {
+                dr["A" + x] = "";
+            }
+
             dtTable.Rows.Add(dr);
             dataAdapter.Update(dtTable);  // write new row back to database
             iSelected = cboSelect.Items.Count;
+            Clear_Entries();
             Fill_CBOs(cboSelect, "SELECT * FROM Clearance ORDER BY DEP, CLEARANCE_NAME");
         }
 
@@ -289,14 +296,36 @@ namespace WindowsFormsApplication1 {
                         "ALT_INIT = @alt_init," +
                         "ALT_EXPECT = @alt_expect," +
                         "DEP_FREQ = @dep_freq," +
-                        "REMARKS = @remarks" +
+                        "REMARKS = @remarks," +
+
+                        "A1 = @a1," +
+                        "A2 = @a2," +
+                        "A3 = @a3," +
+                        "A4 = @a4," +
+                        "A5 = @a5," +
+                        "A6 = @a6," +
+                        "A7 = @a7," +
+                        "A8 = @a8," +
+                        "A9 = @a9," +
+                        "A10 = @a10," +
+                        "A11 = @a11," +
+                        "A12 = @a12," +
+                        "A13 = @a13," +
+                        "A14 = @a14," +
+                        "A15 = @a15," +
+                        "A16 = @a16," +
+                        "A17 = @a17," +
+                        "A18 = @a18," +
+                        "A19 = @a19," +
+                        "A20 = @a20" +
+
                         " WHERE [ID] = @id";
 
                     OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
 
                     cmd.Parameters.AddWithValue("@clearance_name", txtName.Text);
                     cmd.Parameters.AddWithValue("@date_edited", GetDateString(DateTime.Now));
-                    cmd.Parameters.AddWithValue("@clearance", txtRemarks.Text);
+                    cmd.Parameters.AddWithValue("@clearance", 0);
                     cmd.Parameters.AddWithValue("@spot", "");
                     cmd.Parameters.AddWithValue("@fltnum", txtFltNum.Text);
                     cmd.Parameters.AddWithValue("@from", cboDEP.Text);
@@ -329,11 +358,21 @@ namespace WindowsFormsApplication1 {
                     cmd.Parameters.AddWithValue("@alt_expect", txtAltExpect.Value);
                     cmd.Parameters.AddWithValue("@dep_freq", txtDepFreq.Value);
                     cmd.Parameters.AddWithValue("@remarks", txtRemarks.Text);
+
+                    // additional fields
+                    for (int x = 1; x < 21; x++) {
+                        cmd.Parameters.AddWithValue("@a" + x, "");
+                    }
+
                     cmd.Parameters.AddWithValue("@id", Get_Selected_Key(cboSelect));
 
                     conn.Open();
                     int iRows = cmd.ExecuteNonQuery();
                     conn.Close();
+
+                    Clear_Entries();
+                    Fill_CBOs(cboSelect, "SELECT * FROM Clearance ORDER BY DEP, CLEARANCE_NAME");
+
                 }
             } catch (Exception) {
                 throw;
@@ -485,6 +524,91 @@ namespace WindowsFormsApplication1 {
                 txtXPNDR.Value = 1200;
                 txtXPNDR.Focus();
             }
+        }
+
+        private void Check_Complete() {
+            try {
+                btnSave.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+                btnClear.Enabled = false;
+                if (txtName.Text != "" && txtFltNum.Text != "" && cboDEP.Text != "" && cboDEST.Text != "") {
+                    if (cboSelect.SelectedIndex > 0) {
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                    }
+                    btnSave.Enabled = true;
+                    btnClear.Enabled = true;
+                }
+            } catch (Exception) {
+                throw;
+            }
+        }
+
+        private void SelectAll_Numeric(object sender) {
+            NumericUpDown curBox = sender as NumericUpDown;
+            curBox.Select();
+            curBox.Select(0, curBox.Text.Length);
+        }
+
+        private void txtXPNDR_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtAltExpect_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtAltInit_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtDepFreq_Enter(object sender, EventArgs e) {
+            SelectAll_Numeric(sender);
+        }
+
+        private void txtFltNum_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtSID_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtSIDTrans_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtEnroute_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtSTAR_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtSTARTrans_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtRemarks_Enter(object sender, EventArgs e) {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void txtFltNum_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboDEP_SelectedIndexChanged(object sender, EventArgs e) {
+            Check_Complete();
+        }
+
+        private void cboDEST_SelectedIndexChanged(object sender, EventArgs e) {
+            Check_Complete();
         }
     }
 }

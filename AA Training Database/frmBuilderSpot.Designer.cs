@@ -62,20 +62,20 @@
             this.txtActions7 = new System.Windows.Forms.TextBox();
             this.cboPF7 = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.lblSpotName = new System.Windows.Forms.Label();
+            this.grpSpotDelete = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label78 = new System.Windows.Forms.Label();
-            this.txtSpotName = new System.Windows.Forms.TextBox();
-            this.btnClearData = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.grpSpotUpdate = new System.Windows.Forms.GroupBox();
             this.label77 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.grpSpotSave = new System.Windows.Forms.GroupBox();
             this.label76 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtMinutes = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblSpotMinutes = new System.Windows.Forms.Label();
             this.lblClearance = new System.Windows.Forms.Label();
             this.btnAddClearance = new System.Windows.Forms.Button();
             this.cboClearance = new System.Windows.Forms.ComboBox();
@@ -119,9 +119,9 @@
             this.cboPF3 = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.cboManeuver = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSpotManeuver = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.cboSpots = new System.Windows.Forms.ComboBox();
+            this.cboSelect = new System.Windows.Forms.ComboBox();
             this.btnAddManeuver = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.txtNotes = new System.Windows.Forms.TextBox();
@@ -135,7 +135,7 @@
             this.txtObjective = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtManeuver = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblSpotTitle = new System.Windows.Forms.Label();
             this.btnAddActions = new System.Windows.Forms.Button();
             this.txtNotes3 = new System.Windows.Forms.TextBox();
             this.txtNotes2 = new System.Windows.Forms.TextBox();
@@ -175,11 +175,19 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.lblTBOutputPath = new System.Windows.Forms.ToolStripLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.optLOTE = new System.Windows.Forms.RadioButton();
+            this.optSPOT = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboPhase = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboSystem = new System.Windows.Forms.ComboBox();
+            this.txtEventSet = new System.Windows.Forms.NumericUpDown();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            this.grpSpotDelete.SuspendLayout();
+            this.grpSpotUpdate.SuspendLayout();
+            this.grpSpotSave.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinutes)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -188,6 +196,8 @@
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEventSet)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -716,28 +726,27 @@
             this.label41.Text = "PF";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label79
+            // lblSpotName
             // 
-            this.label79.AutoSize = true;
-            this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.Location = new System.Drawing.Point(257, 86);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(79, 13);
-            this.label79.TabIndex = 89;
-            this.label79.Text = "SPOT NAME";
-            this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSpotName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpotName.Location = new System.Drawing.Point(31, 57);
+            this.lblSpotName.Name = "lblSpotName";
+            this.lblSpotName.Size = new System.Drawing.Size(90, 13);
+            this.lblSpotName.TabIndex = 89;
+            this.lblSpotName.Text = "EVENT NAME";
+            this.lblSpotName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // groupBox11
+            // grpSpotDelete
             // 
-            this.groupBox11.Controls.Add(this.btnDelete);
-            this.groupBox11.Controls.Add(this.label78);
-            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox11.Location = new System.Drawing.Point(12, 601);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(196, 100);
-            this.groupBox11.TabIndex = 86;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "DELETE SPOT";
+            this.grpSpotDelete.Controls.Add(this.btnDelete);
+            this.grpSpotDelete.Controls.Add(this.label78);
+            this.grpSpotDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpSpotDelete.Location = new System.Drawing.Point(12, 601);
+            this.grpSpotDelete.Name = "grpSpotDelete";
+            this.grpSpotDelete.Size = new System.Drawing.Size(196, 100);
+            this.grpSpotDelete.TabIndex = 86;
+            this.grpSpotDelete.TabStop = false;
+            this.grpSpotDelete.Text = "DELETE SPOT";
             // 
             // btnDelete
             // 
@@ -761,37 +770,38 @@
             this.label78.TabIndex = 0;
             this.label78.Text = "Select the button below to permanently delete the SPOT from the database.";
             // 
-            // txtSpotName
+            // txtName
             // 
-            this.txtSpotName.Location = new System.Drawing.Point(339, 83);
-            this.txtSpotName.Multiline = true;
-            this.txtSpotName.Name = "txtSpotName";
-            this.txtSpotName.Size = new System.Drawing.Size(342, 35);
-            this.txtSpotName.TabIndex = 88;
+            this.txtName.Location = new System.Drawing.Point(123, 55);
+            this.txtName.Multiline = true;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(558, 18);
+            this.txtName.TabIndex = 88;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
-            // btnClearData
+            // btnClear
             // 
-            this.btnClearData.Enabled = false;
-            this.btnClearData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearData.Location = new System.Drawing.Point(16, 707);
-            this.btnClearData.Name = "btnClearData";
-            this.btnClearData.Size = new System.Drawing.Size(186, 29);
-            this.btnClearData.TabIndex = 87;
-            this.btnClearData.Text = "CLEAR ALL DATA";
-            this.btnClearData.UseVisualStyleBackColor = true;
-            this.btnClearData.Click += new System.EventHandler(this.btnClearData_Click_1);
+            this.btnClear.Enabled = false;
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(16, 707);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(186, 29);
+            this.btnClear.TabIndex = 87;
+            this.btnClear.Text = "CLEAR ALL DATA";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClearData_Click_1);
             // 
-            // groupBox10
+            // grpSpotUpdate
             // 
-            this.groupBox10.Controls.Add(this.label77);
-            this.groupBox10.Controls.Add(this.btnSave);
-            this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox10.Location = new System.Drawing.Point(12, 459);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(196, 136);
-            this.groupBox10.TabIndex = 85;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "EDIT SPOT";
+            this.grpSpotUpdate.Controls.Add(this.label77);
+            this.grpSpotUpdate.Controls.Add(this.btnUpdate);
+            this.grpSpotUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpSpotUpdate.Location = new System.Drawing.Point(12, 459);
+            this.grpSpotUpdate.Name = "grpSpotUpdate";
+            this.grpSpotUpdate.Size = new System.Drawing.Size(196, 136);
+            this.grpSpotUpdate.TabIndex = 85;
+            this.grpSpotUpdate.TabStop = false;
+            this.grpSpotUpdate.Text = "EDIT SPOT";
             // 
             // label77
             // 
@@ -803,30 +813,30 @@
             this.label77.Text = "SPOTS can be edited by selecting the SPOT from the \'SAVED SPOTS\' list.\r\nOnce data" +
     " is edited, select the button below to commit the changes to the database.";
             // 
-            // btnSave
+            // btnUpdate
             // 
-            this.btnSave.Enabled = false;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.Blue;
-            this.btnSave.Location = new System.Drawing.Point(4, 97);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(186, 29);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "UPDATE SPOT";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.Blue;
+            this.btnUpdate.Location = new System.Drawing.Point(4, 97);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(186, 29);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "UPDATE SPOT";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
-            // groupBox9
+            // grpSpotSave
             // 
-            this.groupBox9.Controls.Add(this.label76);
-            this.groupBox9.Controls.Add(this.btnAdd);
-            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox9.Location = new System.Drawing.Point(12, 296);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(196, 158);
-            this.groupBox9.TabIndex = 84;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "ADD NEW SPOT";
+            this.grpSpotSave.Controls.Add(this.label76);
+            this.grpSpotSave.Controls.Add(this.btnSave);
+            this.grpSpotSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpSpotSave.Location = new System.Drawing.Point(12, 296);
+            this.grpSpotSave.Name = "grpSpotSave";
+            this.grpSpotSave.Size = new System.Drawing.Size(196, 158);
+            this.grpSpotSave.TabIndex = 84;
+            this.grpSpotSave.TabStop = false;
+            this.grpSpotSave.Text = "ADD NEW SPOT";
             // 
             // label76
             // 
@@ -837,18 +847,18 @@
             this.label76.TabIndex = 0;
             this.label76.Text = resources.GetString("label76.Text");
             // 
-            // btnAdd
+            // btnSave
             // 
-            this.btnAdd.Enabled = false;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.Green;
-            this.btnAdd.Location = new System.Drawing.Point(4, 125);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(186, 29);
-            this.btnAdd.TabIndex = 39;
-            this.btnAdd.Text = "SAVE AS NEW SPOT";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
+            this.btnSave.Enabled = false;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.Green;
+            this.btnSave.Location = new System.Drawing.Point(4, 125);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(186, 29);
+            this.btnSave.TabIndex = 39;
+            this.btnSave.Text = "SAVE AS NEW SPOT";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
             // txtMinutes
             // 
@@ -857,7 +867,7 @@
             0,
             0,
             0});
-            this.txtMinutes.Location = new System.Drawing.Point(339, 122);
+            this.txtMinutes.Location = new System.Drawing.Point(339, 144);
             this.txtMinutes.Name = "txtMinutes";
             this.txtMinutes.Size = new System.Drawing.Size(51, 20);
             this.txtMinutes.TabIndex = 52;
@@ -867,22 +877,22 @@
             0,
             0});
             // 
-            // label4
+            // lblSpotMinutes
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(236, 125);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 13);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "SPOT MINUTES";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSpotMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSpotMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpotMinutes.Location = new System.Drawing.Point(223, 147);
+            this.lblSpotMinutes.Name = "lblSpotMinutes";
+            this.lblSpotMinutes.Size = new System.Drawing.Size(115, 13);
+            this.lblSpotMinutes.TabIndex = 65;
+            this.lblSpotMinutes.Text = "EVENT MINUTES";
+            this.lblSpotMinutes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblClearance
             // 
             this.lblClearance.AutoSize = true;
             this.lblClearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClearance.Location = new System.Drawing.Point(723, 247);
+            this.lblClearance.Location = new System.Drawing.Point(723, 269);
             this.lblClearance.Name = "lblClearance";
             this.lblClearance.Size = new System.Drawing.Size(80, 13);
             this.lblClearance.TabIndex = 73;
@@ -893,7 +903,7 @@
             // 
             this.btnAddClearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddClearance.ForeColor = System.Drawing.Color.Green;
-            this.btnAddClearance.Location = new System.Drawing.Point(1132, 243);
+            this.btnAddClearance.Location = new System.Drawing.Point(1132, 265);
             this.btnAddClearance.Name = "btnAddClearance";
             this.btnAddClearance.Size = new System.Drawing.Size(180, 23);
             this.btnAddClearance.TabIndex = 90;
@@ -906,7 +916,7 @@
             this.cboClearance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboClearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboClearance.FormattingEnabled = true;
-            this.cboClearance.Location = new System.Drawing.Point(806, 244);
+            this.cboClearance.Location = new System.Drawing.Point(806, 266);
             this.cboClearance.Name = "cboClearance";
             this.cboClearance.Size = new System.Drawing.Size(326, 21);
             this.cboClearance.Sorted = true;
@@ -920,7 +930,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(694, 326);
+            this.tabControl1.Location = new System.Drawing.Point(694, 348);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(612, 376);
@@ -1482,51 +1492,50 @@
             "79- Oil",
             "80- Starting",
             "CDL"});
-            this.cboManeuver.Location = new System.Drawing.Point(339, 146);
+            this.cboManeuver.Location = new System.Drawing.Point(339, 168);
             this.cboManeuver.Name = "cboManeuver";
             this.cboManeuver.Size = new System.Drawing.Size(340, 21);
             this.cboManeuver.TabIndex = 47;
             this.cboManeuver.SelectedIndexChanged += new System.EventHandler(this.cboManeuver_SelectedIndexChanged);
             // 
-            // label1
+            // lblSpotManeuver
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(223, 149);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
-            this.label1.TabIndex = 55;
-            this.label1.Text = "SPOT MANEUVER";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSpotManeuver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpotManeuver.Location = new System.Drawing.Point(214, 171);
+            this.lblSpotManeuver.Name = "lblSpotManeuver";
+            this.lblSpotManeuver.Size = new System.Drawing.Size(124, 13);
+            this.lblSpotManeuver.TabIndex = 55;
+            this.lblSpotManeuver.Text = "EVENT MANEUVER";
+            this.lblSpotManeuver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(27, 48);
+            this.label15.Location = new System.Drawing.Point(27, 33);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(93, 13);
             this.label15.TabIndex = 91;
             this.label15.Text = "SAVED SPOTS";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cboSpots
+            // cboSelect
             // 
-            this.cboSpots.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSpots.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSpots.FormattingEnabled = true;
-            this.cboSpots.Location = new System.Drawing.Point(123, 44);
-            this.cboSpots.Name = "cboSpots";
-            this.cboSpots.Size = new System.Drawing.Size(558, 21);
-            this.cboSpots.Sorted = true;
-            this.cboSpots.TabIndex = 90;
-            this.cboSpots.SelectedIndexChanged += new System.EventHandler(this.cboSpots_SelectedIndexChanged);
+            this.cboSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSelect.FormattingEnabled = true;
+            this.cboSelect.Location = new System.Drawing.Point(123, 29);
+            this.cboSelect.Name = "cboSelect";
+            this.cboSelect.Size = new System.Drawing.Size(558, 21);
+            this.cboSelect.Sorted = true;
+            this.cboSelect.TabIndex = 90;
+            this.cboSelect.SelectedIndexChanged += new System.EventHandler(this.cboSpots_SelectedIndexChanged);
             // 
             // btnAddManeuver
             // 
             this.btnAddManeuver.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddManeuver.ForeColor = System.Drawing.Color.Green;
-            this.btnAddManeuver.Location = new System.Drawing.Point(497, 122);
+            this.btnAddManeuver.Location = new System.Drawing.Point(497, 144);
             this.btnAddManeuver.Name = "btnAddManeuver";
             this.btnAddManeuver.Size = new System.Drawing.Size(184, 21);
             this.btnAddManeuver.TabIndex = 81;
@@ -1548,8 +1557,8 @@
             this.groupBox14.Controls.Add(this.txtObjective);
             this.groupBox14.Controls.Add(this.label5);
             this.groupBox14.Controls.Add(this.txtManeuver);
-            this.groupBox14.Controls.Add(this.label3);
-            this.groupBox14.Location = new System.Drawing.Point(221, 173);
+            this.groupBox14.Controls.Add(this.lblSpotTitle);
+            this.groupBox14.Location = new System.Drawing.Point(221, 195);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(459, 471);
             this.groupBox14.TabIndex = 92;
@@ -1700,22 +1709,21 @@
             this.txtManeuver.TabIndex = 81;
             this.txtManeuver.TabStop = false;
             // 
-            // label3
+            // lblSpotTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(24, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 85;
-            this.label3.Text = "SPOT TITLE";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSpotTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpotTitle.Location = new System.Drawing.Point(11, 13);
+            this.lblSpotTitle.Name = "lblSpotTitle";
+            this.lblSpotTitle.Size = new System.Drawing.Size(93, 13);
+            this.lblSpotTitle.TabIndex = 85;
+            this.lblSpotTitle.Text = "EVENT TITLE";
+            this.lblSpotTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnAddActions
             // 
             this.btnAddActions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddActions.ForeColor = System.Drawing.Color.Green;
-            this.btnAddActions.Location = new System.Drawing.Point(1132, 323);
+            this.btnAddActions.Location = new System.Drawing.Point(1132, 345);
             this.btnAddActions.Name = "btnAddActions";
             this.btnAddActions.Size = new System.Drawing.Size(180, 21);
             this.btnAddActions.TabIndex = 93;
@@ -1725,7 +1733,7 @@
             // 
             // txtNotes3
             // 
-            this.txtNotes3.Location = new System.Drawing.Point(221, 743);
+            this.txtNotes3.Location = new System.Drawing.Point(221, 765);
             this.txtNotes3.Multiline = true;
             this.txtNotes3.Name = "txtNotes3";
             this.txtNotes3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1734,7 +1742,7 @@
             // 
             // txtNotes2
             // 
-            this.txtNotes2.Location = new System.Drawing.Point(221, 707);
+            this.txtNotes2.Location = new System.Drawing.Point(221, 729);
             this.txtNotes2.Multiline = true;
             this.txtNotes2.Name = "txtNotes2";
             this.txtNotes2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1743,7 +1751,7 @@
             // 
             // txtNotes1
             // 
-            this.txtNotes1.Location = new System.Drawing.Point(221, 671);
+            this.txtNotes1.Location = new System.Drawing.Point(221, 693);
             this.txtNotes1.Multiline = true;
             this.txtNotes1.Name = "txtNotes1";
             this.txtNotes1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1754,7 +1762,7 @@
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(224, 655);
+            this.label48.Location = new System.Drawing.Point(224, 677);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(149, 13);
             this.label48.TabIndex = 200;
@@ -1814,7 +1822,7 @@
             this.txtClearance.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtClearance.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClearance.ForeColor = System.Drawing.Color.Maroon;
-            this.txtClearance.Location = new System.Drawing.Point(813, 269);
+            this.txtClearance.Location = new System.Drawing.Point(813, 291);
             this.txtClearance.Multiline = true;
             this.txtClearance.Name = "txtClearance";
             this.txtClearance.ReadOnly = true;
@@ -1826,7 +1834,7 @@
             // 
             this.chkPDC.AutoSize = true;
             this.chkPDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPDC.Location = new System.Drawing.Point(705, 268);
+            this.chkPDC.Location = new System.Drawing.Point(705, 290);
             this.chkPDC.Name = "chkPDC";
             this.chkPDC.Size = new System.Drawing.Size(107, 17);
             this.chkPDC.TabIndex = 204;
@@ -1846,7 +1854,7 @@
             "CRZ ALT",
             "THR RED/ACCEL ALT",
             "EO ACCEL ALT"});
-            this.listBox4.Location = new System.Drawing.Point(940, 71);
+            this.listBox4.Location = new System.Drawing.Point(940, 93);
             this.listBox4.Name = "listBox4";
             this.listBox4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.listBox4.Size = new System.Drawing.Size(156, 78);
@@ -1859,7 +1867,7 @@
             this.listAC2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listAC2.ForeColor = System.Drawing.Color.Maroon;
             this.listAC2.FormattingEnabled = true;
-            this.listAC2.Location = new System.Drawing.Point(1098, 71);
+            this.listAC2.Location = new System.Drawing.Point(1098, 93);
             this.listAC2.Name = "listAC2";
             this.listAC2.Size = new System.Drawing.Size(116, 78);
             this.listAC2.TabIndex = 210;
@@ -1877,7 +1885,7 @@
             "THRUST",
             "STAB",
             "FLAPS"});
-            this.listBox2.Location = new System.Drawing.Point(706, 69);
+            this.listBox2.Location = new System.Drawing.Point(706, 91);
             this.listBox2.Name = "listBox2";
             this.listBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.listBox2.Size = new System.Drawing.Size(98, 78);
@@ -1890,7 +1898,7 @@
             this.listAC1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listAC1.ForeColor = System.Drawing.Color.Maroon;
             this.listAC1.FormattingEnabled = true;
-            this.listAC1.Location = new System.Drawing.Point(804, 69);
+            this.listAC1.Location = new System.Drawing.Point(804, 91);
             this.listAC1.Name = "listAC1";
             this.listAC1.Size = new System.Drawing.Size(130, 78);
             this.listAC1.TabIndex = 208;
@@ -1899,7 +1907,7 @@
             // 
             this.btnAddACConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddACConditions.ForeColor = System.Drawing.Color.Green;
-            this.btnAddACConditions.Location = new System.Drawing.Point(1128, 40);
+            this.btnAddACConditions.Location = new System.Drawing.Point(1128, 62);
             this.btnAddACConditions.Name = "btnAddACConditions";
             this.btnAddACConditions.Size = new System.Drawing.Size(180, 23);
             this.btnAddACConditions.TabIndex = 207;
@@ -1911,7 +1919,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(698, 44);
+            this.label14.Location = new System.Drawing.Point(698, 66);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(100, 13);
             this.label14.TabIndex = 206;
@@ -1923,7 +1931,7 @@
             this.cboAC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAC.FormattingEnabled = true;
-            this.cboAC.Location = new System.Drawing.Point(802, 41);
+            this.cboAC.Location = new System.Drawing.Point(802, 63);
             this.cboAC.Name = "cboAC";
             this.cboAC.Size = new System.Drawing.Size(326, 21);
             this.cboAC.Sorted = true;
@@ -1936,7 +1944,7 @@
             this.txtATIS.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtATIS.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtATIS.ForeColor = System.Drawing.Color.Maroon;
-            this.txtATIS.Location = new System.Drawing.Point(811, 198);
+            this.txtATIS.Location = new System.Drawing.Point(811, 220);
             this.txtATIS.Multiline = true;
             this.txtATIS.Name = "txtATIS";
             this.txtATIS.ReadOnly = true;
@@ -1948,7 +1956,7 @@
             // 
             this.chkATIS.AutoSize = true;
             this.chkATIS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkATIS.Location = new System.Drawing.Point(703, 197);
+            this.chkATIS.Location = new System.Drawing.Point(703, 219);
             this.chkATIS.Name = "chkATIS";
             this.chkATIS.Size = new System.Drawing.Size(110, 17);
             this.chkATIS.TabIndex = 219;
@@ -1959,7 +1967,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(732, 176);
+            this.label2.Location = new System.Drawing.Point(732, 198);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 213;
@@ -1971,7 +1979,7 @@
             this.cboWx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboWx.FormattingEnabled = true;
-            this.cboWx.Location = new System.Drawing.Point(804, 173);
+            this.cboWx.Location = new System.Drawing.Point(804, 195);
             this.cboWx.Name = "cboWx";
             this.cboWx.Size = new System.Drawing.Size(326, 21);
             this.cboWx.Sorted = true;
@@ -1982,7 +1990,7 @@
             // 
             this.btnAddWxConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddWxConditions.ForeColor = System.Drawing.Color.Green;
-            this.btnAddWxConditions.Location = new System.Drawing.Point(1130, 172);
+            this.btnAddWxConditions.Location = new System.Drawing.Point(1130, 194);
             this.btnAddWxConditions.Name = "btnAddWxConditions";
             this.btnAddWxConditions.Size = new System.Drawing.Size(180, 23);
             this.btnAddWxConditions.TabIndex = 214;
@@ -2058,7 +2066,7 @@
             this.toolStripSeparator1,
             this.toolStripLabel3,
             this.lblTBOutputPath});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 787);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 809);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1330, 25);
             this.toolStrip1.TabIndex = 222;
@@ -2114,11 +2122,165 @@
             this.lblTBOutputPath.Size = new System.Drawing.Size(86, 22);
             this.lblTBOutputPath.Text = "toolStripLabel1";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtEventSet);
+            this.groupBox2.Controls.Add(this.optLOTE);
+            this.groupBox2.Controls.Add(this.optSPOT);
+            this.groupBox2.Location = new System.Drawing.Point(221, 76);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(231, 56);
+            this.groupBox2.TabIndex = 223;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "TRAINING / EVALUATION TYPE";
+            // 
+            // optLOTE
+            // 
+            this.optLOTE.AutoSize = true;
+            this.optLOTE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optLOTE.Location = new System.Drawing.Point(14, 33);
+            this.optLOTE.Name = "optLOTE";
+            this.optLOTE.Size = new System.Drawing.Size(175, 17);
+            this.optLOTE.TabIndex = 226;
+            this.optLOTE.Text = "LOFT / LOE - EVENT SET";
+            this.optLOTE.UseVisualStyleBackColor = true;
+            this.optLOTE.CheckedChanged += new System.EventHandler(this.optLOTE_CheckedChanged);
+            // 
+            // optSPOT
+            // 
+            this.optSPOT.AutoSize = true;
+            this.optSPOT.Checked = true;
+            this.optSPOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optSPOT.Location = new System.Drawing.Point(14, 15);
+            this.optSPOT.Name = "optSPOT";
+            this.optSPOT.Size = new System.Drawing.Size(58, 17);
+            this.optSPOT.TabIndex = 225;
+            this.optSPOT.TabStop = true;
+            this.optSPOT.Text = "SPOT";
+            this.optSPOT.UseVisualStyleBackColor = true;
+            this.optSPOT.CheckedChanged += new System.EventHandler(this.optSPOT_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(466, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 227;
+            this.label1.Text = "SOP PHASE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboPhase
+            // 
+            this.cboPhase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPhase.FormattingEnabled = true;
+            this.cboPhase.Items.AddRange(new object[] {
+            "",
+            "1- GENERAL",
+            "2- PREFLIGHT",
+            "3- BEFORE START",
+            "4- START",
+            "5- TAXI",
+            "6- TAKEOFF",
+            "7- CLIMB",
+            "8- CRUISE",
+            "9- DESCENT",
+            "10- APPROACH",
+            "11- LANDING",
+            "12- AFTER LANDING",
+            "13- SHUTDOWN"});
+            this.cboPhase.Location = new System.Drawing.Point(546, 83);
+            this.cboPhase.Name = "cboPhase";
+            this.cboPhase.Size = new System.Drawing.Size(133, 21);
+            this.cboPhase.TabIndex = 225;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(486, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 226;
+            this.label3.Text = "SYSTEM";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboSystem
+            // 
+            this.cboSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSystem.FormattingEnabled = true;
+            this.cboSystem.Items.AddRange(new object[] {
+            "",
+            "00- None",
+            "21- Air Conditioning and Press",
+            "22- Autopilot",
+            "23- Communications",
+            "24- Electrical Power",
+            "25- Equipment & Furnishings",
+            "26- Fire Protection",
+            "27- Flight Controls",
+            "28- Fuel",
+            "29- Hydraulics",
+            "30- Ice & Rain Protecion",
+            "31- Instruments",
+            "32- Landing Gear",
+            "33- Lights",
+            "34- Navigation",
+            "35- Oxygen",
+            "36- Pneumatic",
+            "38- Water / Waste",
+            "46- Information Systems",
+            "47- Inert Gas System",
+            "49- Auxiliary Power Unit",
+            "52- Doors",
+            "71- Powerplant",
+            "73- Engine Fuel & Control",
+            "74- Ignition Systems",
+            "76- Engine Control",
+            "77- Engine Indicating",
+            "78- Exhaust",
+            "79- Oil",
+            "80- Starting",
+            "CDL"});
+            this.cboSystem.Location = new System.Drawing.Point(546, 108);
+            this.cboSystem.Name = "cboSystem";
+            this.cboSystem.Size = new System.Drawing.Size(133, 21);
+            this.cboSystem.TabIndex = 224;
+            // 
+            // txtEventSet
+            // 
+            this.txtEventSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEventSet.Location = new System.Drawing.Point(190, 31);
+            this.txtEventSet.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.txtEventSet.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtEventSet.Name = "txtEventSet";
+            this.txtEventSet.Size = new System.Drawing.Size(36, 20);
+            this.txtEventSet.TabIndex = 227;
+            this.txtEventSet.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // frmBuilderSpot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 812);
+            this.ClientSize = new System.Drawing.Size(1330, 834);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboPhase);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cboSystem);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.txtATIS);
             this.Controls.Add(this.chkATIS);
@@ -2145,17 +2307,17 @@
             this.Controls.Add(this.btnAddManeuver);
             this.Controls.Add(this.cboClearance);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.cboSpots);
-            this.Controls.Add(this.label79);
-            this.Controls.Add(this.groupBox11);
-            this.Controls.Add(this.txtSpotName);
+            this.Controls.Add(this.cboSelect);
+            this.Controls.Add(this.lblSpotName);
+            this.Controls.Add(this.grpSpotDelete);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblClearance);
-            this.Controls.Add(this.btnClearData);
-            this.Controls.Add(this.groupBox10);
-            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.grpSpotUpdate);
+            this.Controls.Add(this.grpSpotSave);
             this.Controls.Add(this.txtMinutes);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSpotMinutes);
+            this.Controls.Add(this.lblSpotManeuver);
             this.Controls.Add(this.cboManeuver);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
@@ -2163,15 +2325,16 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmBuilderSpot";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " Flight Training - SPOT BUILDER";
+            this.Text = " Flight Training - SPOT / EVENT SET BUILDER";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmEditScript_Load_1);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
+            this.grpSpotDelete.ResumeLayout(false);
+            this.grpSpotUpdate.ResumeLayout(false);
+            this.grpSpotSave.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtMinutes)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -2185,6 +2348,9 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEventSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2193,20 +2359,20 @@
         #endregion
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label lblSpotName;
+        private System.Windows.Forms.GroupBox grpSpotDelete;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label78;
-        private System.Windows.Forms.TextBox txtSpotName;
-        private System.Windows.Forms.Button btnClearData;
-        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.GroupBox grpSpotUpdate;
         private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.GroupBox grpSpotSave;
         private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.NumericUpDown txtMinutes;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSpotMinutes;
         private System.Windows.Forms.Label lblClearance;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -2219,11 +2385,11 @@
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox cboManeuver;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSpotManeuver;
         private System.Windows.Forms.Button btnAddClearance;
         private System.Windows.Forms.ComboBox cboClearance;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox cboSpots;
+        private System.Windows.Forms.ComboBox cboSelect;
         private System.Windows.Forms.Button btnAddManeuver;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.TextBox txtNotes;
@@ -2237,7 +2403,7 @@
         private System.Windows.Forms.TextBox txtObjective;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtManeuver;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSpotTitle;
         private System.Windows.Forms.ComboBox cboAction1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboAction2;
@@ -2342,5 +2508,13 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton optLOTE;
+        private System.Windows.Forms.RadioButton optSPOT;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboPhase;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cboSystem;
+        private System.Windows.Forms.NumericUpDown txtEventSet;
     }
 }

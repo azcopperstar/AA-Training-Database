@@ -23,6 +23,8 @@ namespace WindowsFormsApplication1 {
             //GlobalCode.sDataFile = "V:\\AA- Traing Script Developer Project\\TSD_A350.accdb";
             //GlobalCode.sOleDbConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + GlobalCode.sDataFile;
 
+            SplashScreen.SplashScreen.SetStatus("Loading form for " + GlobalCode.sFleet, false);
+
             this.Text = GlobalCode.sCARRIER + " " + GlobalCode.sFleet + this.Text;
 
             lblTBFilePath.Text = GlobalCode.sPATH_FILE_DATA;
@@ -65,6 +67,13 @@ namespace WindowsFormsApplication1 {
             cboAction8.SelectedIndex = 0;
             cboPF8.SelectedIndex = 0;
 
+            optSPOT.Checked = true;
+            Spot_Event_Labels();
+            Check_Complete();
+
+            SplashScreen.SplashScreen.CloseForm();
+            this.BringToFront();
+
         }
 
         private void Initialize_DB() {
@@ -95,7 +104,8 @@ namespace WindowsFormsApplication1 {
             List<KeyValuePair<int, string>> data = new List<KeyValuePair<int, string>>();
             data.Add(new KeyValuePair<int, string>(-1, ""));
             for (int i = 0; i <= dt.Rows.Count - 1; i++) {
-                data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
+                if (!dt.Rows[i].IsNull(1))
+                    data.Add(new KeyValuePair<int, string>((int)dt.Rows[i].ItemArray[0], (string)dt.Rows[i].ItemArray[1]));
             }
             // Bind the combobox
             cbo.DataSource = null;
@@ -166,31 +176,31 @@ namespace WindowsFormsApplication1 {
             Fill_CBOs(cboPF8, "SELECT ID,PF FROM PF");
         }
         private void Fill_Actions() {
-            Fill_CBOs(cboAction1, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction2, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction3, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction4, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction5, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction6, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction7, "SELECT ID,ACTION_NAME FROM Actions");
-            Fill_CBOs(cboAction8, "SELECT ID,ACTION_NAME FROM Actions");
+            Fill_CBOs(cboAction1, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction2, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction3, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction4, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction5, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction6, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction7, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
+            Fill_CBOs(cboAction8, "SELECT ID,ACTION_NAME FROM Actions ORDER BY ACTION_NAME");
         }
 
         private void Fill_Maneuver() {
-            Fill_CBOs(cboManeuver, "SELECT ID,MANEUVER_NAME FROM Maneuver");
+            Fill_CBOs(cboManeuver, "SELECT ID,MANEUVER_NAME FROM Maneuver ORDER BY MANEUVER_NAME ");
         }
         private void Fill_Wx() {
             Fill_WX(cboWx, "SELECT * FROM Conditions_WX ORDER BY STATION,ATIS_DESIGNATOR");
         }
         private void Fill_Ac() {
-            Fill_CBOs(cboAC, "SELECT ID,COND_NAME FROM Conditions_AC");
+            Fill_CBOs(cboAC, "SELECT ID,COND_NAME FROM Conditions_AC ORDER BY COND_NAME");
         }
         private void Fill_Clearance() {
             Fill_CBO_Clearance(cboClearance, "SELECT * FROM Clearance ORDER BY DEP, CLEARANCE_NAME");
         }
 
         private void Fill_Spots() {
-            string sCommand = "SELECT * FROM Spots WHERE ID>4";
+            string sCommand = "SELECT * FROM Spots WHERE ID>4 ORDER BY SPOT_NAME";
             conn.Open();
             OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
             DataTable dt = new DataTable();
@@ -198,25 +208,60 @@ namespace WindowsFormsApplication1 {
             dAdapter.Fill(dt);
             conn.Close();
 
-            cboSpots.Items.Clear();
-            cboSpots.DisplayMember = "Text";
-            cboSpots.ValueMember = "Value";
+            cboSelect.Items.Clear();
+            cboSelect.DisplayMember = "Text";
+            cboSelect.ValueMember = "Value";
             int i;
-            cboSpots.Items.Add(new {
+            cboSelect.Items.Add(new {
                 Value = -1, Text = ""
             });
             for (i = 0; i <= dt.Rows.Count - 1; i++) {
-                cboSpots.Items.Add(new {
+                cboSelect.Items.Add(new {
                     Value = dt.Rows[i].ItemArray[0], Text = dt.Rows[i].ItemArray[1]
                 });
+            }
+        }
+
+        private void Spot_Event_Labels() {
+            // set labels based on SPOT or LOFT
+            lblSpotManeuver.Text = "SPOT MANEUVER";
+            lblSpotMinutes.Text = "SPOT MINUTES";
+            lblSpotName.Text = "SPOT NAME";
+            lblSpotTitle.Text = "SPOT TITLE";
+
+            grpSpotSave.Text = "SAVE NEW SPOT";
+            grpSpotUpdate.Text = "UPDATE SPOT";
+            grpSpotDelete.Text = "DELETE SPOT";
+
+            btnSave.Text = "SAVE AS NEW SPOT";
+            btnUpdate.Text = "UPDATE SPOT";
+            btnDelete.Text = "DELETE SPOT";
+
+            txtEventSet.Visible = false;
+
+            if (optLOTE.Checked) {
+                lblSpotManeuver.Text = "EVENT MANEUVER";
+                lblSpotMinutes.Text = "EVENT MINUTES";
+                lblSpotName.Text = "EVENT NAME";
+                lblSpotTitle.Text = "EVENT TITLE";
+
+                grpSpotSave.Text = "SAVE NEW EVENT";
+                grpSpotUpdate.Text = "UPDATE EVENT";
+                grpSpotDelete.Text = "DELETE EVENT";
+
+                btnSave.Text = "SAVE AS NEW EVENT";
+                btnUpdate.Text = "UPDATE EVENT";
+                btnDelete.Text = "DELETE EVENT";
+
+                txtEventSet.Visible = true;
             }
         }
 
         private void FillData() {
 
             ClearAllEntries();
-            if (cboSpots.SelectedIndex > 0 || (cboSpots.SelectedItem as dynamic).Value > -1) {
-                string sCommand = "SELECT * FROM Spots WHERE ID = " + (cboSpots.SelectedItem as dynamic).Value;
+            if (cboSelect.SelectedIndex > 0 || (cboSelect.SelectedItem as dynamic).Value > -1) {
+                string sCommand = "SELECT * FROM Spots WHERE ID = " + (cboSelect.SelectedItem as dynamic).Value;
                 conn.Open();
                 OleDbDataAdapter dAdapter = new OleDbDataAdapter(sCommand, GlobalCode.sOleDbConnectionString);
                 DataTable dt = new DataTable();
@@ -226,10 +271,20 @@ namespace WindowsFormsApplication1 {
 
                 int i;
                 for (i = 0; i <= dt.Rows.Count - 1; i++) {
-                    txtSpotName.Text = (string)dt.Rows[i].ItemArray[1];
+                    txtName.Text = (string)dt.Rows[i].ItemArray[1];
                     txtNotes1.Text = (string)dt.Rows[i].ItemArray[11];
                     txtNotes2.Text = (string)dt.Rows[i].ItemArray[12];
                     txtNotes3.Text = (string)dt.Rows[i].ItemArray[13];
+
+                    if ((string)dt.Rows[i]["SPOT"] == "" || (string)dt.Rows[i]["SPOT"] == "SPOT") {
+                        // spots
+                        optSPOT.Checked = true;
+                    } else {
+                        // event sets
+                        optLOTE.Checked = true;
+                        txtEventSet.Value = int.Parse((string)dt.Rows[i]["SPOT"]);
+                    }
+                    Spot_Event_Labels();
 
                     // search for value of index
                     foreach (KeyValuePair<int, string> row in cboManeuver.Items) {
@@ -243,6 +298,11 @@ namespace WindowsFormsApplication1 {
                             cboAC.SelectedIndex = cboAC.Items.IndexOf(row);
                         }
                     }
+
+                    // set ata and system back after maneuver loaded
+                    cboSystem.Text = GlobalCode.CheckForNullString(dt.Rows[i], "ATA_CODE");
+                    cboPhase.Text = GlobalCode.CheckForNullString(dt.Rows[i], "SOP_PHASE");
+
                     chkATIS.Checked = false;
                     if ((int)dt.Rows[i]["DISPLAY_ATIS"] == 1)
                         chkATIS.Checked = true;
@@ -342,32 +402,9 @@ namespace WindowsFormsApplication1 {
                         }
                     }
                 }
-                btnAdd.Enabled = true;
-                btnDelete.Enabled = true;
-                btnSave.Enabled = true;
-                btnClearData.Enabled = true;
+                Check_Complete();
             }
         }
-        //private void Fill_Controls() {
-
-        //    cboWx.DataBindings.Add("selectedindex", bindingSource1, "ATA_CODE");
-
-        //    txtManeuver.DataBindings.Add("text", bindingSource1, "MANEUVER");
-        //    txtMinutes.DataBindings.Add("text", bindingSource1, "MINUTES");
-
-
-        //    cboPF1.DataBindings.Add("text", bindingSource1, "PF1");
-        //    cboPF2.DataBindings.Add("text", bindingSource1, "PF2");
-        //    cboPF3.DataBindings.Add("text", bindingSource1, "PF3");
-        //    cboPF4.DataBindings.Add("text", bindingSource1, "PF4");
-        //    cboPF5.DataBindings.Add("text", bindingSource1, "PF5");
-        //    cboPF6.DataBindings.Add("text", bindingSource1, "PF6");
-        //    cboPF7.DataBindings.Add("text", bindingSource1, "PF7");
-        //    cboPF8.DataBindings.Add("text", bindingSource1, "PF8");
-
-
-        //}
-
 
         private string GetDateString(DateTime d) {
             object value = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
@@ -388,10 +425,14 @@ namespace WindowsFormsApplication1 {
         private void AddDataRow() {
             System.Data.DataRow dr = dtTable.NewRow();
 
-            dr["SPOT_NAME"] = txtSpotName.Text;
+            dr["SPOT_NAME"] = txtName.Text;
             dr["DATE_CREATED"] = GetDateString(DateTime.Now);
             dr["DATE_EDITED"] = GetDateString(DateTime.Now);
-            dr["SPOT"] = "";
+            if (optSPOT.Checked) {
+                dr["SPOT"] = "SPOT";
+            } else {
+                dr["SPOT"] = txtEventSet.Value;
+            }
 
             dr["MANEUVER"] = Get_Selected_Key(cboManeuver);//((KeyValuePair<int, string>)cboManeuver.SelectedItem).Key;
             dr["MINUTES"] = txtMinutes.Value;
@@ -437,17 +478,27 @@ namespace WindowsFormsApplication1 {
             dr["PF10"] = -1;
             dr["ACTION10"] = -1;
 
+
+            // additional fields
+            for (int x = 1; x < 21; x++) {
+                dr["A" + x] = "";
+            }
+
+            dr["ATA_CODE"] = cboSystem.Text;
+            dr["SOP_PHASE"] = cboPhase.Text;
+
             dtTable.Rows.Add(dr);
             dataAdapter.Update(dtTable);  // write new row back to database
             Fill_Spots();
+            Check_Complete();
         }
         private void UpdateDataRow() {
 
-            if ((cboSpots.SelectedItem as dynamic).Value > -1) {
+            if ((cboSelect.SelectedItem as dynamic).Value > -1) {
                 string strUpdate = "UPDATE Spots SET " +
                     "SPOT_NAME = @spot_name," +
                     "DATE_EDITED = @date_edited," +
-                    //"SPOT = @spot," +
+                    "SPOT = @spot," +
                     "MANEUVER = @maneuver," +
                     "MINUTES = @minutes," +
                     "CONDITIONS_AC = @conditions_ac," +
@@ -478,14 +529,43 @@ namespace WindowsFormsApplication1 {
                     "PF9 = @pf9," +
                     "ACTION9 = @actions9," +
                     "PF10 = @pf10," +
-                    "ACTION10 = @actions10" +
+                    "ACTION10 = @actions10," +
+
+                    "A1 = @a1," +
+                    "A2 = @a2," +
+                    "A3 = @a3," +
+                    "A4 = @a4," +
+                    "A5 = @a5," +
+                    "A6 = @a6," +
+                    "A7 = @a7," +
+                    "A8 = @a8," +
+                    "A9 = @a9," +
+                    "A10 = @a10," +
+                    "A11 = @a11," +
+                    "A12 = @a12," +
+                    "A13 = @a13," +
+                    "A14 = @a14," +
+                    "A15 = @a15," +
+                    "A16 = @a16," +
+                    "A17 = @a17," +
+                    "A18 = @a18," +
+                    "A19 = @a19," +
+                    "A20 = @a20," +
+
+                    "ATA_CODE = @ata_code," +
+                    "SOP_PHASE = @sop_phase" +
+
                     " WHERE [ID] = @id";
 
                 OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
 
-                cmd.Parameters.AddWithValue("@spot_name", txtSpotName.Text);
+                cmd.Parameters.AddWithValue("@spot_name", txtName.Text);
                 cmd.Parameters.AddWithValue("@date_edited", GetDateString(DateTime.Now));
-                //cmd.Parameters.AddWithValue("@spot", "");
+                if (optSPOT.Checked) {
+                    cmd.Parameters.AddWithValue("@spot", "SPOT");
+                } else {
+                    cmd.Parameters.AddWithValue("@spot", txtEventSet.Value);
+                }
                 cmd.Parameters.AddWithValue("@maneuver", Get_Selected_Key(cboManeuver));
                 cmd.Parameters.AddWithValue("@minutes", txtMinutes.Value);
                 cmd.Parameters.AddWithValue("@conditions_ac", Get_Selected_Key(cboAC));
@@ -526,7 +606,16 @@ namespace WindowsFormsApplication1 {
                 cmd.Parameters.AddWithValue("@actions9", -1);
                 cmd.Parameters.AddWithValue("@pf10", -1);
                 cmd.Parameters.AddWithValue("@actions10", -1);
-                int iID = (cboSpots.SelectedItem as dynamic).Value;
+
+                // additional fields
+                for (int x = 1; x < 21; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
+
+                cmd.Parameters.AddWithValue("@ata_code", cboSystem.Text);
+                cmd.Parameters.AddWithValue("@sop_phase", cboPhase.Text);
+
+                int iID = (cboSelect.SelectedItem as dynamic).Value;
                 cmd.Parameters.AddWithValue("@id", iID);
 
                 conn.Open();
@@ -536,12 +625,13 @@ namespace WindowsFormsApplication1 {
                 //if (iRows > 0) {
                 //    MessageBox.Show("Update Success!");
                 //}
+                Check_Complete();
             }
         }
 
         private void ClearAllEntries() {
             // clear all entries
-            txtSpotName.Text = "";
+            txtName.Text = "";
             txtNotes1.Text = "";
             txtNotes2.Text = "";
             txtNotes3.Text = "";
@@ -550,8 +640,9 @@ namespace WindowsFormsApplication1 {
             cboWx.SelectedIndex = -1;
             chkATIS.Checked=false;
             txtATIS.Text = "";
-            cboClearance.SelectedIndex = -1;
-            txtClearance.Text = "";
+            // set clearance to last selected
+            cboClearance.SelectedIndex = (int)Settings.Default.cboClearance_SelectedIndex;
+            //txtClearance.Text = "";
             chkPDC.Checked = false;
             cboPF1.SelectedIndex = -1;
             cboAction1.SelectedIndex = -1;
@@ -570,10 +661,25 @@ namespace WindowsFormsApplication1 {
             cboPF8.SelectedIndex = -1;
             cboAction8.SelectedIndex = -1;
 
-            btnAdd.Enabled = false;
-            btnDelete.Enabled = false;
-            btnSave.Enabled = false;
-            btnClearData.Enabled = false;
+            Check_Complete();
+        }
+        private void Check_Complete() {
+            try {
+                btnSave.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+                btnClear.Enabled = false;
+                if (txtName.Text != "" && cboManeuver.Text != "") {
+                    if (cboSelect.SelectedIndex > 0) {
+                        btnUpdate.Enabled = true;
+                        btnDelete.Enabled = true;
+                    }
+                    btnSave.Enabled = true;
+                    btnClear.Enabled = true;
+                }
+            } catch (Exception) {
+                throw;
+            }
         }
 
         private void btnAddWxConditions_Click(object sender, EventArgs e) {
@@ -632,15 +738,6 @@ namespace WindowsFormsApplication1 {
             // return from re-filling the cbo, set to index 0 by default
             SetCboID(cboAC, iID);
         }
-        //private void btnAddATIS_Click(object sender, EventArgs e) {
-        //    frmEditATIS frmEditATIS = new frmEditATIS();
-        //    frmEditATIS.ShowDialog();
-        //    // save ID of selected item (NOT the selectedindex)
-        //    int iID = GetCboID(cboATIS);
-        //    Fill_ATIS();
-        //    // return from re-filling the cbo, set to index 0 by default
-        //    SetCboID(cboATIS, iID);
-        //}
 
         private void btnAddClearance_Click(object sender, EventArgs e) {
             frmEditClearance frmEditClearance = new frmEditClearance();
@@ -702,6 +799,9 @@ namespace WindowsFormsApplication1 {
         }
         private void cboManeuver_SelectedIndexChanged(object sender, EventArgs e) {
 
+            if (txtName.Text == "" && cboManeuver.SelectedIndex > -1)
+                txtName.Text = cboManeuver.Text;
+
             txtMinutes.Value = 0;
             txtManeuver.Text = "";
             txtObjective.Text = "";
@@ -720,10 +820,13 @@ namespace WindowsFormsApplication1 {
                 dt = Get_Selected_DataTable(comboBox, "Maneuver");
                 if (dt != null) {
                     //add items to ListView
-                    int i;
-                    for (i = 0; i <= dt.Rows.Count - 1; i++) {
+                    for (int i = 0; i <= dt.Rows.Count - 1; i++) {
                         txtMinutes.Value = (int)dt.Rows[i].ItemArray[8];
                         txtManeuver.Text = (string)dt.Rows[i].ItemArray[7];
+
+                        cboSystem.Text = GlobalCode.CheckForNullString(dt.Rows[i], "ATA_CODE");
+                        cboPhase.Text = GlobalCode.CheckForNullString(dt.Rows[i], "SOP_PHASE");
+
                         if (!dt.Rows[i].IsNull(9) && (string)dt.Rows[i].ItemArray[9] != "")
                             txtObjective.Text = (string)dt.Rows[i].ItemArray[9];
                         if (!dt.Rows[i].IsNull(10) && (string)dt.Rows[i].ItemArray[10] != "")
@@ -755,6 +858,7 @@ namespace WindowsFormsApplication1 {
                 }
 
             }
+            Check_Complete();
         }
 
         #region ACTIONS
@@ -771,8 +875,16 @@ namespace WindowsFormsApplication1 {
                     }
                     TextBoxTitle.Text = (string)dt.Rows[i].ItemArray[6];
                     string sActionText = (string)dt.Rows[i].ItemArray[7];
-                    int iWX = (int)dt.Rows[i]["ATIS"];
+                    int iWX = GlobalCode.CheckForNullInt(dt.Rows[i], "ATIS1");//(int)dt.Rows[i]["ATIS1"];
                     if (iWX> 0) {
+                        sActionText = sActionText + "\n" + Builder_ATIS.Get_Action_Atis(iWX);
+                    }
+                    iWX = GlobalCode.CheckForNullInt(dt.Rows[i], "ATIS2");//(int)dt.Rows[i]["ATIS2"];
+                    if (iWX > 0) {
+                        sActionText = sActionText + "\n" + Builder_ATIS.Get_Action_Atis(iWX);
+                    }
+                    iWX = GlobalCode.CheckForNullInt(dt.Rows[i], "ATIS3");//(int)dt.Rows[i]["ATIS3"];
+                    if (iWX > 0) {
                         sActionText = sActionText + "\n" + Builder_ATIS.Get_Action_Atis(iWX);
                     }
                     int iPDC = (int)dt.Rows[i]["PDC"];
@@ -990,7 +1102,7 @@ namespace WindowsFormsApplication1 {
 
         #endregion
         private void Delete_Maneuver() {
-            if ((cboSpots.SelectedItem as dynamic).Value > -1) {
+            if ((cboSelect.SelectedItem as dynamic).Value > -1) {
                 DialogResult result = MessageBox.Show(
                     "Deleting the selected SPOT will permantly eliminate it from the database.  Are you sure that you would like to DELETE?",
                     "DELETE SELECTED SPOT?",
@@ -998,7 +1110,7 @@ namespace WindowsFormsApplication1 {
                     MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.Yes) {
-                    string sQuery = "DELETE FROM Spots WHERE ID=" + (cboSpots.SelectedItem as dynamic).Value;
+                    string sQuery = "DELETE FROM Spots WHERE ID=" + (cboSelect.SelectedItem as dynamic).Value;
                     conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
                     conn.Open();
                     OleDbCommand commandBuilder = new OleDbCommand(sQuery, conn);
@@ -1006,6 +1118,7 @@ namespace WindowsFormsApplication1 {
                     conn.Close();
                 }
             }
+            Check_Complete();
         }
 
         private void cboSpots_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1036,7 +1149,7 @@ namespace WindowsFormsApplication1 {
         }
 
         private void btnClearData_Click_1(object sender, EventArgs e) {
-            cboSpots.SelectedIndex = 0;
+            cboSelect.SelectedIndex = 0;
             ClearAllEntries();
         }
 
@@ -1060,6 +1173,9 @@ namespace WindowsFormsApplication1 {
         //}
 
         private void cboClearance_SelectedIndexChanged(object sender, EventArgs e) {
+            Settings.Default.cboClearance_SelectedIndex = cboClearance.SelectedIndex;
+            Settings.Default.Save();
+
             lblClearance.Text = "CLEARANCE";
             ComboBox comboBox = (ComboBox)sender;
             if (comboBox.SelectedIndex < 0)
@@ -1150,7 +1266,7 @@ namespace WindowsFormsApplication1 {
                 if (folderDialog.ShowDialog() == DialogResult.OK) {
                     DialogResult result = MessageBox.Show("In order to open the selected database file, the application will have to re-start.", "Restarting Application", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result == DialogResult.OK) {
-                        GlobalCode.sPATH_DATA = folderDialog.InitialDirectory;
+                        GlobalCode.sPATH_DATA = System.IO.Path.GetDirectoryName(folderDialog.FileName);//folderDialog.InitialDirectory;
                         Settings.Default.PATH_DB = GlobalCode.sPATH_DATA;
                         GlobalCode.sFILE_DATA = "\\" + folderDialog.SafeFileName;
                         Settings.Default.FILE_DB = GlobalCode.sFILE_DATA;
@@ -1175,6 +1291,18 @@ namespace WindowsFormsApplication1 {
             // call program main
             Program.Load_App();
 
+        }
+
+        private void optSPOT_CheckedChanged(object sender, EventArgs e) {
+            Spot_Event_Labels();
+        }
+
+        private void optLOTE_CheckedChanged(object sender, EventArgs e) {
+            Spot_Event_Labels();
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e) {
+            Check_Complete();
         }
     }
 }

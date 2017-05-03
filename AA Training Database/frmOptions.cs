@@ -95,50 +95,163 @@ namespace WindowsFormsApplication1 {
                 dAdapter.Fill(dt);
                 conn.Close();
 
-                for (int i = 0; i <= dt.Rows.Count - 1; i++) {
-                    cboFleet.Enabled = true;
-                    foreach (KeyValuePair<int, string> row in cboFleet.Items) {
-                        if (row.Key == (int)dt.Rows[i]["AIRCRAFT"]) {
-                            cboFleet.SelectedIndex = cboFleet.Items.IndexOf(row);
-                            // if fleet selection found, disable cbo
-                            cboFleet.Enabled = false;
-                        }
-                    }
+                cboFleet.Enabled = true;
 
-                    if ((string)dt.Rows[i]["PATH_PDF"] != "0") {
-                        GlobalCode.sPATH_PDF = (string)dt.Rows[i]["PATH_PDF"];
-                    } else {
-                        GlobalCode.sPATH_PDF = "";
+                if (GlobalCode.bFirstRun) {
+                    Clear_Controls();
+                } else {
+                    // load db options
+                    for (int i = 0; i <= dt.Rows.Count - 1; i++) {
+                        foreach (KeyValuePair<int, string> row in cboFleet.Items) {
+                            if (row.Key == (int)dt.Rows[i]["AIRCRAFT"]) {
+                                if ((int)dt.Rows[i]["AIRCRAFT"] > -1) {
+                                    cboFleet.SelectedIndex = cboFleet.Items.IndexOf(row);
+                                    // if fleet selection found, disable cbo
+                                    cboFleet.Enabled = false;
+                                }
+                            }
+                        }
+
+                        if ((string)dt.Rows[i]["PATH_PDF"] != "0") {
+                            GlobalCode.sPATH_PDF = (string)dt.Rows[i]["PATH_PDF"];
+                        } else {
+                            GlobalCode.sPATH_PDF = "";
+                        }
+                        if ((string)dt.Rows[i]["FILE_PDF"] != "0") {
+                            GlobalCode.sFILE_PDF = (string)dt.Rows[i]["FILE_PDF"];
+                        } else {
+                            GlobalCode.sFILE_PDF = "";
+                        }
+                        lblPathOutput.Text = GlobalCode.sPATH_PDF;
+
+                        if ((string)dt.Rows[i]["PATH_LOGO"] != "0") {
+                            GlobalCode.sPATH_LOGO = (string)dt.Rows[i]["PATH_LOGO"];
+                        } else {
+                            GlobalCode.sPATH_LOGO = "";
+                        }
+                        if ((string)dt.Rows[i]["PATH_IMAGE_PDF"] != "0") {
+                            GlobalCode.sPATH_IMAGE_PDF = (string)dt.Rows[i]["PATH_IMAGE_PDF"];
+                        } else {
+                            GlobalCode.sPATH_IMAGE_PDF = "";
+                        }
+                        GlobalCode.sCARRIER = (string)dt.Rows[i]["CARRIER"];
                     }
-                    if ((string)dt.Rows[i]["FILE_PDF"] != "0") {
-                        GlobalCode.sFILE_PDF = (string)dt.Rows[i]["FILE_PDF"];
-                    } else {
-                        GlobalCode.sFILE_PDF = "";
-                    }
+                    lblPathImagePdf.Text = GlobalCode.sPATH_IMAGE_PDF;
+
+                    lblPathLogo.Text = GlobalCode.sPATH_LOGO;
+
+                    lblPathData.Text = GlobalCode.sPATH_DATA;
+
+                    lblPathDataOriginal.Text = GlobalCode.sPATH_DATA;
+
+                    lblPathDataBackup.Text = GlobalCode.sPATH_FILE_DATA_BACKUP;
+
                     lblPathOutput.Text = GlobalCode.sPATH_PDF;
 
-                    if ((string)dt.Rows[i]["PATH_LOGO"] != "0") {
-                        GlobalCode.sPATH_LOGO = (string)dt.Rows[i]["PATH_LOGO"];
-                    } else {
-                        GlobalCode.sPATH_LOGO = "";
-                    }
-                    if ((string)dt.Rows[i]["PATH_IMAGE_PDF"] != "0") {
-                        GlobalCode.sPATH_IMAGE_PDF = (string)dt.Rows[i]["PATH_IMAGE_PDF"];
-                    } else {
-                        GlobalCode.sPATH_IMAGE_PDF = "";
-                    }
-                    GlobalCode.sCARRIER = (string)dt.Rows[i]["CARRIER"];
+                    txtFilePDF.Text = GlobalCode.sFILE_PDF;
+
+                    txtAirCarrier.Text = GlobalCode.sCARRIER;
+
                 }
-                lblPathImagePdf.Text = GlobalCode.sPATH_IMAGE_PDF;
-                lblPathLogo.Text = GlobalCode.sPATH_LOGO;
 
-                lblPathData.Text = GlobalCode.sPATH_DATA;
-                lblPathDataOriginal.Text = GlobalCode.sPATH_DATA;
-                lblPathDataBackup.Text = GlobalCode.sPATH_FILE_DATA_BACKUP;
-                txtFilePDF.Text = GlobalCode.sFILE_PDF;
-                txtAirCarrier.Text = GlobalCode.sCARRIER;
+                CheckForComplete();
 
-                btnSave.Enabled = true;
+            } catch (Exception) {
+                throw;
+            }
+        }
+        private void Clear_Controls() {
+            lblPathImagePdf.Text = "";
+            btnPathImagePdf.ForeColor = Color.Red;
+
+            lblPathLogo.Text = "";
+            btnPathLogo.ForeColor = Color.Red;
+
+            lblPathData.Text = "";
+            btnPathData.ForeColor = Color.Red;
+
+            lblPathDataBackup.Text = "";
+            btnPathDataBackup.ForeColor = Color.Red;
+
+            lblPathOutput.Text = "";
+            btnPathOutput.ForeColor = Color.Red;
+
+            txtFilePDF.Text = "";
+            txtAirCarrier.Text = "";
+
+            cboFleet.Text = "";
+            cboFleet.Enabled = true;
+
+            btnSave.Enabled = false;
+
+        }
+        private void CheckForComplete() {
+            try {
+                bool bComplete = true;
+
+                if (lblPathImagePdf.Text == "") {
+                    bComplete = false;
+                    btnPathImagePdf.ForeColor = Color.Red;
+                } else {
+                    btnPathImagePdf.ForeColor = Color.Black;
+                }
+
+                if (lblPathLogo.Text == "") {
+                    bComplete = false;
+                    btnPathLogo.ForeColor = Color.Red;
+                } else {
+                    btnPathLogo.ForeColor = Color.Black;
+                }
+
+                if (lblPathData.Text == "") {
+                    bComplete = false;
+                    btnPathData.ForeColor = Color.Red;
+                } else {
+                    btnPathData.ForeColor = Color.Black;
+                }
+
+                if (lblPathDataBackup.Text == "") {
+                    bComplete = false;
+                    btnPathDataBackup.ForeColor = Color.Red;
+                } else {
+                    btnPathDataBackup.ForeColor = Color.Black;
+                }
+
+                if (lblPathOutput.Text == "") {
+                    bComplete = false;
+                    btnPathOutput.ForeColor = Color.Red;
+                } else {
+                    btnPathOutput.ForeColor = Color.Black;
+                }
+
+                if (txtAirCarrier.Text == "") {
+                    bComplete = false;
+                    lblCarrier.ForeColor = Color.Red;
+                } else {
+                    lblCarrier.ForeColor = Color.Black;
+                }
+
+                if (txtFilePDF.Text == "") {
+                    bComplete = false;
+                    lblOutput.ForeColor = Color.Red;
+                } else {
+                    lblOutput.ForeColor = Color.Black;
+                }
+
+                if (cboFleet.Text == "") {
+                    bComplete = false;
+                    lblFleet.ForeColor = Color.Red;
+                } else {
+                    lblFleet.ForeColor = Color.Black;
+                }
+
+
+                if (!bComplete) {
+                        btnSave.Enabled = false;
+                } else {
+                        btnSave.Enabled = true;
+                }
+
             } catch (Exception) {
                 throw;
             }
@@ -146,36 +259,6 @@ namespace WindowsFormsApplication1 {
 
         private void UpdateDataRow() {
             try {
-                string strUpdate = "UPDATE Options SET " +
-                "AIRCRAFT = @aircraft," +
-                "FLEET = @fleet," +
-                "PATH_DB = @path_db," +
-                "PATH_DB_BACKUP = @path_db_backup," +
-                "PATH_PDF = @path_pdf," +
-                "FILE_PDF = @file_pdf," +
-                "CARRIER = @carrier," +
-                "PATH_IMAGE_PDF = @path_image_pdf," +
-                "PATH_LOGO = @path_logo" +
-                " WHERE [ID] = @id";
-
-                OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
-
-                cmd.Parameters.AddWithValue("@aircraft", Get_Selected_Key(cboFleet));
-                cmd.Parameters.AddWithValue("@fleet", cboFleet.Text);
-                cmd.Parameters.AddWithValue("@path_db", lblPathData.Text);
-                cmd.Parameters.AddWithValue("@path_db_backup", lblPathDataBackup.Text);
-                cmd.Parameters.AddWithValue("@path_pdf", lblPathOutput.Text);
-                cmd.Parameters.AddWithValue("@file_pdf", txtFilePDF.Text);
-
-                cmd.Parameters.AddWithValue("@carrier", txtAirCarrier.Text);
-                cmd.Parameters.AddWithValue("@path_image_pdf", lblPathImagePdf.Text);
-                cmd.Parameters.AddWithValue("@path_logo", lblPathLogo.Text);
-
-                cmd.Parameters.AddWithValue("@id", 1);
-
-                conn.Open();
-                int iRows = cmd.ExecuteNonQuery();
-                conn.Close();
 
                 GlobalCode.sFleet = cboFleet.Text;
 
@@ -188,8 +271,8 @@ namespace WindowsFormsApplication1 {
 
                 GlobalCode.sPATH_DATA = lblPathData.Text;
                 Settings.Default.PATH_DB = GlobalCode.sPATH_DATA;
-                GlobalCode.sPATH_FILE_DATA_BACKUP= lblPathDataBackup.Text;
-                Settings.Default.FILE_DB_BACKUP= GlobalCode.sPATH_FILE_DATA_BACKUP;
+                GlobalCode.sPATH_FILE_DATA_BACKUP = lblPathDataBackup.Text;
+                Settings.Default.FILE_DB_BACKUP = GlobalCode.sPATH_FILE_DATA_BACKUP;
                 GlobalCode.sFILE_DATA = "\\TSD_" + cboFleet.Text + ".accdb";
                 Settings.Default.FILE_DB = GlobalCode.sFILE_DATA;
                 GlobalCode.sPATH_FILE_DATA = GlobalCode.sPATH_DATA + GlobalCode.sFILE_DATA;
@@ -197,8 +280,8 @@ namespace WindowsFormsApplication1 {
                 GlobalCode.sPATH_PDF = lblPathOutput.Text;
                 GlobalCode.sFILE_PDF = txtFilePDF.Text;
 
-                GlobalCode.sPATH_IMAGE_PDF= lblPathImagePdf.Text;
-                GlobalCode.sPATH_LOGO= lblPathLogo.Text;
+                GlobalCode.sPATH_IMAGE_PDF = lblPathImagePdf.Text;
+                GlobalCode.sPATH_LOGO = lblPathLogo.Text;
 
                 // 1st, test for fleet file in original folder
                 sPathFileDataOriginal = sPathDataOriginal + GlobalCode.sFILE_DATA;
@@ -206,11 +289,14 @@ namespace WindowsFormsApplication1 {
                     // fleet file NOT found in original folder, set to default file and test
                     sPathFileDataOriginal = sPathDataOriginal + "\\TSD_.accdb";
                     if (!File.Exists(sPathFileDataOriginal)) {
-                        // default db file not found in original folder, set to app folder
-                        sPathFileDataOriginal = GlobalCode.sPATH_APP + "\\TSD_.accdb";
+                        // default db file not found in original folder, set to 'app\Include' folder
+                        sPathFileDataOriginal = GlobalCode.sPATH_APP + "\\Include\\TSD_.accdb";
+                        if (!File.Exists(sPathFileDataOriginal)) {
+                            // file not found in the Include folder, try app root directory
+                            sPathFileDataOriginal = GlobalCode.sPATH_APP + "\\TSD_.accdb";
+                        }
                     }
                 }
-
                 if (sPathFileDataOriginal != GlobalCode.sPATH_FILE_DATA) {
                     // data path has changed
                     // check for correct data file in the new path
@@ -237,12 +323,81 @@ namespace WindowsFormsApplication1 {
                     }
                     // update connection string
                     GlobalCode.sOleDbConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + GlobalCode.sPATH_FILE_DATA;
-                    GlobalCode.conn = new OleDbConnection(GlobalCode.sOleDbConnectionString);
+                    GlobalCode.connData = new OleDbConnection(GlobalCode.sOleDbConnectionString);
+                    Initialize_DB();
                 }
 
-
-                // you can force a save with
                 Settings.Default.Save();
+
+
+                string strUpdate = "UPDATE Options SET " +
+                "AIRCRAFT = @aircraft," +
+                "FLEET = @fleet," +
+                "PATH_DB = @path_db," +
+                "PATH_DB_BACKUP = @path_db_backup," +
+                "PATH_PDF = @path_pdf," +
+                "FILE_PDF = @file_pdf," +
+                "CARRIER = @carrier," +
+                "PATH_IMAGE_PDF = @path_image_pdf," +
+                "PATH_LOGO = @path_logo," +
+
+                "A1 = @a1," +
+                "A2 = @a2," +
+                "A3 = @a3," +
+                "A4 = @a4," +
+                "A5 = @a5," +
+                "A6 = @a6," +
+                "A7 = @a7," +
+                "A8 = @a8," +
+                "A9 = @a9," +
+                "A10 = @a10," +
+                "A11 = @a11," +
+                "A12 = @a12," +
+                "A13 = @a13," +
+                "A14 = @a14," +
+                "A15 = @a15," +
+                "A16 = @a16," +
+                "A17 = @a17," +
+                "A18 = @a18," +
+                "A19 = @a19," +
+                "A20 = @a20," +
+                "A21 = @a21," +
+                "A22 = @a22," +
+                "A23 = @a23," +
+                "A24 = @a24," +
+                "A25 = @a25," +
+                "A26 = @a26," +
+                "A27 = @a27," +
+                "A28 = @a28," +
+                "A29 = @a29," +
+                "A30 = @a30" +
+
+                " WHERE [ID] = @id";
+
+                OleDbCommand cmd = new OleDbCommand(strUpdate, conn);
+
+                cmd.Parameters.AddWithValue("@aircraft", Get_Selected_Key(cboFleet));
+                cmd.Parameters.AddWithValue("@fleet", cboFleet.Text);
+                cmd.Parameters.AddWithValue("@path_db", lblPathData.Text);
+                cmd.Parameters.AddWithValue("@path_db_backup", lblPathDataBackup.Text);
+                cmd.Parameters.AddWithValue("@path_pdf", lblPathOutput.Text);
+                cmd.Parameters.AddWithValue("@file_pdf", txtFilePDF.Text);
+
+                cmd.Parameters.AddWithValue("@carrier", txtAirCarrier.Text);
+                cmd.Parameters.AddWithValue("@path_image_pdf", lblPathImagePdf.Text);
+                cmd.Parameters.AddWithValue("@path_logo", lblPathLogo.Text);
+
+                // additional fields
+                for (int x = 1; x < 31; x++) {
+                    cmd.Parameters.AddWithValue("@a" + x, "");
+                }
+
+                cmd.Parameters.AddWithValue("@id", 1);
+
+                conn.Open();
+                int iRows = cmd.ExecuteNonQuery();
+                conn.Close();
+
 
             } catch (Exception) {
                 throw;
@@ -250,26 +405,25 @@ namespace WindowsFormsApplication1 {
         }
 
         private void btnSave_Click(object sender, EventArgs e) {
-            if (lblPathData.Text == "" || lblPathOutput.Text == "") {
-                DialogResult result = MessageBox.Show(
-                    "All required fields of the preferences were not completed.",
-                    "UNABLE TO UPDATE",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1);
-                return;
-            }
             UpdateDataRow();
+            Program.Load_App();
             this.Close();
         }
 
         private void btnPathData_Click(object sender, EventArgs e) {
             using (var folderDialog = new FolderBrowserDialog()) {
-                folderDialog.SelectedPath = GlobalCode.sPATH_DATA;
+
+                if (GlobalCode.sPATH_DATA == "")
+                    folderDialog.SelectedPath = GlobalCode.sPATH_OPTIONS;
+                else
+                    folderDialog.SelectedPath = GlobalCode.sPATH_DATA;
+
                 if (folderDialog.ShowDialog() == DialogResult.OK) {
                     lblPathData.Text = folderDialog.SelectedPath;
+                    GlobalCode.sPATH_OPTIONS = folderDialog.SelectedPath;
                 }
             }
+            CheckForComplete();
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -283,44 +437,83 @@ namespace WindowsFormsApplication1 {
 
         private void btnPathDataBackup_Click(object sender, EventArgs e) {
             using (var folderDialog = new FolderBrowserDialog()) {
-                folderDialog.SelectedPath = GlobalCode.sPATH_FILE_DATA_BACKUP;
+                if (GlobalCode.sPATH_DATA == "")
+                    folderDialog.SelectedPath = GlobalCode.sPATH_OPTIONS;
+                else
+                    folderDialog.SelectedPath = GlobalCode.sPATH_FILE_DATA_BACKUP;
                 if (folderDialog.ShowDialog() == DialogResult.OK) {
                     lblPathDataBackup.Text = folderDialog.SelectedPath;
+                    GlobalCode.sPATH_OPTIONS = folderDialog.SelectedPath;
                 }
             }
+            CheckForComplete();
         }
 
         private void btnPathOutput_Click(object sender, EventArgs e) {
             using (var folderDialog = new FolderBrowserDialog()) {
-                folderDialog.SelectedPath = GlobalCode.sPATH_PDF;
+                if (GlobalCode.sPATH_DATA == "")
+                    folderDialog.SelectedPath = GlobalCode.sPATH_OPTIONS;
+                else
+                    folderDialog.SelectedPath = GlobalCode.sPATH_PDF;
                 if (folderDialog.ShowDialog() == DialogResult.OK) {
                     lblPathOutput.Text = folderDialog.SelectedPath;
+                    GlobalCode.sPATH_OPTIONS = folderDialog.SelectedPath;
                 }
             }
+            CheckForComplete();
         }
 
         private void btnPathImagePdf_Click(object sender, EventArgs e) {
             using (var folderDialog = new OpenFileDialog()) {
-                folderDialog.InitialDirectory = GlobalCode.sPATH_DATA;
+                if (GlobalCode.sPATH_DATA == "")
+                    folderDialog.InitialDirectory = GlobalCode.sPATH_OPTIONS;
+                else
+                    folderDialog.InitialDirectory = GlobalCode.sPATH_DATA;
                 folderDialog.Title = "Select Title Page Image";
                 folderDialog.Filter = "PNG| *.png";
                 folderDialog.FilterIndex = 1;
                 if (folderDialog.ShowDialog() == DialogResult.OK) {
                     lblPathImagePdf.Text = folderDialog.FileName;
+                    GlobalCode.sPATH_OPTIONS = folderDialog.InitialDirectory;
                 }
             }
+            CheckForComplete();
         }
 
         private void btnPathLogo_Click(object sender, EventArgs e) {
             using (var folderDialog = new OpenFileDialog()) {
-                folderDialog.InitialDirectory = GlobalCode.sPATH_DATA;
+                if (GlobalCode.sPATH_DATA == "")
+                    folderDialog.InitialDirectory = GlobalCode.sPATH_OPTIONS;
+                else
+                    folderDialog.InitialDirectory = GlobalCode.sPATH_DATA;
                 folderDialog.Title = "Select Page Logo Image";
                 folderDialog.Filter = "PNG| *.png";
                 folderDialog.FilterIndex = 1;
                 if (folderDialog.ShowDialog() == DialogResult.OK) {
                     lblPathLogo.Text = folderDialog.FileName;
+                    GlobalCode.sPATH_OPTIONS = folderDialog.InitialDirectory;
                 }
             }
+            CheckForComplete();
+        }
+
+        private void txtAirCarrier_Leave(object sender, EventArgs e) {
+            CheckForComplete();
+        }
+        private void txtAirCarrier_TextChanged(object sender, EventArgs e) {
+            CheckForComplete();
+        }
+
+        private void txtFilePDF_Leave(object sender, EventArgs e) {
+            CheckForComplete();
+        }
+
+        private void txtFilePDF_TextChanged(object sender, EventArgs e) {
+            CheckForComplete();
+        }
+
+        private void cboFleet_TextChanged(object sender, EventArgs e) {
+            CheckForComplete();
         }
     }
 }

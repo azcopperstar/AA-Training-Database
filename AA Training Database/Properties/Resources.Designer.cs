@@ -63,29 +63,9 @@ namespace WindowsFormsApplication1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap A350 {
-            get {
-                object obj = ResourceManager.GetObject("A350", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap aa_logo_only {
             get {
                 object obj = ResourceManager.GetObject("aa_logo_only", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AA320 {
-            get {
-                object obj = ResourceManager.GetObject("AA320", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -177,16 +157,6 @@ namespace WindowsFormsApplication1.Properties {
             get {
                 object obj = ResourceManager.GetObject("Modify", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] page2 {
-            get {
-                object obj = ResourceManager.GetObject("page2", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

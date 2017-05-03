@@ -94,5 +94,17 @@ namespace WindowsFormsApplication1.Properties {
                 this["PATH_PDF"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int cboClearance_SelectedIndex {
+            get {
+                return ((int)(this["cboClearance_SelectedIndex"]));
+            }
+            set {
+                this["cboClearance_SelectedIndex"] = value;
+            }
+        }
     }
 }
